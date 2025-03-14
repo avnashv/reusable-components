@@ -53,7 +53,7 @@ const CustomDropdown = ({ label, options, errorMessage, disabled, required, init
                             boxShadow: errorMessage ? "0px 8px 10px rgba(229, 57, 53, 0.1)" : "0px 8px 10px rgba(113, 113, 174, 0.1)",
                         },
                         "&.Mui-disabled": {
-                            borderColor: "#F2F6F8 !important",
+                            borderColor: "#CBDBE4 !important",
                             color: "#A6ADB3",
                             backgroundColor: "#F4F6F8",
                             pointerEvents: "none",
