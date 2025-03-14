@@ -47,17 +47,18 @@ const CustomDatePicker = ({ label, errorMessage, disabled, required }) => {
                         display: "flex",
                         padding: "8px 12px",
                         alignItems: "center",
-                    },
-                    backgroundColor: errorMessage ? "#FFFFFF" : disabled ? "#F4F6F8" : "white",
-                    borderRadius: "12px",
-                    "& fieldset": {
-                        borderColor: errorMessage ? "#E53935" : "#CBDBE4",
-                    },
-                    "&:hover fieldset": {
-                        borderColor: errorMessage ? "#D32F2F" : "#A6ADB3",
-                    },
-                    "&.Mui-focused fieldset": {
-                        borderColor: errorMessage ? "#D32F2F" : "#1A2731",
+                        borderRadius: "12px",
+                        backgroundColor: errorMessage ? "#FFFFFF" : disabled ? "#F4F6F8" : "white",
+                        "& fieldset": {
+                            borderColor: errorMessage ? "#E53935" : "#CBDBE4",
+                        },
+                        "&:hover fieldset": {
+                            borderColor: errorMessage ? "#D32F2F" : "#A6ADB3",
+                        },
+                        "&.Mui-focused fieldset, &:focus-within fieldset": {
+                            borderColor: "#1A2731 !important",
+                            borderWidth: "1px",
+                        },
                     },
                 }}
                 error={Boolean(errorMessage)}
