@@ -4,7 +4,7 @@ import { TextField, Box, Typography } from "@mui/material";
 const CustomInputField = ({
     state = "default",
     valueType = "default",
-    value = "Value",
+    value = "Value", // Default input value
     hasLabel = true,
     label = "Label",
     hasDescription = false,
@@ -15,6 +15,17 @@ const CustomInputField = ({
     onChange,
 }) => {
     const [isFocused, setIsFocused] = useState(false);
+    const [inputValue, setInputValue] = useState(value);
+
+    // **Handle Input Value Changes**
+    const handleInputChange = (e) => {
+        const newValue = e.target.value;
+        setInputValue(newValue); // Updates internal state
+
+        if (onChange) {
+            onChange(e); // Calls external handler if provided
+        }
+    };
 
     // **Handle Input States Styling**
     const getStyles = () => {
@@ -68,11 +79,11 @@ const CustomInputField = ({
             {/* Input Field */}
             <TextField
                 variant="outlined" // Ensures default OutlinedInput structure
-                value={value}
-                onChange={onChange}
+                value={inputValue}
+                onChange={handleInputChange}
                 disabled={state === "disabled"}
                 InputProps={{
-                    readOnly: state === "non-editable",
+                    readOnly: state === "non-editable", // ✅ Only non-editable fields should be read-only
                 }}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
