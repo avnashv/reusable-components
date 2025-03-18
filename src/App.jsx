@@ -149,7 +149,7 @@ function App() {
       </div>
 
       {/* --- Custom Radio Button Section --- */}
-      <div className="flex items-center gap-8 border border-purple-400 rounded-4xl p-4 shadow-xl text-center bg-white">
+      <div className="flex items-center gap-8 rounded-4xl p-4 shadow-xl text-center bg-white">
         <div className="flex items-center gap-4 justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h1 className="text-xl font-bold text-gray-500">Radio Button</h1>
         </div>
