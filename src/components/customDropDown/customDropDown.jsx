@@ -32,32 +32,36 @@ const CustomDropdown = ({ label, options, errorMessage, disabled, required, init
             {/* Select Box */}
             <FormControl
                 sx={{
-                    backgroundColor: errorMessage ? "#FDE9E9" : disabled ? "#F4F6F8" : "white", // Light red bg when error
-                    borderRadius: "12px",
+                    backgroundColor: errorMessage ? "#FDE9E9" : disabled ? "#F4F6F8" : "white",
                     "& .MuiOutlinedInput-root": {
+                        transition: "border 0.3s ease",
                         width: "240px",
                         height: "40px",
                         display: "flex",
                         padding: "8px 12px",
                         alignItems: "center",
-
+                        borderRadius: "8px",
                         "& fieldset": {
-                            borderColor: errorMessage ? "#E53935" : disabled ? "#CBDBE4" : "#CBDBE4", // Red border on error
+                            borderColor: errorMessage ? "#E53935" : "#CBDBE4",
+                            borderWidth: "1px !important"
                         },
                         "&:hover fieldset": {
-                            borderColor: errorMessage ? "#D32F2F" : disabled ? "#CBDBE4" : "#A6ADB3", // Darker red on hover
+                            borderColor: errorMessage ? "#D32F2F" : disabled ? "#CBDBE4" : "#A6ADB3",
                         },
                         "&.Mui-focused fieldset": {
                             borderColor: errorMessage ? "#D32F2F" : "#1A2731 !important",
-                            borderWidth: "1px !important",
-                            boxShadow: errorMessage ? "0px 8px 10px rgba(229, 57, 53, 0.1)" : "0px 8px 10px rgba(113, 113, 174, 0.1)",
+                            boxShadow: errorMessage
+                                ? "0px 8px 10px rgba(229, 57, 53, 0.1)"
+                                : "0px 8px 10px rgba(113, 113, 174, 0.1)",
+                        },
+                        "&.Mui-disabled fieldset": {
+                            borderColor: "#CBDBE4 !important", // ✅ Ensures single border in disabled state
                         },
                         "&.Mui-disabled": {
-                            borderColor: "#CBDBE4 !important",
                             color: "#A6ADB3",
                             backgroundColor: "#F4F6F8",
                             pointerEvents: "none",
-                            opacity: 1, // Keep text visible
+                            opacity: 1,
                         },
                     },
                 }}
@@ -88,24 +92,22 @@ const CustomDropdown = ({ label, options, errorMessage, disabled, required, init
                         sx={{
                             color: "#E53935",
                             backgroundColor: "#FDE9E9",
-                            width: "240px", // ✅ Matches the Select width
-                            minHeight: "29px", // ✅ Ensures proper height while avoiding overflow
+                            width: "240px",
+                            minHeight: "29px",
                             borderBottomRightRadius: "8px",
                             borderBottomLeftRadius: "8px",
                             padding: "6px",
                             display: "flex",
                             alignItems: "center",
-                            justifyContent: "flex-start", // Aligns text properly
-                            boxSizing: "border-box", // ✅ Prevents extra space from padding
-                            margin: 0, // ✅ Removes any unwanted space
+                            justifyContent: "flex-start",
+                            boxSizing: "border-box",
+                            margin: 0,
                         }}
                     >
                         {errorMessage}
                     </FormHelperText>
                 )}
-
             </FormControl>
-
         </div>
     );
 };
