@@ -18,7 +18,7 @@ const buttonStyles = {
 // Define custom colors for each button variant
 const buttonColors = {
     primary: "#009CDC",
-    secondary: "transparent", // Gray-600 equivalent for secondary
+    secondary: "#CBDBE4", 
     teritary: "#1E293B", // Slate-900 equivalent for tertiary
     icon: "transparent",
     chips: "transparent",
@@ -58,7 +58,6 @@ const CustomButton = ({
 }) => {
     const isIconButton = variant === "icon";
     const isChipButton = variant === "chips";
-    const isSecondaryButton = variant === "secondary";
 
     const buttonSize = isIconButton ? `w-[${iconSize}] h-[${iconSize}]` : isChipButton ? "w-[114px] h-[32px]" : "";
     const padding = isChipButton ? "px-4 py-2" : isIconButton ? "p-0" : "px-4 py-2";
@@ -75,15 +74,14 @@ const CustomButton = ({
             disabled={disabled}
             variant="contained"
             disableRipple
-
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onFocus={() => setIsHovered(true)}
             onBlur={() => setIsClicked(false)}
 
             sx={{
-                backgroundColor: isIconButton || isChipButton || isSecondaryButton
-                    ? "transparent"
+                backgroundColor: isIconButton
+                    ? "#E6F5FC"
                     : variant === "primary"
                         ? "#009CDC"
                         : variant === "teritary"
@@ -96,11 +94,11 @@ const CustomButton = ({
                 fontWeight: "bold",
                 borderRadius: rounded === "full" ? "9999px" : "12px",
                 border: isIconButton
-                    ? "1px solid #FFFFFF"
+                    ? "1px solid #CBDBE4"
                     : isChipButton
                         ? "1px solid #CBDBE4"
                         : variant === "secondary"
-                            ? "0px solid #009CDC"
+                            ? "1px solid #CBDBE4"
                             : "none",
                 width: isIconButton ? iconSize : isChipButton ? "114px" : "auto",
                 height: isIconButton ? iconSize : isChipButton ? "32px" : "auto",
@@ -110,10 +108,10 @@ const CustomButton = ({
                 gap: "8px",
                 boxShadow: "none",
                 "&:hover": {
-                    backgroundColor: isChipButton ? "#FFFFFF"
-                        : isIconButton ? "transparent"
+                    backgroundColor: isChipButton ? "#E6F5FC"
+                        : isIconButton ? "#E6F5FC"
                             : variant === "primary" ? "#006D9A"
-                                : variant === "secondary" ? "transparent" : "#1A2731",
+                                : variant === "secondary" ? "#E6F5FC" : "#1A2731",
 
                     border: isChipButton ? "1px solid #009CDC"
                         : isIconButton ? "1px solid #009CDC"
@@ -125,7 +123,7 @@ const CustomButton = ({
 
                 "&:active": {
                     backgroundColor: isChipButton ? "#FFFFFF"
-                        : isIconButton ? "transparent"
+                        : isIconButton ? "#FFFFFF"
                             : variant === "primary" ? "#009CDC"
                                 : variant === "teritary" ? "#253746" : "transparent",
 
@@ -161,35 +159,40 @@ const CustomButton = ({
                 },
             }}
 
-            className={clsx(
-                "flex items-center justify-center gap-2 transition-all duration-200",
-                buttonStyles[variant] || buttonStyles["primary"],
-                rounded === "full" ? "rounded-full" : "rounded-lg",
-                buttonSize,
-                padding
-            )}
+            className={
+                clsx(
+                    "flex items-center justify-center gap-2 transition-all duration-200",
+                    buttonStyles[variant] || buttonStyles["primary"],
+                    rounded === "full" ? "rounded-full" : "rounded-lg",
+                    buttonSize,
+                    padding
+                )}
         >
             {/* Start Icon */}
-            {startIcon && (
-                <img
-                    src={getIcon(variant, isHovered, isClicked, disabled)} // Default/disabled state
-                    alt="Start Icon"
-                    className="w-4 h-4"
-                />
-            )}
+            {
+                startIcon && (
+                    <img
+                        src={getIcon(variant, isHovered, isClicked, disabled)} // Default/disabled state
+                        alt="Start Icon"
+                        className="w-4 h-4"
+                    />
+                )
+            }
 
             {/* Button Text (optional) */}
             {showText && <span>{text}</span>}
 
             {/* End Icon */}
-            {endIcon && (
-                <img
-                    src={getIcon(variant, isHovered, isClicked, disabled)} // Default/disabled state
-                    alt="End Icon"
-                    className="w-4 h-4"
-                />
-            )}
-        </Button>
+            {
+                endIcon && (
+                    <img
+                        src={getIcon(variant, isHovered, isClicked, disabled)} // Default/disabled state
+                        alt="End Icon"
+                        className="w-4 h-4"
+                    />
+                )
+            }
+        </Button >
     );
 };
 
