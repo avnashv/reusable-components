@@ -132,7 +132,7 @@ const CustomDatePicker = ({ label, errorMessage, disabled, required }) => {
                     <FormHelperText
                         sx={{
                             color: "#E53935",
-                            backgroundColor: "#FDE9E9",
+                            backgroundColor: "transparent",
                             width: "240px",
                             minHeight: "29px",
                             borderBottomRightRadius: "8px",
