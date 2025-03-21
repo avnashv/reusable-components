@@ -32,7 +32,7 @@ const CustomDropdown = ({ label, options, errorMessage, disabled, required, init
             {/* Select Box */}
             <FormControl
                 sx={{
-                    backgroundColor: errorMessage ? "#FDE9E9" : disabled ? "#F4F6F8" : "white",
+                    backgroundColor: errorMessage ? "transparent" : disabled ? "#F4F6F8" : "white",
                     "& .MuiOutlinedInput-root": {
                         transition: "border 0.3s ease",
                         width: "240px",
@@ -91,7 +91,7 @@ const CustomDropdown = ({ label, options, errorMessage, disabled, required, init
                     <FormHelperText
                         sx={{
                             color: "#E53935",
-                            backgroundColor: "#FDE9E9",
+                            backgroundColor: "white",
                             width: "240px",
                             minHeight: "29px",
                             borderBottomRightRadius: "8px",

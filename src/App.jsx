@@ -6,6 +6,7 @@ import CustomDatePicker from "./components/customDatePicker/customDatePicker";
 import CustomInputField from "./components/customInputField/customInputField";
 import CustomCheckboxField from "./components/customCheckboxField/customCheckboxField";
 import CustomRadioField from "./components/customRadioButton/customRadioButton";
+import ToggleButton from "./components/customToggle/customToggle";
 
 function App() {
   // State for radio button selection
@@ -205,8 +206,44 @@ function App() {
           {/* Disabled Unchecked */}
           <CustomCheckboxField label="Label" description="Description" disabled={true} defaultChecked={false} />
         </div>
+      </div>
+      {/* -- Custom Toggle Component -- */}
+      <div className="flex gap-8 border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
 
+        <div className="flex items-center justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h1 className="text-xl font-bold text-gray-500">Toggele Button</h1>
+        </div>
 
+        <div className="flex flex-col border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h4 className="text-lg text-center text-gray-400">Default</h4>
+          {/* leftLabel */}
+          <ToggleButton
+            label="Label Description"
+            description="This is a description"
+            position="left"
+          />
+
+        </div>
+
+        <div className="flex flex-col border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h4 className="text-lg text-center text-gray-400">Unchecked</h4>
+          {/* rightLabel */}
+          <ToggleButton
+            label="Label Description"
+            description="This is a description"
+            position="right"
+          />
+        </div>
+        {/* Disabled Toggle */}
+        <div className="flex flex-col border-x border-gray-300 p-6 rounded-4xl shadow-md">
+          <h4 className="text-lg text-center text-gray-400">Disabled</h4>
+          <ToggleButton
+            label="Label Description"
+            description="This is a description"
+            position="left"
+            disabled
+          />
+        </div>
       </div>
 
     </div>
