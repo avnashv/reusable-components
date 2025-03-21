@@ -7,12 +7,16 @@ import CustomInputField from "./components/customInputField/customInputField";
 import CustomCheckboxField from "./components/customCheckboxField/customCheckboxField";
 import CustomRadioField from "./components/customRadioButton/customRadioButton";
 import ToggleButton from "./components/customToggle/customToggle";
+import CustomPagination from "./components/customPagination/customPagination";
 
 function App() {
   // State for radio button selection
   const [selectedRadio, setSelectedRadio] = useState("option1");
 
   const [textValue, setTextValue] = useState("Value");
+  const [currentPage, setCurrentPage] = useState(1);
+
+
 
   return (
     <div className="flex flex-col h-full items-center justify-around gap-7 py-10 bg-gray-300">
@@ -243,6 +247,24 @@ function App() {
             position="left"
             disabled
           />
+        </div>
+      </div>
+
+      {/* -- Custom Pagination Component -- */}
+      <div className="flex gap-8 border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
+
+        <div className="flex items-center justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h1 className="text-xl font-bold text-gray-500">Pagination</h1>
+        </div>
+
+        <div className="flex flex-col border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h4 className="text-lg text-center text-gray-400">Default</h4>
+          <CustomPagination
+        totalPages={8} 
+        currentPage={currentPage} 
+        setCurrentPage={setCurrentPage} 
+      />
+
         </div>
       </div>
 
