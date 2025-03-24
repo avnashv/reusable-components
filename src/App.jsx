@@ -19,8 +19,6 @@ function App() {
   const [textValue, setTextValue] = useState("Value");
   const [currentPage, setCurrentPage] = useState(1);
 
-
-
   // Sample data for the custom table
   const columns = [
     { id: "leadNo", label: "Lead no", showSort: true, isDrag: false },
