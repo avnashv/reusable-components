@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+* {
+  -webkit-user-drag: none;
+}
+
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */

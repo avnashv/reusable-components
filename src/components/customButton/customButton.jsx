@@ -86,6 +86,8 @@ const CustomButton = ({
                         ? "#009CDC"
                         : variant === "teritary"
                             ? "#253746"
+                            :variant === "secondary"
+                                ? "#E6F5FC"
                             : "transparent",
 
                 color: isChipButton ? (isHovered || isClicked ? "#009CDC" : "#818B94")
