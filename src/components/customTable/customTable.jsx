@@ -18,6 +18,7 @@ const CustomTable = ({ columns: initialColumns, data, showCheckboxes }) => {
     const [selectAll, setSelectAll] = useState(false);
     const [order, setOrder] = useState("asc");
     const [orderBy, setOrderBy] = useState(null);
+    const [draggedColIndex, setDraggedColIndex] = useState(null);
 
     // Handle Select All Rows
     const handleSelectAll = () => {
@@ -56,19 +57,20 @@ const CustomTable = ({ columns: initialColumns, data, showCheckboxes }) => {
     });
 
     // Column Drag and Drop
-    const handleDragStart = (e, index) => {
-        e.dataTransfer.setData("columnIndex", index);
+    const handleDragStart = (index) => {
+        console.log("Dragging column index:", index);
+        setDraggedColIndex(index);
     };
 
-    const handleDrop = (e, dropIndex) => {
-        e.preventDefault();
-        const dragIndex = parseInt(e.dataTransfer.getData("columnIndex"), 10);
-        if (dragIndex === dropIndex) return;
+    const handleDrop = (dropIndex) => {
+        if (draggedColIndex === null || draggedColIndex === dropIndex) return;
 
-        const reordered = [...columns];
-        const [moved] = reordered.splice(dragIndex, 1);
-        reordered.splice(dropIndex, 0, moved);
-        setColumns(reordered);
+        const updated = [...columns];
+        const [moved] = updated.splice(draggedColIndex, 1);
+        updated.splice(dropIndex, 0, moved);
+
+        setColumns(updated);
+        setDraggedColIndex(null);
     };
 
     const handleDragOver = (e) => {
@@ -120,9 +122,9 @@ const CustomTable = ({ columns: initialColumns, data, showCheckboxes }) => {
                             <TableCell
                                 key={column.id}
                                 draggable={column.isDrag}
-                                onDragStart={(e) => column.isDrag && handleDragStart(e, index)}
-                                onDrop={(e) => column.isDrag && handleDrop(e, index)}
-                                onDragOver={handleDragOver}
+                                onDragStart={() => handleDragStart(index)}
+                                onDragOver={(e) => e.preventDefault()}
+                                onDrop={() => handleDrop(index)}
                                 sx={{
                                     fontFamily: "Proxima Nova, sans-serif",
                                     fontWeight: 700,
@@ -130,24 +132,19 @@ const CustomTable = ({ columns: initialColumns, data, showCheckboxes }) => {
                                     lineHeight: "140%",
                                     letterSpacing: "0%",
                                     color: "#17222B",
-                                    cursor: column.isDrag ? "move" : "default",
+                                    cursor: column.isDrag ? "grab" : "default",
                                     userSelect: "none",
                                     padding: "12px 16px",
-                                    display: "",
-                                    alignItems: "center",
-                                    justifyContent: "space-between",
-                                    gap: "8px",
                                 }}
                             >
-                                <div className="flex items-center w-[121.3px] h-[56px] justify-between pt-2 pr-2 pb-2 gap-5 whitespace-nowrap">
+                                <div className="flex items-center w-[121.3px] h-[56px] justify-between pt-2 pr-2 pb-2 gap-5 whitespace-nowrap"                                >
                                     <div className="flex justify-center items-center">
                                         {/* Drag Icon (if drag is enabled) */}
                                         {column.isDrag && (
                                             <img
                                                 src={DragIcon}
-                                                alt="drag"
-                                                className="w-6 h-6 cursor-move"
-                                            // style={{ border: "1px solid red" }}
+                                                alt="Drag"
+                                                className="w-6 h-6 cursor-grab"
                                             />
                                         )}
 
@@ -168,6 +165,8 @@ const CustomTable = ({ columns: initialColumns, data, showCheckboxes }) => {
                                     )}
                                 </div>
                             </TableCell>
+
+
                         ))}
                     </TableRow>
                 </TableHead>
@@ -175,7 +174,7 @@ const CustomTable = ({ columns: initialColumns, data, showCheckboxes }) => {
                 {/* Table Body */}
                 <TableBody>
                     {sortedData.map((row) => (
-                        <TableRow key={row.id} className="hover:bg-gray-50">
+                        <TableRow key={row.id} className="hover:bg-gray-300">
                             {/* Checkbox in Rows */}
                             {showCheckboxes && (
                                 <TableCell>
