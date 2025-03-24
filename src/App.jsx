@@ -6,12 +6,9 @@ import CustomDatePicker from "./components/customDatePicker/customDatePicker";
 import CustomInputField from "./components/customInputField/customInputField";
 import CustomCheckboxField from "./components/customCheckboxField/customCheckboxField";
 import CustomRadioField from "./components/customRadioButton/customRadioButton";
-<<<<<<< HEAD
 import CustomTable from "./components/customTable/customTable";
-=======
 import ToggleButton from "./components/customToggle/customToggle";
 import CustomPagination from "./components/customPagination/customPagination";
->>>>>>> 632ddf68b43ffc52b8c1cd97d4cbe71d62e1ebba
 
 function App() {
   // State for radio button selection
