@@ -8,6 +8,7 @@ import CustomCheckboxField from "./components/customCheckboxField/customCheckbox
 import CustomRadioField from "./components/customRadioButton/customRadioButton";
 import ToggleButton from "./components/customToggle/customToggle";
 import CustomPagination from "./components/customPagination/customPagination";
+import CustomSearch from "./components/customSearch/customSearch";
 
 function App() {
   // State for radio button selection
@@ -260,10 +261,25 @@ function App() {
         <div className="flex flex-col border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-center text-gray-400">Default</h4>
           <CustomPagination
-        totalPages={8} 
-        currentPage={currentPage} 
-        setCurrentPage={setCurrentPage} 
-      />
+            totalPages={8}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+
+        </div>
+      </div>
+
+      {/* -- Custom Search Component -- */}
+      <div className="flex gap-8 border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
+
+        <div className="flex items-center justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h1 className="text-xl font-bold text-gray-500">Search</h1>
+        </div>
+
+        <div className="flex flex-col border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h4 className="text-lg text-center text-gray-400">Default</h4>
+          <CustomSearch />
+
 
         </div>
       </div>
