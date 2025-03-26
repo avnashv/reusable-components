@@ -1,8 +1,17 @@
 {
   "name": "react-mui-tailwind",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "main": "dist/react-mui-tailwind-ui.umd.js",
+  "module": "dist/react-mui-tailwind-ui.es.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "@mui/material": "^5.0.0 || ^6.0.0",
+    "tailwindcss": "^3.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
