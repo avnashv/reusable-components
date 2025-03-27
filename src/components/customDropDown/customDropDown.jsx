@@ -55,7 +55,7 @@ const CustomDropdown = ({ label, options, errorMessage, disabled, required, init
                                 : "0px 8px 10px rgba(113, 113, 174, 0.1)",
                         },
                         "&.Mui-disabled fieldset": {
-                            borderColor: "#CBDBE4 !important", // ✅ Ensures single border in disabled state
+                            borderColor: "#CBDBE4 !important", //  Ensures single border in disabled state
                         },
                         "&.Mui-disabled": {
                             color: "#A6ADB3",
@@ -72,7 +72,7 @@ const CustomDropdown = ({ label, options, errorMessage, disabled, required, init
                     value={value}
                     onChange={handleChange}
                     displayEmpty
-                    IconComponent={CustomArrowIcon} // ✅ Custom Arrow
+                    IconComponent={CustomArrowIcon} //  Custom Arrow
                     sx={{
                         color: value ? "#17222B" : "#818B94",
                         backgroundColor: "#FFFFFF",
