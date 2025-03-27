@@ -58,7 +58,6 @@ const CustomTable = ({ columns: initialColumns, data, showCheckboxes }) => {
 
     // Column Drag and Drop
     const handleDragStart = (index) => {
-        console.log("Dragging column index:", index);
         setDraggedColIndex(index);
     };
 
@@ -165,8 +164,6 @@ const CustomTable = ({ columns: initialColumns, data, showCheckboxes }) => {
                                     )}
                                 </div>
                             </TableCell>
-
-
                         ))}
                     </TableRow>
                 </TableHead>

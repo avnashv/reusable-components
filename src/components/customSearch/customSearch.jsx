@@ -92,7 +92,7 @@ const CustomSearch = () => {
                         border: "1px solid #1A2731",
                         boxShadow: "0px 0px 5px rgba(0, 156, 220, 0.3)",
                     },
-                    // ✅ Change Placeholder Color on Hover and Focus
+                    //  Change Placeholder Color on Hover and Focus
                     "& .MuiInputBase-input::placeholder": {
                         // color: "#808080", // Default placeholder color
                         opacity: .5,

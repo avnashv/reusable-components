@@ -10,7 +10,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CalendarIconActive from "../../assets/icons/calendar-active.svg";
 import CalendarIconDisable from "../../assets/icons/calendar-disable.svg";
-import dayjs from "dayjs";
 
 const CustomDatePicker = ({ label, errorMessage, disabled, required }) => {
     const [selectedDate, setSelectedDate] = useState(null);
@@ -81,7 +80,7 @@ const CustomDatePicker = ({ label, errorMessage, disabled, required }) => {
                                 : "0px 8px 10px rgba(113, 113, 174, 0.1)",
                         },
                         "&.Mui-disabled fieldset": {
-                            borderColor: "#CBDBE4 !important", // ✅ Ensures single border in disabled state
+                            borderColor: "#CBDBE4 !important", //  Ensures single border in disabled state
                         },
                         "&.Mui-disabled": {
                             color: "#A6ADB3",

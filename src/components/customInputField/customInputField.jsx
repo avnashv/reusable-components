@@ -65,7 +65,7 @@ const CustomInputField = ({
     };
 
     return (
-        <Box sx={{ width: "240px", height: "70px", display: "flex", flexDirection: "column", gap: "8px" }}>
+        <Box sx={{ width: "240px", height: "auto", display: "flex", flexDirection: "column", gap: "8px" }}>
             {/* Label */}
             {hasLabel && (
                 <Typography
@@ -83,37 +83,37 @@ const CustomInputField = ({
                 onChange={handleInputChange}
                 disabled={state === "disabled"}
                 InputProps={{
-                    readOnly: state === "non-editable", // ✅ Only non-editable fields should be read-only
+                    readOnly: state === "non-editable", //  Only non-editable fields should be read-only
                 }}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 sx={{
-                    width: "240px", // Match default width
-                    height: "40px", // Ensure proper height
                     borderRadius: "8px", // Default MUI rounded corners
-
+                    
                     // Remove default OutlinedInput border
                     "& .MuiOutlinedInput-notchedOutline": {
                         border: "none", // ❌ Removes MUI border
                     },
-
+                    
                     "& .MuiOutlinedInput-root": {
+                        width: "240px", // Match default width
+                        height: "40px", // Ensure proper height
                         ...getStyles(),
                         transition: "border 0.3s ease",
-                        borderRadius: "8px", // ✅ Ensures rounded corners match
+                        borderRadius: "8px", //  Ensures rounded corners match
                         color: state === "disabled" ? "#818B94" : "#17222B", // Change text color
                         backgroundColor: state === "disabled" ? "#F2F6F8" : "#FFFFFF", // Change background color
-                        border: `1px solid ${hasError ? "#EF4845" : "#CBDBE4"}`, // ✅ Adds a new border to match MUI
+                        border: `1px solid ${hasError ? "#EF4845" : "#CBDBE4"}`, //  Adds a new border to match MUI
                         display: "flex",
-                        alignItems: "center", // ✅ Ensures vertical alignment
+                        alignItems: "center", //  Ensures vertical alignment
 
                         "&:hover": state !== "disabled" && { border: "1px solid #A6ADB3" },
                         "&.Mui-focused": state !== "disabled" && { border: "1px solid #1A2731" },
                     },
 
                     "& .MuiInputBase-input": {
-                        padding: "10px 14px", // ✅ Matches MUI default input padding
-                        fontSize: "16px", // ✅ Ensures consistent font size
+                        padding: "8px 22px", //  Matches MUI default input padding
+                        fontSize: "16px", //  Ensures consistent font size
                     },
                 }}
             />

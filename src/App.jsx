@@ -19,8 +19,6 @@ function App() {
   const [textValue, setTextValue] = useState("Value");
   const [currentPage, setCurrentPage] = useState(1);
 
-
-
   // Sample data for the custom table
   const columns = [
     { id: "leadNo", label: "Lead no", showSort: true, isDrag: false },
@@ -155,7 +153,7 @@ function App() {
 
         <div className="flex flex-col gap-4 text-left border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-center text-gray-400">Default</h4>
-          <CustomDropdown label="Value" options={["Option 1", "Option 2", "Option 3"]} required={true} initialValue="Option 2" // ✅ Pre-selects "Option 2"
+          <CustomDropdown label="Value" options={["Option 1", "Option 2", "Option 3"]} required={true} initialValue="Option 2" //  Pre-selects "Option 2"
           />
         </div>
 
@@ -195,7 +193,7 @@ function App() {
           <CustomInputField state="non-editable" valueType="default" label="Label" />
         </div>
 
-        {/* ✅ Disabled Input */}
+        {/*  Disabled Input */}
         <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-center text-gray-400">Disabled</h4>
           <CustomInputField state="disabled" label="Label" />
