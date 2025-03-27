@@ -18,7 +18,7 @@ const buttonStyles = {
 // Define custom colors for each button variant
 const buttonColors = {
     primary: "#009CDC",
-    secondary: "#CBDBE4", 
+    secondary: "#CBDBE4",
     teritary: "#1E293B", // Slate-900 equivalent for tertiary
     icon: "transparent",
     chips: "transparent",
@@ -82,16 +82,16 @@ const CustomButton = ({
             onBlur={() => setIsClicked(false)}
 
             sx={{
-                textTransform: "none", 
+                textTransform: "none",
                 backgroundColor: isIconButton
                     ? "#E6F5FC"
                     : variant === "primary"
                         ? "#009CDC"
                         : variant === "teritary"
                             ? "#253746"
-                            :variant === "secondary"
+                            : variant === "secondary"
                                 ? "#E6F5FC"
-                            : "transparent",
+                                : "transparent",
 
                 color: isChipButton ? (isHovered || isClicked ? "#009CDC" : "#818B94")
                     : isIconButton ? "#009CDC"
@@ -105,8 +105,8 @@ const CustomButton = ({
                         : variant === "secondary"
                             ? "1px solid #CBDBE4"
                             : "none",
-                width: isIconButton ? iconSize : isChipButton ? "114px" : "auto",
-                height: isIconButton ? iconSize : isChipButton ? "32px" : "auto",
+                width: isIconButton ? "40px" : isChipButton ? "114px" : "130px",
+                height: isIconButton ? "40px" : isChipButton ? "32px" : "40px",
                 minWidth: isIconButton ? iconSize : "auto",
                 minHeight: isIconButton ? iconSize : "auto",
                 padding: isIconButton ? "0px" : isChipButton ? "var(--sds-size-space-300) var(--sds-size-space-400)" : "12px 16px",
@@ -185,7 +185,18 @@ const CustomButton = ({
             }
 
             {/* Button Text (optional) */}
-            {showText && <span>{text}</span>}
+            {showText && <span
+                style={{
+                    fontFamily: 'Proxima Nova, sans-serif',
+                    fontWeight: 700,
+                    fontSize: '16px',
+                    lineHeight: '140%',
+                    letterSpacing: '0%',
+                    opacity: disabled ? 0.5 : 1, // Reduce opacity when disabled
+                }}
+            >
+                {text}
+            </span>}
 
             {/* End Icon */}
             {

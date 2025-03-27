@@ -70,7 +70,16 @@ const CustomInputField = ({
             {hasLabel && (
                 <Typography
                     variant="body1"
-                    sx={{ width: "auto", height: "22px", color: "#17222B" }}
+                    sx={{
+                        width: "auto",
+                        height: "22px",
+                        color: "#17222B",
+                        fontFamily: 'Proxima Nova, sans-serif',
+                        fontWeight: 400,
+                        fontSize: '16px',
+                        lineHeight: '140%',
+                        letterSpacing: '0%',
+                    }}
                 >
                     {label} {showAsterisk && <span style={{ color: "red" }}>*</span>}
                 </Typography>
@@ -89,12 +98,12 @@ const CustomInputField = ({
                 onBlur={() => setIsFocused(false)}
                 sx={{
                     borderRadius: "8px", // Default MUI rounded corners
-                    
+
                     // Remove default OutlinedInput border
                     "& .MuiOutlinedInput-notchedOutline": {
                         border: "none", // ❌ Removes MUI border
                     },
-                    
+
                     "& .MuiOutlinedInput-root": {
                         width: "240px", // Match default width
                         height: "40px", // Ensure proper height
@@ -106,6 +115,11 @@ const CustomInputField = ({
                         border: `1px solid ${hasError ? "#EF4845" : "#CBDBE4"}`, //  Adds a new border to match MUI
                         display: "flex",
                         alignItems: "center", //  Ensures vertical alignment
+                        fontFamily: 'Proxima Nova, sans-serif',
+                        fontWeight: 400,
+                        fontSize: '16px',
+                        lineHeight: '140%',
+                        letterSpacing: '0%',
 
                         "&:hover": state !== "disabled" && { border: "1px solid #A6ADB3" },
                         "&.Mui-focused": state !== "disabled" && { border: "1px solid #1A2731" },
