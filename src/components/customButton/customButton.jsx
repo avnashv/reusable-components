@@ -25,7 +25,8 @@ const buttonColors = {
 };
 
 // Get the appropriate icon based on the button variant
-const getIcon = (variant, isHovered, isClicked, isDisabled) => {
+const getIcon = (variant, isHovered, isClicked, isDisabled, iconImg) => {
+    console.log("img", iconImg)
     if (variant === "chips") {
         return isDisabled ? GrayAdd : isHovered || isClicked ? BlueAdd : GrayAdd;
     }
@@ -38,7 +39,7 @@ const getIcon = (variant, isHovered, isClicked, isDisabled) => {
         case "teritary":
             return WhiteArrowUp;
         case "icon":
-            return BlueArrowUp;
+            return iconImg;
         default:
             return AddIcon;
     }
@@ -54,6 +55,7 @@ const CustomButton = ({
     showText = true,
     rounded = "lg",
     iconSize = "40px",
+    iconImg,
     onClick,
 }) => {
     const isIconButton = variant === "icon";
@@ -175,7 +177,7 @@ const CustomButton = ({
             {
                 startIcon && (
                     <img
-                        src={getIcon(variant, isHovered, isClicked, disabled)} // Default/disabled state
+                        src={getIcon(variant, isHovered, isClicked, disabled, iconImg)} // Default/disabled state
                         alt="Start Icon"
                         className="w-4 h-4"
                     />
@@ -189,7 +191,7 @@ const CustomButton = ({
             {
                 endIcon && (
                     <img
-                        src={getIcon(variant, isHovered, isClicked, disabled)} // Default/disabled state
+                        src={getIcon(variant, isHovered, isClicked, disabled, iconImg)} // Default/disabled state
                         alt="End Icon"
                         className="w-4 h-4"
                     />

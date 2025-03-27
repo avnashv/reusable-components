@@ -10,6 +10,7 @@ import CustomTable from "./components/customTable/customTable";
 import ToggleButton from "./components/customToggle/customToggle";
 import CustomPagination from "./components/customPagination/customPagination";
 import CustomSearch from "./components/customSearch/customSearch";
+import BlueArrowUp from "./assets/icons/blue-arrow-up.svg";
 
 function App() {
   // State for radio button selection
@@ -131,8 +132,8 @@ function App() {
         <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-gray-400">Icon</h4>
           {/* -- Icon Button -- */}
-          <CustomButton variant="icon" disabled={false} showText={false} startIcon={false} endIcon={true} />
-          <CustomButton variant="icon" disabled={true} showText={false} startIcon={false} endIcon={true} />
+          <CustomButton variant="icon" disabled={false} showText={false} startIcon={false} endIcon={true} iconImg={BlueArrowUp}/>
+          <CustomButton variant="icon" disabled={true} showText={false} startIcon={false} endIcon={true} iconImg={BlueArrowUp} />
         </div>
 
         <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
