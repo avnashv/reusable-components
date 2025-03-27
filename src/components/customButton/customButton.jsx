@@ -80,6 +80,7 @@ const CustomButton = ({
             onBlur={() => setIsClicked(false)}
 
             sx={{
+                textTransform: "none", 
                 backgroundColor: isIconButton
                     ? "#E6F5FC"
                     : variant === "primary"
