@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Checkbox, FormControlLabel, FormHelperText, Box, Typography } from "@mui/material";
+import { Checkbox, FormHelperText, Box, Typography } from "@mui/material";
 
 const CustomCheckboxField = ({
     label = "Label",

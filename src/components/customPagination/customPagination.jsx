@@ -61,7 +61,7 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                     value={rowsPerPage}
                     onChange={(e) => setRowsPerPage(Number(e.target.value))}
                     variant="outlined"
-                    IconComponent={DropDownPageIcon} // ✅ Custom Arrow Inside
+                    IconComponent={DropDownPageIcon} //  Custom Arrow Inside
                     className="shadow-sm rounded-md"
                     sx={{
                         // backgroundColor:"gray",
