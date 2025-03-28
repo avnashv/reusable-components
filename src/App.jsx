@@ -22,7 +22,7 @@ function App() {
 
   // Sample data for the custom table
   const columns = [
-    { id: "leadNo", label: "Lead no", showSort: true, isDrag: false },
+    { id: "leadNo", label: "Lead no", showSort: false, isDrag: false },
     { id: "title", label: "Title", showSort: false, isDrag: true },
     { id: "lastName", label: "Last Name", showSort: false, isDrag: true },
     { id: "status", label: "Status", showSort: true, isDrag: true },
@@ -108,6 +108,7 @@ function App() {
           {/* -- Primary Buttons -- */}
           <h4 className="text-lg text-gray-400">Primary</h4>
           <CustomButton text="Button" onClick={() => alert('Hi Team!')} />
+          <CustomButton text="Create Lead" />
           <CustomButton text="Button" disabled={true} showText={true} variant="primary" />
           {/* <CustomButton text="Button" startIcon={true} endIcon={false} />
         <CustomButton text="Button" startIcon={false} endIcon={true} />
@@ -132,7 +133,7 @@ function App() {
         <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-gray-400">Icon</h4>
           {/* -- Icon Button -- */}
-          <CustomButton variant="icon" disabled={false} showText={false} startIcon={false} endIcon={true} iconImg={BlueArrowUp}/>
+          <CustomButton variant="icon" disabled={false} showText={false} startIcon={false} endIcon={true} iconImg={BlueArrowUp} />
           <CustomButton variant="icon" disabled={true} showText={false} startIcon={false} endIcon={true} iconImg={BlueArrowUp} />
         </div>
 
