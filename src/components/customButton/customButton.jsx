@@ -61,7 +61,7 @@ const CustomButton = ({
     const isIconButton = variant === "icon";
     const isChipButton = variant === "chips";
 
-    const buttonSize = isIconButton ? `w-[${iconSize}] h-[${iconSize}]` : isChipButton ? "w-[114px] h-[32px]" : "";
+    // const buttonSize = isIconButton ? `w-[${iconSize}] h-[${iconSize}]` : isChipButton ? "w-[114px] h-[32px]" : "w-[130px] h-[40px]";
     const padding = isChipButton ? "px-4 py-2" : isIconButton ? "p-0" : "px-4 py-2";
 
     const [isHovered, setIsHovered] = useState(false);
@@ -105,11 +105,15 @@ const CustomButton = ({
                         : variant === "secondary"
                             ? "1px solid #CBDBE4"
                             : "none",
-                width: isIconButton ? "40px" : isChipButton ? "114px" : "130px",
-                height: isIconButton ? "40px" : isChipButton ? "32px" : "40px",
-                minWidth: isIconButton ? iconSize : "auto",
+                // width: isIconButton ? "40px" : isChipButton ? "114px" : "auto",
+                width: isIconButton ? "40px" : "fit-content",
+                // height: isIconButton ? "40px" : isChipButton ? "32px" : "40px",
+                height: isChipButton ? "32px" : "40px",
+                // minWidth: isIconButton ? iconSize : "auto",
+                minWidth: isIconButton ? "40px" : "fit-content",
                 minHeight: isIconButton ? iconSize : "auto",
-                padding: isIconButton ? "0px" : isChipButton ? "var(--sds-size-space-300) var(--sds-size-space-400)" : "12px 16px",
+                // padding: isIconButton ? "0px" : isChipButton ? "var(--sds-size-space-300) var(--sds-size-space-400)" : "12px 16px",
+                padding: isIconButton ? "0px" : "8px 16px",
                 gap: "8px",
                 boxShadow: "none",
                 "&:hover": {
@@ -169,7 +173,7 @@ const CustomButton = ({
                     "flex items-center justify-center gap-2 transition-all duration-200",
                     buttonStyles[variant] || buttonStyles["primary"],
                     rounded === "full" ? "rounded-full" : "rounded-lg",
-                    buttonSize,
+                    // buttonSize,
                     padding
                 )}
         >
