@@ -12,7 +12,7 @@ import {
 import SortIcon from "../../assets/icons/sort.svg";
 import DragIcon from "../../assets/icons/drag.svg";
 
-const CustomTable = ({ columns: initialColumns, data, showCheckboxes }) => {
+const CustomTable = ({ columns: initialColumns, data, showCheckboxes, getRow }) => {
     const [columns, setColumns] = useState(initialColumns);
     const [selectedRows, setSelectedRows] = useState([]);
     const [selectAll, setSelectAll] = useState(false);
@@ -202,7 +202,8 @@ const CustomTable = ({ columns: initialColumns, data, showCheckboxes }) => {
                                         color: "#17222B",
                                     }}
                                 >
-                                    {row[column.id]}
+                                    {/* {row[column.id]} */}
+                                    {getRow ? getRow(column.id, row[column.id]) : row[column.id]}
                                 </TableCell>
                             ))}
                         </TableRow>

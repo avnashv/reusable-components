@@ -11,6 +11,10 @@ import ToggleButton from "./components/customToggle/customToggle";
 import CustomPagination from "./components/customPagination/customPagination";
 import CustomSearch from "./components/customSearch/customSearch";
 import BlueArrowUp from "./assets/icons/blue-arrow-up.svg";
+import PhoneIcon from "./assets/icons/phone-icon.svg";
+import CalenderIcon from "./assets/icons/calendar-table-icon.svg";
+import MailIcon from "./assets/icons/mail.svg";
+import LoactionIcon from "./assets/icons/location.svg";
 
 function App() {
   // State for radio button selection
@@ -90,6 +94,43 @@ function App() {
     },
   ];
 
+
+  const getRow = (columnId, value) => {
+    switch (columnId) {
+      case "createdDate":
+          return (
+            <div className="flex items-center gap-2">
+                <img src={CalenderIcon} alt="Calender" className="w-4 h-4" />
+                <span>{value}</span>
+            </div>
+        );
+        case "phone":
+            return (
+                <div className="flex items-center gap-2">
+                    <img src={PhoneIcon} alt="Phone" className="w-4 h-4" />
+                    <span>{value}</span>
+                </div>
+            );
+        case "email":
+          return (
+            <div className="flex items-center gap-2">
+                <img src={MailIcon} alt="Mail" className="w-4 h-4" />
+                <span>{value}</span>
+            </div>
+        );
+        case "location":
+          return (
+            <div className="flex items-center gap-2">
+                <img src={LoactionIcon} alt="Location" className="w-4 h-4" />
+                <span>{value}</span>
+            </div>
+        );
+        default:
+            return value;
+    }
+};
+
+
   return (
     <div className="flex flex-col min-h-screen items-center justify-around gap-7 py-10 bg-gray-300">
 
@@ -108,7 +149,7 @@ function App() {
           {/* -- Primary Buttons -- */}
           <h4 className="text-lg text-gray-400">Primary</h4>
           <CustomButton text="Button" onClick={() => alert('Hi Team!')} />
-          <CustomButton text="Button" disabled={true} showText={true} variant="primary" />
+          <CustomButton text="Create Lead" disabled={true} showText={true} variant="primary" />
           {/* <CustomButton text="Button" startIcon={true} endIcon={false} />
         <CustomButton text="Button" startIcon={false} endIcon={true} />
         <CustomButton text="Button" startIcon={false} endIcon={false} />
@@ -364,8 +405,8 @@ function App() {
           <h1 className="text-xl font-bold text-gray-500">Table</h1>
         </div>
 
-        <div className="flex flex-col flex-grow w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200">
-          <CustomTable columns={columns} data={data} showCheckboxes={true} />
+        <div className="flex flex-col flex-grow w-full border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 w-full overflow-x-auto">
+          <CustomTable columns={columns} data={data} showCheckboxes={true} getRow={getRow} />
         </div>
 
       </div>
