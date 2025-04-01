@@ -51,7 +51,6 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
         return pages;
     };
 
-
     return (
         <div className="flex items-center justify-between bg-gray-100 rounded-xl p-3 shadow-md w-full max-w-[1304px] mx-auto gap-3">
             {/* Lines Per Page */}
@@ -62,9 +61,8 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                     onChange={(e) => setRowsPerPage(Number(e.target.value))}
                     variant="outlined"
                     IconComponent={DropDownPageIcon} //  Custom Arrow Inside
-                    className="shadow-sm rounded-md"
+                    className={clsx("shadow-sm rounded-md", "custom-select")}
                     sx={{
-                        // backgroundColor:"gray",
                         width: 48, // Adjust width
                         height: 28,
                         borderRadius: 8,
@@ -72,6 +70,11 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                         padding: "2px 2px 2px 4px",
                         justifyContent: "right", // Center align text & icon
                         "& .MuiOutlinedInput-notchedOutline": { border: "none" },
+                        "& .MuiSelect-icon": {
+                            display: "none", // Hide default dropdown icon
+                            "!important": true, // Ensuring this style can't be overridden
+                        },
+                        "!important": true // Add !important to override default styles
                     }}
                 >
                     {[10, 15, 20, 25, 30].map((size) => (
@@ -80,8 +83,6 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                         </MenuItem>
                     ))}
                 </Select>
-
-
             </div>
 
             {/* Pagination Controls */}
@@ -90,12 +91,13 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                 <button
                     className={clsx(
                         "w-8 h-8 flex items-center justify-center rounded-full",
-                        currentPage > 1 ? "bg-blue-100" : "opacity-50 cursor-not-allowed"
+                        currentPage > 1 ? "bg-blue-100" : "opacity-50 cursor-not-allowed",
+                        "custom-pagination-button"
                     )}
                     onClick={() => handleChangePage(currentPage - 1)}
                     disabled={currentPage === 1}
+                    style={{ "!important": true }} // Enforce !important
                 >
-                    {/* <ChevronLeft size={16} /> */}
                     <PrevNavIcon />
                 </button>
 
@@ -109,11 +111,11 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                                 ? "cursor-default text-gray-400"
                                 : page === currentPage
                                     ? "bg-gray-900 text-white font-bold"
-                                    : "text-gray-500"
+                                    : "text-gray-500",
+                            page === "..." ? "text-gray-400" : "custom-page-button"
                         )}
                         onClick={() => typeof page === "number" && handleChangePage(page)}
-                        disabled={page === "..."}
-                    >
+                        disabled={page === "..."}>
                         {page}
                     </button>
                 ))}
@@ -122,12 +124,13 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                 <button
                     className={clsx(
                         "w-8 h-8 flex items-center justify-center rounded-full",
-                        currentPage < totalPages ? "bg-blue-100" : "opacity-50 cursor-not-allowed"
+                        currentPage < totalPages ? "bg-blue-100" : "opacity-50 cursor-not-allowed",
+                        "custom-pagination-button"
                     )}
                     onClick={() => handleChangePage(currentPage + 1)}
                     disabled={currentPage === totalPages}
+                    style={{ "!important": true }} // Enforce !important
                 >
-                    {/* <ChevronRight size={16} /> */}
                     <NextNavIcon />
                 </button>
             </div>

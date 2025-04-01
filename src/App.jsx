@@ -406,9 +406,10 @@ function App() {
           <h1 className="text-xl font-bold text-gray-500">Table</h1>
         </div>
 
-        <div className="flex flex-col flex-grow w-full border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 w-full overflow-x-auto">
+        <div className="flex flex-col flex-grow w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
           <CustomTable columns={columns} data={data} showCheckboxes={true} getRow={getRow} />
         </div>
+
 
       </div>
     </div>
