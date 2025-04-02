@@ -52,7 +52,7 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
     };
 
     return (
-        <div className="flex items-center justify-between bg-gray-100 rounded-xl p-3 shadow-md w-full max-w-[1304px] mx-auto gap-3">
+        <div className="flex items-center justify-between gap-3">
             {/* Lines Per Page */}
             <div className="flex items-center gap-3 text-gray-500">
                 <span className="text-sm">Lines per page</span>
@@ -86,17 +86,17 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
             </div>
 
             {/* Pagination Controls */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
                 {/* Prev Button */}
                 <button
                     className={clsx(
-                        "w-8 h-8 flex items-center justify-center rounded-full",
+                        "w-7 h-7 flex items-center justify-center rounded-full",
                         currentPage > 1 ? "bg-blue-100" : "opacity-50 cursor-not-allowed",
                         "custom-pagination-button"
                     )}
+                    style={{ "!important": true }} // Enforce !important
                     onClick={() => handleChangePage(currentPage - 1)}
                     disabled={currentPage === 1}
-                    style={{ "!important": true }} // Enforce !important
                 >
                     <PrevNavIcon />
                 </button>
@@ -106,14 +106,15 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                     <button
                         key={index}
                         className={clsx(
-                            "w-8 h-8 flex items-center justify-center rounded-full",
+                            "w-7 h-7 flex items-center justify-center rounded-full",
                             page === "..."
                                 ? "cursor-default text-gray-400"
                                 : page === currentPage
-                                    ? "bg-gray-900 text-white font-bold"
+                                    ? "bg-[#17222B] text-white font-bold"
                                     : "text-gray-500",
                             page === "..." ? "text-gray-400" : "custom-page-button"
                         )}
+                        style={{ width: 28, height: 28, borderRadius: 50, "!important": true }}
                         onClick={() => typeof page === "number" && handleChangePage(page)}
                         disabled={page === "..."}>
                         {page}
@@ -123,13 +124,13 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                 {/* Next Button */}
                 <button
                     className={clsx(
-                        "w-8 h-8 flex items-center justify-center rounded-full",
+                        "w-7 h-7 flex items-center justify-center rounded-full",
                         currentPage < totalPages ? "bg-blue-100" : "opacity-50 cursor-not-allowed",
                         "custom-pagination-button"
                     )}
+                    style={{ width: 28, height: 28, borderRadius: 50, "!important": true }}
                     onClick={() => handleChangePage(currentPage + 1)}
                     disabled={currentPage === totalPages}
-                    style={{ "!important": true }} // Enforce !important
                 >
                     <NextNavIcon />
                 </button>
