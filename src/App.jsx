@@ -149,7 +149,7 @@ function App() {
           {/* -- Primary Buttons -- */}
           <h4 className="text-lg text-gray-400">Primary</h4>
           <CustomButton text="Button" onClick={() => alert('Hi Team!')} />
-          <CustomButton text="Create Lead" />
+          <CustomButton text="Create Lead" startIcon={false} endIcon={true} iconImg={MailIcon} />
           <CustomButton text="Button" disabled={true} showText={true} variant="primary" />
           {/* <CustomButton text="Button" startIcon={true} endIcon={false} />
         <CustomButton text="Button" startIcon={false} endIcon={true} />

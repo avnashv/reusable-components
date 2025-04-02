@@ -26,7 +26,7 @@ const buttonColors = {
 
 // Get the appropriate icon based on the button variant
 const getIcon = (variant, isHovered, isClicked, isDisabled, iconImg) => {
-    console.log("img", iconImg)
+    if(iconImg) return iconImg; // use iconImg if passed
     if (variant === "chips") {
         return isDisabled ? GrayAdd : isHovered || isClicked ? BlueAdd : GrayAdd;
     }
