@@ -59,8 +59,8 @@ const CustomDateRangePicker = ({ label, errorMessage, disabled, required }) => {
 
     const formatDateRange = () => {
         const [start, end] = selectedDateRange;
-        const startStr = start ? dayjs(start).format("DD/MM/YYYY") : "Select          ";
-        const endStr = end ? dayjs(end).format("DD/MM/YYYY") : "Select";
+        const startStr = start ? dayjs(start).format("DD/MM/YYYY") : "DD/MM/YYYY";
+        const endStr = end ? dayjs(end).format("DD/MM/YYYY") : "DD/MM/YYYY";
         return `${startStr} - ${endStr}`;
     };
 
