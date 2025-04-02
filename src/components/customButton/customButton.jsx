@@ -26,7 +26,7 @@ const buttonColors = {
 
 // Get the appropriate icon based on the button variant
 const getIcon = (variant, isHovered, isClicked, isDisabled, iconImg) => {
-    if(iconImg) return iconImg; // use iconImg if passed
+    if (iconImg) return iconImg; // use iconImg if passed
     if (variant === "chips") {
         return isDisabled ? GrayAdd : isHovered || isClicked ? BlueAdd : GrayAdd;
     }
@@ -56,6 +56,7 @@ const CustomButton = ({
     rounded = "lg",
     iconSize = "40px",
     iconImg,
+    selected = false,
     onClick,
 }) => {
     const isIconButton = variant === "icon";
@@ -98,11 +99,17 @@ const CustomButton = ({
                         : variant === "secondary" ? "#009CDC" : "#fff",
                 fontWeight: "bold",
                 borderRadius: rounded === "full" ? "9999px" : "12px",
-                border: isIconButton
-                    ? "1px solid #CBDBE4"
-                    : isChipButton
-                        ? "1px solid #CBDBE4"
-                        : variant === "secondary"
+                // border: isIconButton
+                //     ? "1px solid #CBDBE4"
+                //     : isChipButton
+                //         ? "1px solid #CBDBE4"
+                //         : variant === "secondary"
+                //             ? "1px solid #CBDBE4"
+                //             : "none",
+                border:
+                    selected && variant === "chips"
+                        ? "1px solid #009CDC"
+                        : isIconButton || isChipButton || variant === "secondary"
                             ? "1px solid #CBDBE4"
                             : "none",
                 // width: isIconButton ? "40px" : isChipButton ? "114px" : "auto",
@@ -189,18 +196,20 @@ const CustomButton = ({
             }
 
             {/* Button Text (optional) */}
-            {showText && <span
-                style={{
-                    fontFamily: 'Proxima Nova, sans-serif',
-                    fontWeight: 700,
-                    fontSize: '16px',
-                    lineHeight: '140%',
-                    letterSpacing: '0%',
-                    opacity: disabled ? 0.5 : 1, // Reduce opacity when disabled
-                }}
-            >
-                {text}
-            </span>}
+            {
+                showText && <span
+                    style={{
+                        fontFamily: 'Proxima Nova, sans-serif',
+                        fontWeight: 700,
+                        fontSize: '16px',
+                        lineHeight: '140%',
+                        letterSpacing: '0%',
+                        opacity: disabled ? 0.5 : 1, // Reduce opacity when disabled
+                    }}
+                >
+                    {text}
+                </span>
+            }
 
             {/* End Icon */}
             {
