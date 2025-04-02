@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
     TextField,
     FormControl,
@@ -13,9 +13,20 @@ import CalendarIconDisable from "../../assets/icons/calendar-disable.svg";
 
 const CustomDatePicker = ({ label, errorMessage, disabled, required }) => {
     const [selectedDate, setSelectedDate] = useState(null);
+    const [open, setOpen] = useState(false);
+    const textFieldRef = useRef(null);
 
-    const handleDateChange = (newValue) => {
+    const handleToggle = () => {
+        if (!disabled) {
+            setOpen((prev) => !prev);
+        }
+    };
+
+    const handleAccept = (newValue) => {
+        console.log("Date Accepted:", newValue);
         setSelectedDate(newValue);
+        setOpen(false); // Close the picker when date is accepted
+        console.log("Open State Set to:", open); // Debug log to confirm state change
     };
 
     return (
@@ -48,27 +59,9 @@ const CustomDatePicker = ({ label, errorMessage, disabled, required }) => {
                         padding: "8px 12px",
                         alignItems: "center",
                         borderRadius: "8px",
-                        // backgroundColor: errorMessage ? "#FFFFFF" : disabled ? "#F4F6F8" : "white",
-                        // "& fieldset": {
-                        //     borderColor: errorMessage ? "#E53935" : "#CBDBE4",
-                        // },
-                        // "&:hover fieldset": {
-                        //     borderColor: errorMessage ? "#D32F2F" : "#A6ADB3",
-                        // },
-                        // "&.Mui-focused fieldset, &:focus-within fieldset": {
-                        //     borderColor: "#1A2731 !important",
-                        //     borderWidth: "1px",
-                        // },
-                        // "&.Mui-disabled": {
-                        //     borderColor: "1px solid#CBDBE4 !important",
-                        //     color: "#A6ADB3",
-                        //     backgroundColor: "#F4F6F8",
-                        //     pointerEvents: "none",
-                        //     opacity: 1, // Keep text visible
-                        // },
                         "& fieldset": {
                             borderColor: errorMessage ? "#E53935" : "#CBDBE4",
-                            borderWidth: "1px !important"
+                            borderWidth: "1px !important",
                         },
                         "&:hover fieldset": {
                             borderColor: errorMessage ? "#D32F2F" : disabled ? "#CBDBE4" : "#A6ADB3",
@@ -80,50 +73,64 @@ const CustomDatePicker = ({ label, errorMessage, disabled, required }) => {
                                 : "0px 8px 10px rgba(113, 113, 174, 0.1)",
                         },
                         "&.Mui-disabled fieldset": {
-                            borderColor: "#CBDBE4 !important", //  Ensures single border in disabled state
+                            borderColor: "#CBDBE4 !important",
                         },
                         "&.Mui-disabled": {
                             color: "#A6ADB3",
                             backgroundColor: "#F4F6F8",
                             pointerEvents: "none",
                             opacity: 1,
-                            // borderWidth: "1px !important"
                         },
                     },
                 }}
                 error={Boolean(errorMessage)}
             >
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DesktopDatePicker
-                        value={selectedDate}
-                        onChange={handleDateChange}
-                        disabled={disabled}
-                        inputFormat="DD/MM/YYYY"
-                        renderInput={(params) => (
-                            <TextField
-                                {...params}
-                                fullWidth
-                                error={Boolean(errorMessage)}
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <img
-                                                src={disabled ? CalendarIconDisable : CalendarIconActive}
-                                                alt="Calendar"
-                                                style={{
-                                                    width: "16px",
-                                                    height: "16px",
-                                                    cursor: disabled ? "not-allowed" : "pointer",
-                                                }}
-                                            />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                            />
-                        )}
-                        // slots={{ openPickerIcon: () => null }} // Prevents MUI from rendering the default calendar icon
-                        
-                    />
+                    <div
+                        onClick={handleToggle}
+                        style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            cursor: disabled ? "not-allowed" : "pointer",
+                            width: "240px",
+                        }}
+                    >
+                        <DesktopDatePicker
+                            value={selectedDate}
+                            onChange={() => {}} // Empty onChange to avoid interference
+                            onAccept={handleAccept} // Handle selection and closing here
+                            disabled={disabled}
+                            format="DD/MM/YYYY"
+                            open={open}
+                            onClose={() => setOpen(false)}
+                            slots={{
+                                openPickerIcon: () => null, // Suppress default MUI icon
+                            }}
+                            slotProps={{
+                                textField: {
+                                    inputRef: textFieldRef,
+                                    fullWidth: true,
+                                    error: Boolean(errorMessage),
+                                    InputProps: {
+                                        readOnly: true, // Prevent typing
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <img
+                                                    src={disabled ? CalendarIconDisable : CalendarIconActive}
+                                                    alt="Calendar"
+                                                    style={{
+                                                        width: "16px",
+                                                        height: "16px",
+                                                        cursor: disabled ? "not-allowed" : "pointer",
+                                                    }}
+                                                />
+                                            </InputAdornment>
+                                        ),
+                                    },
+                                },
+                            }}
+                        />
+                    </div>
                 </LocalizationProvider>
 
                 {/* Error Message */}
