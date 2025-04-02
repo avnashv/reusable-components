@@ -94,18 +94,13 @@ const CustomButton = ({
                                 ? "#E6F5FC"
                                 : "transparent",
 
-                color: isChipButton ? (isHovered || isClicked ? "#009CDC" : "#818B94")
-                    : isIconButton ? "#009CDC"
-                        : variant === "secondary" ? "#009CDC" : "#fff",
+                color: selected && variant === "chips"
+                    ? "#009CDC"
+                    : isChipButton ? (isHovered || isClicked ? "#009CDC" : "#818B94")
+                        : isIconButton ? "#009CDC"
+                            : variant === "secondary" ? "#009CDC" : "#fff",
                 fontWeight: "bold",
                 borderRadius: rounded === "full" ? "9999px" : "12px",
-                // border: isIconButton
-                //     ? "1px solid #CBDBE4"
-                //     : isChipButton
-                //         ? "1px solid #CBDBE4"
-                //         : variant === "secondary"
-                //             ? "1px solid #CBDBE4"
-                //             : "none",
                 border:
                     selected && variant === "chips"
                         ? "1px solid #009CDC"

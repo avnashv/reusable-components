@@ -226,6 +226,7 @@ function App() {
             state="default"
             label="Label"
             value={textValue}
+            placeholder="Enter your first name"
             onChange={(e) => setTextValue(e.target.value)}
           />
         </div>

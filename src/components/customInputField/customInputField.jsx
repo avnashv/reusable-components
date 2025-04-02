@@ -3,7 +3,6 @@ import { TextField, Box, Typography } from "@mui/material";
 
 const CustomInputField = ({
     state = "default",
-    valueType = "default",
     value = "Value", // Default input value
     hasLabel = true,
     label = "Label",
@@ -13,6 +12,7 @@ const CustomInputField = ({
     error = "Error Message",
     showAsterisk = true,
     onChange,
+    placeholder = "Enter value",
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [inputValue, setInputValue] = useState(value);
@@ -89,6 +89,7 @@ const CustomInputField = ({
             <TextField
                 variant="outlined" // Ensures default OutlinedInput structure
                 value={inputValue}
+                placeholder={placeholder}
                 onChange={handleInputChange}
                 disabled={state === "disabled"}
                 InputProps={{
@@ -128,6 +129,16 @@ const CustomInputField = ({
                     "& .MuiInputBase-input": {
                         padding: "8px 22px", //  Matches MUI default input padding
                         fontSize: "16px", //  Ensures consistent font size
+
+                        // Add placeholder styling
+                        "&::placeholder": {
+                            color: "#818B94", // your Text-T100 color
+                            fontFamily: 'Proxima Nova, sans-serif',
+                            fontWeight: 400,
+                            fontSize: '16px',
+                            lineHeight: '140%',
+                            letterSpacing: '0%',
+                        },
                     },
                 }}
             />
