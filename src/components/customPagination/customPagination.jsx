@@ -94,7 +94,6 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                         currentPage > 1 ? "bg-blue-100" : "opacity-50 cursor-not-allowed",
                         "custom-pagination-button"
                     )}
-                    style={{ "!important": true }} // Enforce !important
                     onClick={() => handleChangePage(currentPage - 1)}
                     disabled={currentPage === 1}
                 >
@@ -106,20 +105,18 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                     <button
                         key={index}
                         className={clsx(
-                            "w-7 h-7 flex items-center justify-center rounded-full",
-                            page === "..."
-                                ? "cursor-default text-gray-400"
-                                : page === currentPage
-                                    ? "bg-[#17222B] text-white font-bold"
-                                    : "text-gray-500",
-                            page === "..." ? "text-gray-400" : "custom-page-button"
+                            "w-7 h-7 flex items-center justify-center rounded-full custom-page-button",
+                            page === "..." ? "cursor-default text-gray-400" : "text-gray-500",
+                            page === currentPage && "active-page font-bold text-white"
                         )}
-                        style={{ width: 28, height: 28, borderRadius: 50, "!important": true }}
+                        style={{ width: 28, height: 28, borderRadius: 50}}
                         onClick={() => typeof page === "number" && handleChangePage(page)}
-                        disabled={page === "..."}>
+                        disabled={page === "..."}
+                    >
                         {page}
                     </button>
                 ))}
+
 
                 {/* Next Button */}
                 <button
@@ -128,7 +125,7 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                         currentPage < totalPages ? "bg-blue-100" : "opacity-50 cursor-not-allowed",
                         "custom-pagination-button"
                     )}
-                    style={{ width: 28, height: 28, borderRadius: 50, "!important": true }}
+                    style={{ width: 28, height: 28, borderRadius: 50 }}
                     onClick={() => handleChangePage(currentPage + 1)}
                     disabled={currentPage === totalPages}
                 >

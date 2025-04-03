@@ -3,3 +3,8 @@
 .cursor-move:active {
   opacity: 0.5;
 }
+
+.active-page {
+  background-color: #17222B !important;
+  color: white !important;  /* Optional: Ensure text color is visible */
+}
