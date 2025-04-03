@@ -213,6 +213,40 @@ function App() {
 
       </div>
 
+
+            {/* -- Multiple Custom Dropdown Component -- */}
+          <div className="flex gap-8 w-auto border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
+
+          <div className="flex items-center gap-4 justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+            <h1 className="text-xl font-bold text-gray-500">Multiple Dropdown</h1>
+          </div>
+
+          <div className="flex flex-col gap-4 text-left border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+            <h4 className="text-lg text-center text-gray-400">Default</h4>
+                <CustomDropdown
+                    label="Values"
+                    options={["sample", "chips", "hello", "Option 4", "Option 5", "Option 6"]}
+                    required={true}
+                    multiple={true}
+                />
+          </div>
+
+          <div className="flex flex-col gap-4 text-left border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+            <h4 className="text-lg text-center text-gray-400">Disable</h4>
+            <CustomDropdown label="Disabled" 
+            options={["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Option 6"]}
+            multiple={true}
+            initialValue={["Option 1", "Option 3"]} 
+            disabled />
+          </div>
+
+          <div className="flex flex-col gap-4 text-left border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+            <h4 className="text-lg text-gray-400">Error</h4>
+            <CustomDropdown label="Error" options={["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Option 6"]} errorMessage={"Error Message"} multiple={true} />
+          </div>
+
+          </div>
+
       {/* -- Custom InputField Component -- */}
       <div className="flex items-center gap-4 border-b-1 border-t-1 rounded-4xl py-2 px-2 shadow-xl border-gray-300 text-center bg-white">
 
