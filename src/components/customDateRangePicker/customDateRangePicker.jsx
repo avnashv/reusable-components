@@ -150,6 +150,14 @@ const CustomDateRangePicker = ({ label, errorMessage, disabled, required }) => {
                                 "& .MuiInputBase-root": {
                                     pointerEvents: disabled ? "none" : "auto",
                                 },
+                                "& .MuiInputBase-input": {
+                                    fontSize: "13px", // Reduce font size here
+                                    padding: "8px 8px",
+                                    // "&::placeholder": {
+                                    //     fontSize: "10px", // Adjust placeholder font size
+                                    //     color: "#A6ADB3", // Optional: Set a lighter color for placeholder
+                                    // },
+                                },
                             }}
                         />
                     </div>
