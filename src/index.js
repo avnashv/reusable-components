@@ -9,3 +9,4 @@ export { default as CustomRadioButton } from "./components/customRadioButton/cus
 export { default as CustomSearch } from "./components/customSearch/customSearch";
 export { default as CustomTable } from "./components/customTable/customTable";
 export { default as CustomToggle } from "./components/customToggle/customToggle";
+export { default as CustomDateRangePicker } from "./components/customDateRangePicker/customDateRangePicker";
