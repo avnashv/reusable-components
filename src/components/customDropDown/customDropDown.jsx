@@ -13,6 +13,7 @@ const CustomDropdown = ({
   initialValue = "",
   multiple = false,
   onChange,
+  placeHolder
 }) => {
   const [value, setValue] = useState(multiple ? (Array.isArray(initialValue) ? initialValue : []) : initialValue);
 
@@ -25,7 +26,6 @@ const CustomDropdown = ({
   const handleDelete = (itemToDelete) => (event) => {
     event.stopPropagation();
     const newValue = value.filter((item) => item !== itemToDelete);
-    // console.log("Deleting:", itemToDelete, "New value:", newValue);
     setValue(newValue);
     if (onChange) onChange(newValue);
   };
@@ -34,31 +34,30 @@ const CustomDropdown = ({
     <img
       src={disabled ? ArrowIconDisable : ArrowIconActive}
       alt="Dropdown Icon"
-      style={{
-        width: 16,
-        height: 16,
-            }}
+      style={{ width: 16, height: 16 }}
     />
   );
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-            {/* Label outside the select box */}
-      <label
-        style={{
-          fontFamily: "Proxima Nova, sans-serif",
-          fontWeight: 400,
-          fontSize: "16px",
-          lineHeight: "140%",
-          letterSpacing: "0%",
-                    color: disabled ? "#A6ADB3" : "#17222B", // Gray when disabled
-          marginBottom: "4px",
-        }}
-      >
-        {label} {required && <span style={{ color: "red" }}>*</span>}
-      </label>
+    <div id="dropdown-container" style={{ position: "relative", display: "flex", flexDirection: "column" }}>
+      {/* Label */}
+      {label && (
+        <label
+          style={{
+            fontFamily: "Proxima Nova, sans-serif",
+            fontWeight: 400,
+            fontSize: "16px",
+            lineHeight: "140%",
+            letterSpacing: "0%",
+            color: disabled ? "#A6ADB3" : "#17222B",
+            marginBottom: "4px",
+          }}
+        >
+          {label} {required && <span style={{ color: "red" }}>*</span>}
+        </label>
+      )}
 
-            {/* Select Box */}
+      {/* Select Box */}
       <FormControl
         sx={{
           backgroundColor: errorMessage ? "transparent" : disabled ? "#F4F6F8" : "white",
@@ -109,68 +108,124 @@ const CustomDropdown = ({
           onChange={handleChange}
           displayEmpty
           multiple={multiple}
-          IconComponent={CustomArrowIcon} //  Custom Arrow
+          IconComponent={CustomArrowIcon}
+          MenuProps={{
+            disablePortal: true,
+            container: document.getElementById("dropdown-container"), // Ensure this ID exists in your DOM
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "left",
+            },
+            transformOrigin: {
+              vertical: "top",
+              horizontal: "left",
+            },
+            PaperProps: {
+              style: {
+                marginTop: 8, // Space between select box and dropdown
+              },
+            },
+          }}
+        
           sx={{
             color: (multiple ? value.length > 0 : value) ? "#17222B" : "#818B94",
             backgroundColor: "#FFFFFF",
-            // More specific override for icon visibility
             "& .MuiSelect-icon": {
               display: "block !important",
               right: 8,
             },
-            // Ensure the entire root is clickable
-            "& .MuiOutlinedInput-root": {
-              pointerEvents: disabled ? "none" : "auto",
-            },
           }}
           renderValue={(selected) => {
             if (multiple && Array.isArray(selected) && selected.length === 0) {
-              return "Select options";
+              return placeHolder;
             }
             if (!multiple && !selected) {
-              return "Select an option";
+              return placeHolder;
             }
+
             if (multiple) {
               return (
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-                  {selected.map((item) => (
-                    <Chip
-                      key={item}
-                      label={item}
-                      onDelete={disabled ? undefined : handleDelete(item)}
-                      deleteIcon={
-                        <img
-                          src={CloseCircle}
-                          alt="Close"
-                          style={{ width: 16, height: 16 }}
-                        />
-                      }
-                      onMouseDown={(event) => event.stopPropagation()}
-                      sx={{
-                        height: 32,
-                        border: "1px solid #CBDBE4",
-                        backgroundColor: "#FFFFFF",
-                        color: "#17222B",
-                        "& .MuiChip-deleteIcon": {
-                          display: disabled ? "none" : "block",
-                        },
-                        padding: "0px",
-                        margin: 0,
-                      }}
-                    />
-                  ))}
+                  {selected.map((item) => {
+                    const option =
+                      options.find((opt) => (typeof opt === "object" ? opt.name === item : opt === item)) || item;
+                    return (
+                      <Chip
+                        key={typeof option === "object" ? option.name : option}
+                        label={typeof option === "object" ? `${option.name} (${option.count || 0})` : option}
+                        onDelete={disabled ? undefined : handleDelete(typeof option === "object" ? option.name : option)}
+                        deleteIcon={
+                          <img src={CloseCircle} alt="Close" style={{ width: 16, height: 16 }} />
+                        }
+                        onMouseDown={(event) => event.stopPropagation()}
+                        sx={{
+                          height: 32,
+                          border: "1px solid #CBDBE4",
+                          backgroundColor: "#FFFFFF",
+                          color: "#17222B",
+                          padding: "0px",
+                          margin: 0,
+                        }}
+                      />
+                    );
+                  })}
                 </div>
               );
             }
-            return selected; // Single-select
+
+            const selectedOption =
+              options.find((opt) => (typeof opt === "object" ? opt.name === selected : opt === selected)) || selected;
+            return (
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <span
+                  style={{
+                    fontFamily: "Proxima Nova, sans-serif",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "140%",
+                    letterSpacing: "0%",
+                    verticalAlign: "middle",
+                    color: "#17222B",
+                  }}
+                >
+                  {typeof selectedOption === "object" ? selectedOption.name : selectedOption}
+                </span>
+                {typeof selectedOption === "object" && selectedOption.count !== undefined && (
+                  <span
+                    style={{
+                      background: "#009CDC",
+                      color: "white",
+                      width: 50,
+                      height: 22,
+                      gap: 8,
+                      borderRadius: 999,
+                      padding: "4px 8px",
+                      fontSize: "14px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {selectedOption.count.toLocaleString()}
+                  </span>
+                )}
+              </div>
+
+
+            );
           }}
         >
           <MenuItem value="" disabled>
-         {multiple ? "Select options" : "Select an option"}
+            {placeHolder}
           </MenuItem>
           {options.map((option) => (
-            <MenuItem key={option} value={option}>
-              {option}
+            <MenuItem key={typeof option === "object" ? option.name : option} value={typeof option === "object" ? option.name : option}>
+              <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+                <span>{typeof option === "object" ? option.name : option}</span>
+                {typeof option === "object" && option.count !== undefined && (
+                  <span style={{ fontWeight: "bold" }}>{option.count.toLocaleString()}</span>
+                )}
+              </div>
             </MenuItem>
           ))}
         </Select>
@@ -187,7 +242,6 @@ const CustomDropdown = ({
               display: "flex",
               alignItems: "center",
               justifyContent: "flex-start",
-              boxSizing: "border-box",
               margin: 0,
             }}
           >
