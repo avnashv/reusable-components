@@ -1,6 +1,5 @@
 import React from "react";
 import { Select, MenuItem } from "@mui/material";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import clsx from "clsx";
 import NextNavIconActive from "../../assets/icons/next-nav.svg";
 import PrevNavIconActive from "../../assets/icons/prev-nav.svg";
@@ -52,9 +51,9 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
     };
 
     return (
-        <div className="flex items-center justify-between p-3 shadow-md w-full max-w-[1304px] mx-auto gap-3">
+        <div className="flex items-center justify-between p-3 w-full max-w-[1304px] mx-auto gap-3">
             {/* Lines Per Page */}
-            <div className="flex items-center gap-3 text-gray-500">
+            <div className="flex items-center justify-end gap-3 text-gray-500">
                 <span className="text-sm">Lines per page</span>
                 <Select
                     value={rowsPerPage}
@@ -86,7 +85,7 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
             </div>
 
             {/* Pagination Controls */}
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-3">
                 {/* Prev Button */}
                 <button
                     className={clsx(
