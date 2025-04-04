@@ -236,7 +236,7 @@ function App() {
           <h4 className="text-lg text-center text-gray-400">Default</h4>
           <CustomDropdown
             label="Values"
-            options={["sample", "chips", "hello", "Option 4", "Option 5", "Option 6"]}
+            options={["Aravinth Raj FE Dev", "Aravinth", "Raj", "Avinash", "Sreejitha", "Nirmal"]}
             required={true}
             multiple={true}
             placeHolder="Select Options"
@@ -255,7 +255,7 @@ function App() {
 
         <div className="flex flex-col gap-4 text-left border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-gray-400">Error</h4>
-          <CustomDropdown label="Error" options={["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Option 6"]} errorMessage={"Error Message"} multiple={true}
+          <CustomDropdown label="Error" options={["Aravinth Raj", "Avinash Vijayan", "Sreejitha M C", "Nirmal Kumar VG", "Rajesh Padinjaremadam", "Sree Lakshmi"]} errorMessage={"Error Message"} multiple={true}
             placeHolder="Select Options" />
         </div>
 

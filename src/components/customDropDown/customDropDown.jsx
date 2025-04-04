@@ -126,7 +126,7 @@ const CustomDropdown = ({
               },
             },
           }}
-        
+
           sx={{
             color: (multiple ? value.length > 0 : value) ? "#17222B" : "#818B94",
             backgroundColor: "#FFFFFF",
@@ -145,30 +145,38 @@ const CustomDropdown = ({
 
             if (multiple) {
               return (
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-                  {selected.map((item) => {
-                    const option =
-                      options.find((opt) => (typeof opt === "object" ? opt.name === item : opt === item)) || item;
-                    return (
-                      <Chip
-                        key={typeof option === "object" ? option.name : option}
-                        label={typeof option === "object" ? `${option.name} (${option.count || 0})` : option}
-                        onDelete={disabled ? undefined : handleDelete(typeof option === "object" ? option.name : option)}
-                        deleteIcon={
-                          <img src={CloseCircle} alt="Close" style={{ width: 16, height: 16 }} />
-                        }
-                        onMouseDown={(event) => event.stopPropagation()}
-                        sx={{
-                          height: 32,
-                          border: "1px solid #CBDBE4",
-                          backgroundColor: "#FFFFFF",
-                          color: "#17222B",
-                          padding: "0px",
-                          margin: 0,
-                        }}
-                      />
-                    );
-                  })}
+                <div style={{
+                  display: "flex", flexWrap: "wrap", gap: 4,
+                  maxHeight: "108px", // 3 rows × (32px height + 4px gap) = 108px
+                  overflowY: "auto",  // Enable vertical scrolling
+                  width: "120%",
+                  marginRight: "-32px",
+                }}
+                >
+                  {selected.map((item) => (
+                    <Chip
+                      key={item}
+                      label={item}
+                      onDelete={disabled ? undefined : handleDelete(item)}
+                      deleteIcon={
+                        <img
+                          src={CloseCircle}
+                          alt="Close"
+                          style={{ width: 16, height: 16 }}
+                        />
+                      }
+                      onMouseDown={(event) => event.stopPropagation()}
+                      sx={{
+                        height: 32,
+                        border: "1px solid #CBDBE4",
+                        backgroundColor: "#FFFFFF",
+                        color: "#17222B",
+                        "& .MuiChip-deleteIcon": {
+                          display: disabled ? "none" : "block",
+                        },
+                      }}
+                    />
+                  ))}
                 </div>
               );
             }
