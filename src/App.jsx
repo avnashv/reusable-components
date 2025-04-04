@@ -9,6 +9,7 @@ import CustomCheckboxField from "./components/customCheckboxField/customCheckbox
 import CustomRadioField from "./components/customRadioButton/customRadioButton";
 import CustomTable from "./components/customTable/customTable";
 import ToggleButton from "./components/customToggle/customToggle";
+import CustomTimePicker from "./components/customTimePicker/customTimePicker"
 import CustomPagination from "./components/customPagination/customPagination";
 import CustomSearch from "./components/customSearch/customSearch";
 import BlueArrowUp from "./assets/icons/blue-arrow-up.svg";
@@ -16,6 +17,7 @@ import PhoneIcon from "./assets/icons/phone-icon.svg";
 import CalenderIcon from "./assets/icons/calendar-table-icon.svg";
 import MailIcon from "./assets/icons/mail.svg";
 import LoactionIcon from "./assets/icons/location.svg";
+import dayjs from "dayjs";
 
 function App() {
   // State for radio button selection
@@ -131,7 +133,7 @@ function App() {
     }
   };
 
-
+const initialTime = dayjs().set("hour", 10).set("minute", 30);
   return (
     <div className="flex flex-col min-h-screen items-center justify-around gap-7 py-10 bg-gray-300">
 
@@ -344,6 +346,30 @@ function App() {
           <CustomDateRangePicker label="Error Date" errorMessage="Invalid date" />
         </div>
       </div>
+
+
+              {/* -- Custom TimePicker Component -- */}
+            <div className="flex gap-8 border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
+
+            <div className="flex items-center gap-4 justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+            <h1 className="text-xl font-bold text-gray-500">Time Picker</h1>
+            </div>
+
+            <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+            <h4 className="text-lg text-gray-400">Default</h4>
+            <CustomTimePicker label="Time" required />
+            </div>
+
+            <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+            <h4 className="text-lg text-gray-400">Disabled</h4>
+            <CustomTimePicker label="Disabled Time" value = {initialTime} disabled />
+            </div>
+
+            <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+            <h4 className="text-lg text-gray-400">Error</h4>
+            <CustomTimePicker label="Error Date" errorMessage="Error Message" />
+            </div>
+            </div>
 
       {/* --- Custom Radio Button Section --- */}
       <div className="flex items-center gap-8 rounded-4xl p-4 shadow-xl text-center bg-white">
