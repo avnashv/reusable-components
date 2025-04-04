@@ -51,7 +51,7 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
     };
 
     return (
-        <div className="flex items-center p-3 w-full max-w-[1304px] mx-auto gap-3">
+        <div className="flex items-center justify-end p-3 w-full max-w-[1304px] mx-auto gap-3">
             {/* Lines Per Page */}
             <div className="flex items-center justify-end gap-3 text-gray-500">
                 <span className="text-sm">Lines per page</span>
