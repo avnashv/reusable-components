@@ -130,9 +130,15 @@ const CustomDropdown = ({
             if (!multiple && !selected) {
               return "Select an option";
             }
-            if (multiple) {
+     if (multiple) {
               return (
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 4,  
+                        maxHeight: "108px", // 3 rows × (32px height + 4px gap) = 108px
+                        overflowY: "auto",  // Enable vertical scrolling
+                        width: "120%",  
+                        marginRight: "-32px", 
+                        }}
+                   >
                   {selected.map((item) => (
                     <Chip
                       key={item}
@@ -154,14 +160,12 @@ const CustomDropdown = ({
                         "& .MuiChip-deleteIcon": {
                           display: disabled ? "none" : "block",
                         },
-                        padding: "0px",
-                        margin: 0,
                       }}
                     />
                   ))}
                 </div>
               );
-            }
+            }       
             return selected; // Single-select
           }}
         >
