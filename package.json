@@ -1,6 +1,6 @@
 {
   "name": "react-mui-tailwind",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "type": "module",
   "main": "dist/react-mui-tailwind-ui.umd.js",
   "module": "dist/react-mui-tailwind-ui.es.js",
