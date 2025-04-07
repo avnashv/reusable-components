@@ -534,7 +534,7 @@ function App() {
                 isOpen={isFilterOpen}
                 onClose={toggleFilter}
                 title="Filter"
-                position="left" // ensure it's from left
+                position="right" // ensure it's from left
                 width="649px"
               >
                 <FilterContent onClose={toggleFilter} />
