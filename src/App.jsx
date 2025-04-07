@@ -33,6 +33,9 @@ function App() {
 const [isFilterOpen, setIsFilterOpen] = useState(false);
 const toggleFilter = () => setIsFilterOpen(prev => !prev);
 
+  const yearOptions = ["Select", ...Array.from({ length: 20 }, (_, i) => 
+    `${new Date().getFullYear() - i}`)];
+
   // Sample data for the custom table
   const columns = [
     { id: "leadNo", label: "Lead no", showSort: false, isDrag: false },
@@ -209,11 +212,13 @@ const toggleFilter = () => setIsFilterOpen(prev => !prev);
           placeHolder="Select Option"
           /> */}
           <CustomDropdown
-            options={[
-              { name: "Kochi Leads", count: 8467 },
-              { name: "Mumbai Leads", count: 5321 },
-              { name: "Delhi Leads", count: 6789 }
-            ]}
+
+            options={yearOptions}
+            // options={[
+            //   { name: "Kochi Leads", count: 8467 },
+            //   { name: "Mumbai Leads", count: 5321 },
+            //   { name: "Delhi Leads", count: 6789 }
+            // ]}
             required={true}
             placeHolder="Select Branch"
           />
