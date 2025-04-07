@@ -18,6 +18,8 @@ import CalenderIcon from "./assets/icons/calendar-table-icon.svg";
 import MailIcon from "./assets/icons/mail.svg";
 import LoactionIcon from "./assets/icons/location.svg";
 import dayjs from "dayjs";
+import OffcanvasModal from "./components/customOffcanvas/OffcanvasModal";
+import FilterContent from "./components/test/FilterContent";
 
 function App() {
   // State for radio button selection
@@ -26,6 +28,10 @@ function App() {
   // State for input field value
   const [textValue, setTextValue] = useState("Value");
   const [currentPage, setCurrentPage] = useState(1);
+
+  // inside Header component:
+const [isFilterOpen, setIsFilterOpen] = useState(false);
+const toggleFilter = () => setIsFilterOpen(prev => !prev);
 
   // Sample data for the custom table
   const columns = [
@@ -133,7 +139,7 @@ function App() {
     }
   };
 
-const initialTime = dayjs().set("hour", 10).set("minute", 30);
+  const initialTime = dayjs().set("hour", 10).set("minute", 30);
   return (
     <div className="flex flex-col min-h-screen items-center justify-around gap-7 py-10 bg-gray-300">
 
@@ -151,7 +157,7 @@ const initialTime = dayjs().set("hour", 10).set("minute", 30);
         <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           {/* -- Primary Buttons -- */}
           <h4 className="text-lg text-gray-400">Primary</h4>
-          <CustomButton text="Button" onClick={() => alert('Hi Team!')} />
+          <CustomButton text="Button" onClick={toggleFilter} />
           <CustomButton text="Create Lead" startIcon={false} endIcon={true} iconImg={MailIcon} />
           <CustomButton text="Button" disabled={true} showText={true} variant="primary" />
           {/* <CustomButton text="Button" startIcon={true} endIcon={false} />
@@ -348,28 +354,28 @@ const initialTime = dayjs().set("hour", 10).set("minute", 30);
       </div>
 
 
-              {/* -- Custom TimePicker Component -- */}
-            <div className="flex gap-8 border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
+      {/* -- Custom TimePicker Component -- */}
+      <div className="flex gap-8 border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
 
-            <div className="flex items-center gap-4 justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
-            <h1 className="text-xl font-bold text-gray-500">Time Picker</h1>
-            </div>
+        <div className="flex items-center gap-4 justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h1 className="text-xl font-bold text-gray-500">Time Picker</h1>
+        </div>
 
-            <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
-            <h4 className="text-lg text-gray-400">Default</h4>
-            <CustomTimePicker label="Time" required />
-            </div>
+        <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h4 className="text-lg text-gray-400">Default</h4>
+          <CustomTimePicker label="Time" required />
+        </div>
 
-            <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
-            <h4 className="text-lg text-gray-400">Disabled</h4>
-            <CustomTimePicker label="Disabled Time" value = {initialTime} disabled />
-            </div>
+        <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h4 className="text-lg text-gray-400">Disabled</h4>
+          <CustomTimePicker label="Disabled Time" value={initialTime} disabled />
+        </div>
 
-            <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
-            <h4 className="text-lg text-gray-400">Error</h4>
-            <CustomTimePicker label="Error Date" errorMessage="Error Message" />
-            </div>
-            </div>
+        <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h4 className="text-lg text-gray-400">Error</h4>
+          <CustomTimePicker label="Error Date" errorMessage="Error Message" />
+        </div>
+      </div>
 
       {/* --- Custom Radio Button Section --- */}
       <div className="flex items-center gap-8 rounded-4xl p-4 shadow-xl text-center bg-white">
@@ -507,6 +513,24 @@ const initialTime = dayjs().set("hour", 10).set("minute", 30);
 
         <div className="flex flex-col flex-grow w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
           <CustomTable columns={columns} data={data} showCheckboxes={true} getRow={getRow} />
+        </div>
+
+      </div>
+      {/* offcanvas modal */}
+      <div className="flex gap-4 border-b-1 border-t-1 rounded-2xl pt-4 pb-4 shadow-xl border-gray-300 text-center bg-white">
+
+        <div className="flex items-center justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h1 className="text-xl font-bold text-gray-500">offcanvas</h1>
+        </div>
+
+        <div className="flex flex-col flex-grow w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
+          <OffcanvasModal
+            isOpen={isFilterOpen}
+            onClose={toggleFilter}
+            title="Filter"
+          >
+            <FilterContent onClose={toggleFilter} />
+          </OffcanvasModal>
         </div>
 
 
