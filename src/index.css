@@ -8,3 +8,13 @@
   background-color: #17222B !important;
   color: white !important;  /* Optional: Ensure text color is visible */
 }
+
+/* Scrollbar style (optional) */
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #cbdbe4;
+  border-radius: 6px;
+}
+

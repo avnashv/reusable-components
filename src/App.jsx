@@ -30,8 +30,8 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
 
   // inside Header component:
-const [isFilterOpen, setIsFilterOpen] = useState(false);
-const toggleFilter = () => setIsFilterOpen(prev => !prev);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const toggleFilter = () => setIsFilterOpen(prev => !prev);
 
   // Sample data for the custom table
   const columns = [
@@ -522,18 +522,24 @@ const toggleFilter = () => setIsFilterOpen(prev => !prev);
         <div className="flex items-center justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h1 className="text-xl font-bold text-gray-500">offcanvas</h1>
         </div>
+        {isFilterOpen && (
+          <div className="flex flex-col flex-grow w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
+            {isFilterOpen && (
+              <OffcanvasModal
+                isOpen={isFilterOpen}
+                onClose={toggleFilter}
+                title="Filter"
+                position="left" // ensure it's from left
+                width="649px"
+              >
+                <FilterContent onClose={toggleFilter} />
+              </OffcanvasModal>
+            )}
 
-        <div className="flex flex-col flex-grow w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
-          <OffcanvasModal
-            isOpen={isFilterOpen}
-            onClose={toggleFilter}
-            title="Filter"
-          >
-            <FilterContent onClose={toggleFilter} />
-          </OffcanvasModal>
-        </div>
+          </div>
+        )
 
-
+        }
       </div>
     </div>
   );
