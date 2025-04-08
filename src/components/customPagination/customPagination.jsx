@@ -55,7 +55,7 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
             {/* Lines Per Page */}
             <div className="flex items-center justify-end gap-3 text-gray-500">
                 <span className="text-sm">Lines per page</span>
-                <Select
+                {/* <Select
                     value={rowsPerPage}
                     onChange={(e) => setRowsPerPage(Number(e.target.value))}
                     variant="outlined"
@@ -75,21 +75,49 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                         },
                         "!important": true // Add !important to override default styles
                     }}
-                    MenuProps={{
-                        PaperProps: {
-                          style: {
-                            zIndex: 1301, // Higher than modal (1300) or backdrop (1200)
-                          },
-                        },
-                      }}
-                    
                 >
                     {[10, 15, 20, 25, 30].map((size) => (
                         <MenuItem key={size} value={size}>
                             {size}
                         </MenuItem>
                     ))}
+                </Select> */}
+                <Select
+                    value={rowsPerPage}
+                    onChange={(e) => setRowsPerPage(Number(e.target.value))}
+                    variant="outlined"
+                    IconComponent={DropDownPageIcon}
+                    className={clsx("shadow-sm rounded-md", "custom-select")}
+                    MenuProps={{
+                        disablePortal: true, // <--- This is the key
+                        PaperProps: {
+                            style: {
+                                zIndex: 1000, // optional: you can tweak this if needed
+                            },
+                        },
+                    }}
+                    sx={{
+                        width: 48,
+                        height: 28,
+                        borderRadius: 8,
+                        fontSize: "16px",
+                        padding: "2px 2px 2px 4px",
+                        justifyContent: "right",
+                        "& .MuiOutlinedInput-notchedOutline": { border: "none" },
+                        "& .MuiSelect-icon": {
+                            display: "none",
+                            "!important": true, // Ensuring this style can't be overridden
+                        },
+                        "!important": true // Add !important to override default styles
+                    }}
+                >
+                    {[10, 15, 20, 25, 30].map((size) => (
+                        <MenuItem key={size} value={size} disableRipple >
+                            {size}
+                        </MenuItem>
+                    ))}
                 </Select>
+
             </div>
 
             {/* Pagination Controls */}
@@ -116,7 +144,7 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                             page === "..." ? "cursor-default text-gray-400" : "text-gray-500",
                             page === currentPage && "active-page font-bold text-white"
                         )}
-                        style={{ width: 28, height: 28, borderRadius: 50}}
+                        style={{ width: 28, height: 28, borderRadius: 50 }}
                         onClick={() => typeof page === "number" && handleChangePage(page)}
                         disabled={page === "..."}
                     >
