@@ -312,6 +312,66 @@ function App() {
         </div>
       </div>
 
+          {/* -- Text Area Custom InputField Component -- */}
+          <div className="flex items-center gap-4 border-b-1 border-t-1 rounded-4xl py-2 px-2 shadow-xl border-gray-300 text-center bg-white">
+
+          <div className="flex items-center gap-4 justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h1 className="text-xl font-bold text-gray-500">Text Area InputField</h1>
+          </div>
+
+          {/* Editable InputField */}
+          <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h4 className="text-lg text-center text-gray-400"> Text Area Default</h4>
+              <CustomInputField
+              label="Comments"
+              value="This is a long comment..."
+              placeholder="Enter your comments"
+              multiline={true} // Enable textarea
+              rows={4} // Optional: customize visible rows
+              minRows={4} // Optional: set minimum rows
+              onChange={(e) => console.log(e.target.value)}
+              />
+          </div>
+
+          {/* Non-Editable Input */}
+          <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h4 className="text-lg text-center text-gray-400">Text Area Non editable</h4>
+          <CustomInputField 
+                  state="non-editable" 
+                  valueType="default" 
+                  label="Label"  
+                  multiline={true}
+                  rows={4} // Optional: customize visible rows
+                  minRows={4} // Optional: set minimum rows
+                  onChange={(e) => console.log(e.target.value)}
+          />
+          </div>
+
+          {/*  Disabled Input */}
+          <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h4 className="text-lg text-center text-gray-400">Text Area Disabled</h4>
+          <CustomInputField 
+                state="disabled"
+                label="Label" 
+                multiline={true} // Enable textarea                       
+                rows={4} // Optional: customize visible rows
+                minRows={4} // Optional: set minimum rows
+                onChange={(e) => console.log(e.target.value)}/>
+          </div>
+
+          {/* Error State */}
+          <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 pb-8 border-gray-300 rounded-4xl shadow-md">
+          <h4 className="text-lg text-center text-gray-400">Text Area Error</h4>
+          <CustomInputField 
+                  state="error" 
+                  hasError label="Label" 
+                  multiline={true} // Enable textarea
+                  rows={4} // Optional: customize visible rows
+                  minRows={4} // Optional: set minimum rows
+                  onChange={(e) => console.log(e.target.value)}/>
+          </div>
+          </div>
+
       {/* -- Custom DatePicker Component -- */}
       <div className="flex gap-8 border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
 
