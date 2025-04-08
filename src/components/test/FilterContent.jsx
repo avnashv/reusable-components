@@ -188,7 +188,7 @@ const FilterContent = ({ onClose }) => {
       {/* Example Footer */}
       <div className="flex justify-between pt-4 border-t">
         <button onClick={onClose} className="text-gray-500 text-sm">Clear all</button>
-        <button className="bg-primary text-white px-4 py-2 rounded text-sm">Apply Filter</button>
+        <button className="bg-blue-700 text-white px-4 py-2 rounded text-sm">Apply Filter</button>
       </div>
     </div>
   );

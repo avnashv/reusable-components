@@ -23,10 +23,9 @@ const CustomOffCanvasModal = ({
 
       {/* Off-Canvas Panel */}
       <div
-        className={`fixed top-0 ${isLeft ? 'left-0' : 'right-0'} h-screen bg-white z-[9999] transition-transform duration-300 ease-in-out
-        border-${isLeft ? 'r' : 'l'} border-[#CBDBE4] shadow-xl
+        className={`fixed ${isLeft ? 'left-0' : 'right-0'} h-screen bg-white z-[9999] transition-transform duration-300 ease-in-out rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] border-${isLeft ? 'r' : 'l'} border-[#CBDBE4] shadow-xl
         ${isOpen ? 'translate-x-0' : isLeft ? '-translate-x-full' : 'translate-x-full'}`}
-        style={{ width }}
+        style={{ width , height:"85%", bottom:0, right:0}}
         onClick={(e) => e.stopPropagation()} // prevent backdrop close when clicking inside
       >
         {/* Header */}
@@ -38,7 +37,7 @@ const CustomOffCanvasModal = ({
         </div>
 
         {/* Scrollable Content */}
-        <div className="overflow-y-auto flex-1 px-4 py-4 custom-scroll h-[calc(100vh-64px)]">
+        <div className="overflow-y-auto flex-1 px-4 py-4 custom-scroll h-[calc(100%-64px)]">
           {children}
         </div>
       </div>
