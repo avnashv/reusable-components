@@ -75,6 +75,14 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                         },
                         "!important": true // Add !important to override default styles
                     }}
+                    MenuProps={{
+                        PaperProps: {
+                          style: {
+                            zIndex: 1301, // Higher than modal (1300) or backdrop (1200)
+                          },
+                        },
+                      }}
+                    
                 >
                     {[10, 15, 20, 25, 30].map((size) => (
                         <MenuItem key={size} value={size}>
