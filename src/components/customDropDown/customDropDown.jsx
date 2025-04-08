@@ -20,6 +20,7 @@ const CustomDropdown = ({
   multiple = false,
   onChange,
   placeHolder,
+  name,
 }) => {
   const [value, setValue] = useState(
     multiple ? (Array.isArray(initialValue) ? initialValue : []) : initialValue
@@ -27,11 +28,17 @@ const CustomDropdown = ({
     const [dropUp, setDropUp] = useState(false);
     const selectRef = useRef(null);
 
-  const handleChange = (event) => {
-    const newValue = event.target.value;
-    setValue(newValue);
-    if (onChange) onChange(newValue);
-  };
+    const handleChange = (event) => {
+      const newValue = event.target.value;
+      setValue(newValue);
+      if (onChange) {
+        onChange({
+          target: {
+            value: newValue,          
+          },
+        });
+      }
+    };
 
   const handleDelete = (itemToDelete) => (event) => {
     event.stopPropagation();
@@ -136,6 +143,7 @@ const CustomDropdown = ({
         disabled={disabled}
       >
         <Select
+          name={name}
           value={value}
           ref={selectRef}
           onOpen={handleOpen}
