@@ -15,7 +15,7 @@ const CustomOffCanvasModal = ({
     <>
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black bg-opacity-50 z-[9999] transition-opacity duration-300 ${
           isOpen ? 'opacity-40 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={onClose}
@@ -23,7 +23,7 @@ const CustomOffCanvasModal = ({
 
       {/* Off-Canvas Panel */}
       <div
-        className={`fixed top-0 ${isLeft ? 'left-0' : 'right-0'} h-screen bg-white z-50 transition-transform duration-300 ease-in-out
+        className={`fixed top-0 ${isLeft ? 'left-0' : 'right-0'} h-screen bg-white z-[9999] transition-transform duration-300 ease-in-out
         border-${isLeft ? 'r' : 'l'} border-[#CBDBE4] shadow-xl
         ${isOpen ? 'translate-x-0' : isLeft ? '-translate-x-full' : 'translate-x-full'}`}
         style={{ width }}
