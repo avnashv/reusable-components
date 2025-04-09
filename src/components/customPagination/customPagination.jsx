@@ -100,6 +100,7 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                         width: 48,
                         height: 28,
                         borderRadius: 8,
+                        position: "static",
                         fontSize: "16px",
                         padding: "2px 2px 2px 4px",
                         justifyContent: "right",
