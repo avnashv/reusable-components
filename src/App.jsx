@@ -20,6 +20,7 @@ import LoactionIcon from "./assets/icons/location.svg";
 import dayjs from "dayjs";
 import OffcanvasModal from "./components/customOffcanvas/OffcanvasModal";
 import FilterContent from "./components/test/FilterContent";
+import CustomAlert from "./components/customAlert/customAlert"
 
 function App() {
   // State for radio button selection
@@ -609,6 +610,71 @@ function App() {
 
         }
       </div>
+            {/* -- Custom Alert / Notification Component -- */}
+        <div className="flex gap-4 border-b-1 border-t-1 rounded-2xl pt-4 pb-4 shadow-xl border-gray-300 text-center bg-white">
+
+        <div className="flex items-center justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+        <h1 className="text-xl font-bold text-gray-500">Alert / Notification</h1>
+        </div>
+        <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
+        <CustomAlert severity="success" variant="filled" hasTitle={true} title="Success Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
+        <CustomAlert severity="warning" variant="filled" hasTitle={true} title="Warning Alert"  hasDescription={true}  description="This is a detailed error message." hasAction={false}  hasClose={false} />
+        <CustomAlert severity="error" variant="filled" hasTitle={true} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
+        <CustomAlert severity="info" variant="filled"  hasTitle={true}  title="Info Alert"  hasDescription={true}  description="This is a detailed error message."  hasAction={false}  hasClose={false}  />
+        </div>
+        <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
+        <CustomAlert severity="success" variant="outlined" hasTitle={true} title="Success Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
+        <CustomAlert severity="warning" variant="outlined" hasTitle={true} title="Warning Alert"  hasDescription={true}  description="This is a detailed error message." hasAction={false}  hasClose={false} />
+        <CustomAlert severity="error" variant="outlined" hasTitle={true} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
+        <CustomAlert severity="info" variant="outlined"  hasTitle={true}  title="Info Alert"  hasDescription={true}  description="This is a detailed error message."  hasAction={false}  hasClose={false}  />
+        </div>
+        <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md ">
+        <CustomAlert severity="success" variant="standard" hasTitle={true} title="Success Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
+        <CustomAlert severity="warning" variant="standard" hasTitle={true} title="Warning Alert"  hasDescription={true}  description="This is a detailed error message." hasAction={false}  hasClose={false} />
+        <CustomAlert severity="error" variant="standard" hasTitle={true} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
+        <CustomAlert severity="info" variant="standard"  hasTitle={true}  title="Info Alert"  hasDescription={true}  description="This is a detailed error message."  hasAction={false}  hasClose={false}  />
+        </div>
+
+        </div>
+      {/* -- Custom Alert / Notification Component WIth Modification -- */}
+        <div className="flex gap-4 border-b-1 border-t-1 rounded-2xl pt-4 pb-4 shadow-xl border-gray-300 text-center bg-white">
+
+        <div className="flex items-center justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+        <h1 className="text-xl font-bold text-gray-500">Alert  Without Description</h1>
+        </div>
+        <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
+        <CustomAlert severity="success" variant="filled" hasTitle={true} title="Success Alert" hasDescription={false} description="This is a detailed error message." hasAction={true} hasClose={true} />
+        <CustomAlert severity="warning" variant="filled" hasTitle={true} title="Warning Alert"  hasDescription={false}  description="This is a detailed error message." hasAction={false}  hasClose={false} />
+         </div>
+        <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
+        <CustomAlert severity="success" variant="outlined" hasTitle={true} title="Success Alert" hasDescription={false} description="This is a detailed error message." hasAction={true} hasClose={true} />
+        <CustomAlert severity="warning" variant="outlined" hasTitle={true} title="Warning Alert"  hasDescription={false}  description="This is a detailed error message." hasAction={false}  hasClose={false} />
+        </div>
+        <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md ">
+        <CustomAlert severity="success" variant="standard" hasTitle={true} title="Success Alert" hasDescription={false} description="This is a detailed error message." hasAction={true} hasClose={true} />
+        <CustomAlert severity="warning" variant="standard" hasTitle={true} title="Warning Alert"  hasDescription={false}  description="This is a detailed error message." hasAction={false}  hasClose={false} />
+        </div>
+        </div>
+
+                    {/* -- Custom Alert / Notification Component -- */}
+          <div className="flex gap-4 border-b-1 border-t-1 rounded-2xl pt-4 pb-4 shadow-xl border-gray-300 text-center bg-white">
+
+            <div className="flex items-center justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+            <h1 className="text-xl font-bold text-gray-500">Alert Without Title</h1>
+            </div>
+            <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
+            <CustomAlert severity="error" variant="filled" hasTitle={false} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
+            <CustomAlert severity="info" variant="filled"  hasTitle={false}  title="Info Alert"  hasDescription={true}  description="This is a detailed error message."  hasAction={false}  hasClose={false}  />
+            </div>
+            <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
+            <CustomAlert severity="error" variant="outlined" hasTitle={false} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
+            <CustomAlert severity="info" variant="outlined"  hasTitle={false}  title="Info Alert"  hasDescription={true}  description="This is a detailed error message."  hasAction={false}  hasClose={false}  />
+            </div>
+            <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md ">
+            <CustomAlert severity="error" variant="standard" hasTitle={false} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
+            <CustomAlert severity="info" variant="standard"  hasTitle={false}  title="Info Alert"  hasDescription={true}  description="This is a detailed error message."  hasAction={false}  hasClose={false}  />
+            </div>
+        </div>
     </div>
   );
 }
