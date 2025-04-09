@@ -143,6 +143,7 @@ function App() {
   };
 
   const initialTime = dayjs().set("hour", 10).set("minute", 30);
+  const dropdownOptions = ["is", "is not", "is empty", "is not empty", "contains"];
   return (
     <div className="flex flex-col min-h-screen items-center justify-around gap-7 py-10 bg-gray-300">
 
@@ -228,6 +229,7 @@ function App() {
         <div className="flex flex-col gap-4 text-left border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-center text-gray-400">Disable</h4>
           <CustomDropdown label="Disabled" options={["Option 1", "Option 2", "Option 3"]} disabled placeHolder="Select Option" />
+          <CustomDropdown label="test" options={dropdownOptions} placeHolder="Select Option" />
         </div>
 
         <div className="flex flex-col gap-4 text-left border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
@@ -481,7 +483,7 @@ function App() {
         <div className="flex flex-col border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md w-48">
           <h4 className="text-lg text-center text-gray-400">Unchecked</h4>
           {/* Unchecked */}
-          <CustomCheckboxField label="Label" description="Description" defaultChecked={false} />
+          <CustomCheckboxField label="Label"  defaultChecked={false} />
         </div>
 
         <div className="flex flex-col border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md w-48">
@@ -563,11 +565,12 @@ function App() {
 
         <div className="flex flex-col border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-center text-gray-400">Default</h4>
-          <CustomSearch />
-
+          
+          <CustomSearch placeHolder="Search" />
 
         </div>
       </div>
+      <CustomSearch placeHolder="Search" width="600px" />
 
       {/* -- Custom Table Component -- */}
       <div className="flex gap-4 border-b-1 border-t-1 rounded-2xl pt-4 pb-4 shadow-xl border-gray-300 text-center bg-white">
