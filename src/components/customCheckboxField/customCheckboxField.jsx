@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import { Checkbox, FormHelperText, Box, Typography } from "@mui/material";
 
+// In CustomCheckboxField.jsx
 const CustomCheckboxField = ({
-    label = "Label",
-    description = "Description",
+    label,
+    description,
     disabled = false,
-    defaultChecked = false,
+    checked,
+    onChange,
 }) => {
-    const [checked, setChecked] = useState(defaultChecked);
     const [hover, setHover] = useState(false);
 
     return (
         <Box
             sx={{
                 display: "flex",
-                gap:"12px",
-                alignItems: "center", // Align checkbox & text in a row
+                gap: "12px",
+                alignItems: "center",
                 width: "240px",
                 height: "44px",
                 borderRadius: "8px",
@@ -26,52 +27,54 @@ const CustomCheckboxField = ({
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >
-            {/* Checkbox */}
             <Checkbox
                 checked={checked}
-                onChange={() => setChecked(!checked)}
+                onChange={onChange}
                 disabled={disabled}
                 disableRipple
                 sx={{
                     color: disabled ? "#A6ADB3" : checked ? "#17222B" : "#818B94",
                     "&.Mui-checked": { color: "#17222B" },
                     "&.Mui-disabled": { color: "#A6ADB3" },
-                    width:"16px",
-                    height:"16px",
-                    borderRadius:"4px",
+                    width: "16px",
+                    height: "16px",
+                    borderRadius: "4px",
                 }}
             />
 
-            {/* Label + Description in a Column */}
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "2px", alignItems: "flex-start", marginTop: "25px" }}>
-                <Typography
-                    sx={{
-                        color: disabled ? "#A6ADB3" : "#17222B",
-                        fontFamily: 'Proxima Nova, sans-serif',
-                        fontWeight: 400,
-                        fontSize: '16px',
-                        lineHeight: '140%',
-                        letterSpacing: '0%',
-                    }}
-                >
-                    {label}
-                </Typography>
-                <FormHelperText
-                    sx={{
-                        color: disabled ? "#A6ADB3" : "#818B94",
-                        margin: 0,
-                        fontFamily: 'Proxima Nova, sans-serif',
-                        fontWeight: 400,
-                        fontSize: '16px',
-                        lineHeight: '140%',
-                        letterSpacing: '0%',
-                    }}
-                >
-                    {description}
-                </FormHelperText>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "2px", alignItems: "flex-start", marginTop: description ? "25px" : "" }}>
+                {label && (
+                    <Typography
+                        sx={{
+                            color: disabled ? "#A6ADB3" : "#17222B",
+                            fontFamily: 'Proxima Nova, sans-serif',
+                            fontWeight: 400,
+                            fontSize: '16px',
+                            lineHeight: '140%',
+                        }}
+                    >
+                        {label}
+                    </Typography>
+                )}
+
+                {description && (
+                    <FormHelperText
+                        sx={{
+                            color: disabled ? "#A6ADB3" : "#818B94",
+                            margin: 0,
+                            fontFamily: 'Proxima Nova, sans-serif',
+                            fontWeight: 400,
+                            fontSize: '16px',
+                            lineHeight: '140%',
+                        }}
+                    >
+                        {description}
+                    </FormHelperText>
+                )}
             </Box>
         </Box>
     );
 };
 
 export default CustomCheckboxField;
+
