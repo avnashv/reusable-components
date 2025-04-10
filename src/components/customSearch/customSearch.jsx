@@ -1,9 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { TextField, InputAdornment, CircularProgress, IconButton } from "@mui/material";
 import SearchIcon from "../../assets/icons/search-icon.svg";
-
-const CustomSearch = ({ placeHolder, width = "264px" }) => {
-    const [searchTerm, setSearchTerm] = useState("");
+const CustomSearch = ({
+    placeHolder,
+    width = "264px",
+    value,
+    onChange
+}) => {
     const [loading, setLoading] = useState(false);
     const [results, setResults] = useState([]);
     const [error, setError] = useState(null);
@@ -51,8 +54,8 @@ const CustomSearch = ({ placeHolder, width = "264px" }) => {
 
     const debouncedSearch = useCallback(debounce(fetchSearchResults, 500), []);
 
-    const handleChange = (e) => {
-        setSearchTerm(e.target.value);
+    const handleInputChange = (e) => {
+        onChange(e); // lift to parent
         debouncedSearch(e.target.value);
     };
 
@@ -62,8 +65,8 @@ const CustomSearch = ({ placeHolder, width = "264px" }) => {
                 fullWidth
                 variant="outlined"
                 placeholder={placeHolder}
-                value={searchTerm}
-                onChange={handleChange}
+                value={value}
+                onChange={handleInputChange}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 onMouseEnter={() => setIsHovered(true)}
