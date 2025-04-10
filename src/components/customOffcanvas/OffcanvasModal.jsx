@@ -32,7 +32,9 @@ const CustomOffCanvasModal = ({
             height: "80%",
             bottom: 0,
             top: 'auto',
-            borderTopLeftRadius:"12px"
+            borderTopLeftRadius: "12px",
+            borderBottomLeftRadius: "12px",
+            borderBottomRightRadius: "12px"
           },
           onClick: (e) => e.stopPropagation(), // prevent closing on panel click
         }
