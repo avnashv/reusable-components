@@ -18,21 +18,24 @@ const CustomOffCanvasModal = ({
       anchor={anchor}
       open={isOpen}
       onClose={onClose}
-      PaperProps={{
-        className: clsx(
-          'h-[85%] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] shadow-xl border border-[#CBDBE4] bg-white p-4 transition-transform duration-300 ease-in-out',
-          {
-            'border-r': position === 'left',
-            'border-l': position === 'right',
-          }
-        ),
-        style: {
-          width: width,
-          height: "80%",
-          bottom: 0,
-          top: 'auto',
-        },
-        onClick: (e) => e.stopPropagation(), // prevent closing on panel click
+      slotProps={{
+        paper: {
+          className: clsx(
+            'h-[85%] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] shadow-xl border border-[#CBDBE4] bg-white p-4 transition-transform duration-300 ease-in-out',
+            {
+              'border-r': position === 'left',
+              'border-l': position === 'right',
+            }
+          ),
+          style: {
+            width: width,
+            height: "80%",
+            bottom: 0,
+            top: 'auto',
+            borderTopLeftRadius:"12px"
+          },
+          onClick: (e) => e.stopPropagation(), // prevent closing on panel click
+        }
       }}
       ModalProps={{
         BackdropProps: {
