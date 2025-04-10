@@ -1,5 +1,7 @@
 import React from 'react';
+import { Drawer } from '@mui/material';
 import { X } from 'lucide-react';
+import clsx from 'clsx';
 
 const CustomOffCanvasModal = ({
   isOpen,
@@ -7,49 +9,56 @@ const CustomOffCanvasModal = ({
   title,
   children,
   width = '649px',
-  position = 'right', // <- default to right
+  position = 'right', // default is right
 }) => {
-  const isLeft = position === 'left';
+  const anchor = position === 'left' ? 'left' : 'right';
 
   return (
-    <>
-      {/* Backdrop */}
+    <Drawer
+      anchor={anchor}
+      open={isOpen}
+      onClose={onClose}
+      PaperProps={{
+        className: clsx(
+          'h-[85%] rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] shadow-xl border border-[#CBDBE4] bg-white p-4 transition-transform duration-300 ease-in-out',
+          {
+            'border-r': position === 'left',
+            'border-l': position === 'right',
+          }
+        ),
+        style: {
+          width: width,
+          height: "80%",
+          bottom: 0,
+          top: 'auto',
+        },
+        onClick: (e) => e.stopPropagation(), // prevent closing on panel click
+      }}
+      ModalProps={{
+        BackdropProps: {
+          className: clsx(
+            'bg-black transition-opacity duration-300',
+            isOpen ? 'opacity-50 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          ),
+        },
+      }}
+    >
+      {/* Header */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-[50] transition-opacity duration-300 ${isOpen ? 'opacity-40 pointer-events-auto' : 'opacity-0 pointer-events-none'
-          }`}
-        onClick={onClose}
-      />
-
-      {/* Off-Canvas Panel */}
-      <div
-        className={`fixed ${isLeft ? 'left-0' : 'right-0'} h-screen bg-white z-[500] transition-transform duration-300 ease-in-out rounded-tl-[12px] rounded-bl-[12px] rounded-br-[12px] border-${isLeft ? 'r' : 'l'} border-[#CBDBE4] shadow-xl
-        ${isOpen ? 'translate-x-0' : isLeft ? '-translate-x-full' : 'translate-x-full'} gap-3 p-[16px]`}
-        style={{ width, height: "85%", bottom: 0, right: 0 }}
-        onClick={(e) => e.stopPropagation()} // prevent backdrop close when clicking inside
+        className="flex items-center justify-between border-b border-[#DFE8ED] pb-2"
+        style={{ width: '100%', height: '54px' }}
       >
-        {/* Header */}
-        <div
-          className="flex items-center justify-between"
-          style={{
-            width: '617px',
-            height: '54px',
-            paddingBottom: '8px',
-            borderBottom: '1px solid var(--Background-B75, #DFE8ED)',
-          }}
-        >
-
-          <h2 className="text-lg font-medium">{title}</h2>
-          <button onClick={onClose}>
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Scrollable Content */}
-        <div className="overflow-y-auto flex-1 px-4 py-4 custom-scroll h-[calc(100%-64px)]">
-          {children}
-        </div>
+        <h2 className="text-lg font-medium">{title}</h2>
+        <button onClick={onClose}>
+          <X className="w-5 h-5" />
+        </button>
       </div>
-    </>
+
+      {/* Scrollable Content */}
+      <div className="overflow-y-auto flex-1 px-4 py-4 custom-scroll h-[calc(100%-64px)]">
+        {children}
+      </div>
+    </Drawer>
   );
 };
 
