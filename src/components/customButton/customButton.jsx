@@ -58,6 +58,7 @@ const CustomButton = ({
     iconImg,
     selected = false,
     onClick,
+    width="fit-content"
 }) => {
     const isIconButton = variant === "icon";
     const isChipButton = variant === "chips";
@@ -108,7 +109,7 @@ const CustomButton = ({
                             ? "1px solid #CBDBE4"
                             : "none",
                 // width: isIconButton ? "40px" : isChipButton ? "114px" : "auto",
-                width: isIconButton ? "40px" : "fit-content",
+                width: isIconButton ? "40px" : width ,
                 // height: isIconButton ? "40px" : isChipButton ? "32px" : "40px",
                 height: isChipButton ? "32px" : "40px",
                 // minWidth: isIconButton ? iconSize : "auto",
