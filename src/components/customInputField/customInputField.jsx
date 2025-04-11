@@ -16,6 +16,7 @@ const CustomInputField = ({
   multiline = false, // New prop to toggle textarea
   rows = 4, // Default rows for textarea (optional customization)
   minRows = 4, // Minimum rows for textarea
+  width = "240px",
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState(value);
@@ -72,7 +73,7 @@ const CustomInputField = ({
       border: "none", // Remove default MUI border
     },
     "& .MuiOutlinedInput-root": {
-      width: "240px",
+      width: width,
       height: multiline ? "80px" : "40px", // Adjust height for textarea
       minWidth: "240px", // Figma min-width
       minHeight: multiline ? "80px" : "auto", // Figma min-height for textarea
