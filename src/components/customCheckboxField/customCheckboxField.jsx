@@ -17,8 +17,6 @@ const CustomCheckboxField = ({
                 display: "flex",
                 gap: "12px",
                 alignItems: "center",
-                width: "240px",
-                height: "44px",
                 borderRadius: "8px",
                 backgroundColor: hover ? "#F4F6F8" : "transparent",
                 transition: "background-color 0.2s ease-in-out",
