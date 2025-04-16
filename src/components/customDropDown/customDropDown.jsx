@@ -69,7 +69,7 @@ const CustomDropdown = ({
   };
 
   return (
-    <div id="dropdown-container" style={{ position: "relative", display: "flex", flexDirection: "column" }}>
+    <div id="dropdown-container" style={{ position: "relative", display: "flex", flexDirection: "column", width: "fit-content" }}>
       {/* Label */}
       {label && (
         <label
@@ -94,6 +94,7 @@ const CustomDropdown = ({
             : disabled
             ? "#F4F6F8"
             : "white",
+            borderRadius: "8px",
           "& .MuiOutlinedInput-root": {
             transition: "border 0.3s ease",
             width: "240px",

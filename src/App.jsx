@@ -288,7 +288,6 @@ function App() {
         <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-center text-gray-400">Default</h4>
           <CustomInputField
-            isPassword
             state="default"
             label="Label"
             value={textValue}
