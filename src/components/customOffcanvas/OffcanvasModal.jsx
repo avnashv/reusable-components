@@ -29,7 +29,7 @@ const CustomOffCanvasModal = ({
           ),
           style: {
             width: width,
-            height: "80%",
+            height: "85%",
             bottom: 0,
             top: 'auto',
             borderTopLeftRadius: "12px",
@@ -60,7 +60,7 @@ const CustomOffCanvasModal = ({
       </div>
 
       {/* Scrollable Content */}
-      <div className="overflow-y-auto flex-1 px-4 py-4 custom-scroll h-[calc(100%-64px)]">
+      <div className="overflow-y-hidden flex-1 px-4 py-4 custom-scroll h-[calc(100%-64px)]">
         {children}
       </div>
     </Drawer>
