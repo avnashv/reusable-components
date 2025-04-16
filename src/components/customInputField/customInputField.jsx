@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { TextField, Box, Typography } from "@mui/material";
+import { TextField, Box, Typography, IconButton, InputAdornment } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const CustomInputField = ({
   state = "default",
-  value = "Value", // Default input value
+  value = "", // Default input value
   hasLabel = true,
   label = "Label",
   hasDescription = false,
@@ -17,9 +18,12 @@ const CustomInputField = ({
   rows = 4, // Default rows for textarea (optional customization)
   minRows = 4, // Minimum rows for textarea
   width = "240px",
+  type = "Text",
+  isPassword = false, // New prop to toggle password behavior
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState(value);
+  const [showPassword, setShowPassword] = useState(false); // State for password visibility
 
   // **Handle Input Value Changes**
   const handleInputChange = (e) => {
@@ -28,6 +32,11 @@ const CustomInputField = ({
     if (onChange) {
       onChange(e); // Calls external handler if provided
     }
+  };
+
+  // **Toggle Password Visibility**
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
   };
 
   // **Handle Input States Styling**
@@ -134,12 +143,24 @@ const CustomInputField = ({
       {/* Input Field or Textarea */}
       <TextField
         variant="outlined"
+        type={isPassword ? (showPassword ? "text" : "password") : type} // Toggle type for password
         value={inputValue}
         placeholder={placeholder}
         onChange={handleInputChange}
         disabled={state === "disabled"}
         InputProps={{
           readOnly: state === "non-editable",
+          endAdornment: isPassword && (
+            <InputAdornment position="end">
+              <IconButton
+                onClick={handleTogglePasswordVisibility}
+                edge="end"
+                disabled={state === "disabled"}
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          ),
         }}
         multiline={multiline} // Enable textarea when multiline is true
         rows={multiline ? rows : undefined} // Apply rows only for textarea
