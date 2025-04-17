@@ -20,6 +20,7 @@ const CustomInputField = ({
   width = "240px",
   type = "Text",
   isPassword = false, // New prop to toggle password behavior
+  helperText=""
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState(value);
@@ -128,10 +129,10 @@ const CustomInputField = ({
           sx={{
             width: "auto",
             height: "22px",
-            color: "#17222B",
+            color: "#737373",
             fontFamily: "Proxima Nova, sans-serif",
-            fontWeight: 400,
-            fontSize: "16px",
+            fontWeight: 700,
+            fontSize: "11px",
             lineHeight: "140%",
             letterSpacing: "0%",
           }}
@@ -146,6 +147,7 @@ const CustomInputField = ({
         type={isPassword ? (showPassword ? "text" : "password") : type} // Toggle type for password
         value={inputValue}
         placeholder={placeholder}
+        helperText={helperText}
         onChange={handleInputChange}
         disabled={state === "disabled"}
         InputProps={{

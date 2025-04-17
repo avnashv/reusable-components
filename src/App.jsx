@@ -38,6 +38,15 @@ function App() {
   const [errorDate, setErrorDate] = useState(""); // Error date
   const toggleFilter = () => setIsFilterOpen(prev => !prev);
 
+  const [defaultSingleValue, setDefaultSingleValue] = useState("");
+  const [disabledSingleValue, setDisabledSingleValue] = useState("");
+  const [testSingleValue, setTestSingleValue] = useState("");
+  const [errorSingleValue, setErrorSingleValue] = useState("");
+
+  // State for multiple-select dropdowns
+  const [defaultMultiValue, setDefaultMultiValue] = useState([]);
+  const [disabledMultiValue, setDisabledMultiValue] = useState(["Option 1", "Option 3"]);
+  const [errorMultiValue, setErrorMultiValue] = useState([]);
 
 
   const yearOptions = ["Select", ...Array.from({ length: 20 }, (_, i) => 
@@ -207,9 +216,8 @@ function App() {
 
       </div>
 
-      {/* -- Custom Dropdown Component -- */}
+{/* Single-Select Custom Dropdown Component */}
       <div className="flex gap-8 w-auto border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
-
         <div className="flex items-center gap-4 justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h1 className="text-xl font-bold text-gray-500">Dropdown</h1>
         </div>
@@ -220,7 +228,6 @@ function App() {
           placeHolder="Select Option"
           /> */}
           <CustomDropdown
-
             options={yearOptions}
             // options={[
             //   { name: "Kochi Leads", count: 8467 },
@@ -229,27 +236,46 @@ function App() {
             // ]}
             required={true}
             placeHolder="Select Branch"
+            value={defaultSingleValue}
+            onChange={(event) => setDefaultSingleValue(event.target.value)}
           />
-
         </div>
 
         <div className="flex flex-col gap-4 text-left border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-center text-gray-400">Disable</h4>
-          <CustomDropdown label="Disabled" options={["Option 1", "Option 2", "Option 3"]} disabled placeHolder="Select Option" />
-          <CustomDropdown label="test" options={dropdownOptions} placeHolder="Select Option" />
+          <CustomDropdown
+            label="Disabled"
+            options={["Option 1", "Option 2", "Option 3"]}
+            disabled
+            placeHolder="Select Option"
+            value={disabledSingleValue}
+            onChange={(event) => setDisabledSingleValue(event.target.value)}
+          />
+          <CustomDropdown
+            label="test"
+            options={dropdownOptions}
+            placeHolder="Select Option"
+            value={testSingleValue}
+            onChange={(event) => setTestSingleValue(event.target.value)}
+          />
         </div>
 
         <div className="flex flex-col gap-4 text-left border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-gray-400">Error</h4>
-          <CustomDropdown label="Error" options={["Option 1", "Option 2", "Option 3"]} errorMessage={"Error"} placeHolder="Select Option" />
+          <CustomDropdown
+            label="Error"
+            options={["Option 1", "Option 2", "Option 3"]}
+            errorMessage={"Error"}
+            placeHolder="Select Option"
+            value={errorSingleValue}
+            onChange={(event) => setErrorSingleValue(event.target.value)}
+          />
         </div>
-
       </div>
 
 
-      {/* -- Multiple Custom Dropdown Component -- */}
-      <div className="flex gap-8 w-auto border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
-
+ {/* Multiple-Select Custom Dropdown Component */}
+ <div className="flex gap-8 w-auto border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
         <div className="flex items-center gap-4 justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h1 className="text-xl font-bold text-gray-500">Multiple Dropdown</h1>
         </div>
@@ -262,25 +288,37 @@ function App() {
             required={true}
             multiple={true}
             placeHolder="Select Options"
+            value={defaultMultiValue}
+            onChange={(event) => { console.log(event.target.value)
+              setDefaultMultiValue(event.target.value)}}
           />
         </div>
 
         <div className="flex flex-col gap-4 text-left border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-center text-gray-400">Disable</h4>
-          <CustomDropdown label="Disabled"
+          <CustomDropdown
+            label="Disabled"
             options={["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Option 6"]}
             multiple={true}
-            initialValue={["Option 1", "Option 3"]}
+            value={disabledMultiValue}
+            onChange={(event) => setDisabledMultiValue(event.target.value)}
             placeHolder="Select Options"
-            disabled />
+            disabled
+          />
         </div>
 
         <div className="flex flex-col gap-4 text-left border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-gray-400">Error</h4>
-          <CustomDropdown label="Error" options={["Aravinth Raj", "Avinash Vijayan", "Sreejitha M C", "Nirmal Kumar VG", "Rajesh Padinjaremadam", "Sree Lakshmi"]} errorMessage={"Error Message"} multiple={true}
-            placeHolder="Select Options" />
+          <CustomDropdown
+            label="Error"
+            options={["Aravinth Raj", "Avinash Vijayan", "Sreejitha M C", "Nirmal Kumar VG", "Rajesh Padinjaremadam", "Sree Lakshmi"]}
+            errorMessage={"Error Message"}
+            multiple={true}
+            placeHolder="Select Options"
+            value={errorMultiValue}
+            onChange={(event) => setErrorMultiValue(event.target.value)}
+          />
         </div>
-
       </div>
 
       {/* -- Custom InputField Component -- */}

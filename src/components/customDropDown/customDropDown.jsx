@@ -16,35 +16,36 @@ const CustomDropdown = ({
   errorMessage,
   disabled,
   required,
-  initialValue = "",
+  value = "", // Use value 
   multiple = false,
   onChange,
   placeHolder,
   name,
 }) => {
-  const [value, setValue] = useState(
-    multiple ? (Array.isArray(initialValue) ? initialValue : []) : initialValue
-  );
-    const [dropUp, setDropUp] = useState(false);
-    const selectRef = useRef(null);
+  const [dropUp, setDropUp] = useState(false);
+  const selectRef = useRef(null);
 
-    const handleChange = (event) => {
-      const newValue = event.target.value;
-      setValue(newValue);
-      if (onChange) {
-        onChange({
-          target: {
-            value: newValue,          
-          },
-        });
-      }
-    };
+  const handleChange = (event) => {
+    const newValue = event.target.value;
+    if (onChange) {
+      onChange({
+        target: {
+          value: newValue,
+        },
+      });
+    }
+  };
 
   const handleDelete = (itemToDelete) => (event) => {
     event.stopPropagation();
-    const newValue = value.filter((item) => item !== itemToDelete);
-    setValue(newValue);
-    if (onChange) onChange(newValue);
+    const newValue = Array.isArray(value) ? value.filter((item) => item !== itemToDelete) : [];
+    if (onChange) {
+      onChange({
+        target: {
+          value: newValue,
+        },
+      });
+    }
   };
 
   const CustomArrowIcon = () => (
@@ -55,7 +56,7 @@ const CustomDropdown = ({
     />
   );
 
-  // handling Dropdown for Up and Downside without Overlaps
+  // Handling Dropdown for Up and Downside without Overlaps
   const handleOpen = () => {
     if (selectRef.current) {
       const rect = selectRef.current.getBoundingClientRect();
@@ -69,17 +70,20 @@ const CustomDropdown = ({
   };
 
   return (
-    <div id="dropdown-container" style={{ position: "relative", display: "flex", flexDirection: "column", width: "fit-content" }}>
+    <div
+      id="dropdown-container"
+      style={{ position: "relative", display: "flex", flexDirection: "column", width: "fit-content" }}
+    >
       {/* Label */}
       {label && (
         <label
           style={{
             fontFamily: "Proxima Nova, sans-serif",
-            fontWeight: 400,
-            fontSize: "16px",
+            fontWeight: 700,
+            fontSize: "11px",
             lineHeight: "140%",
             letterSpacing: "0%",
-            color: disabled ? "#A6ADB3" : "#17222B",
+            color: disabled ? "#9CA3AF" : "#737373",
             marginBottom: "4px",
           }}
         >
@@ -89,12 +93,8 @@ const CustomDropdown = ({
 
       <FormControl
         sx={{
-          backgroundColor: errorMessage
-            ? "transparent"
-            : disabled
-            ? "#F4F6F8"
-            : "white",
-            borderRadius: "8px",
+          backgroundColor: errorMessage ? "transparent" : disabled ? "#F4F6F8" : "white",
+          borderRadius: "8px",
           "& .MuiOutlinedInput-root": {
             transition: "border 0.3s ease",
             width: "240px",
@@ -109,16 +109,10 @@ const CustomDropdown = ({
               borderWidth: "1px !important",
             },
             "&:hover fieldset": {
-              borderColor: errorMessage
-                ? "#D32F2F"
-                : disabled
-                ? "#CBDBE4"
-                : "#A6ADB3",
+              borderColor: errorMessage ? "#D32F2F" : disabled ? "#CBDBE4" : "#A6ADB3",
             },
             "&.Mui-focused fieldset": {
-              borderColor: errorMessage
-                ? "#D32F2F"
-                : "#1A2731 !important",
+              borderColor: errorMessage ? "#D32F2F" : "#1A2731 !important",
               boxShadow: errorMessage
                 ? "0px 8px 10px rgba(229, 57, 53, 0.1)"
                 : "0px 8px 10px rgba(113, 113, 174, 0.1)",
@@ -195,10 +189,14 @@ const CustomDropdown = ({
               ],
             },
           }}
-          
-          
           sx={{
-            color: multiple ? (value.length > 0 ? "#17222B" : "#818B94") : value ? "#17222B" : "#818B94",
+            color: multiple
+              ? value.length > 0
+                ? "#17222B"
+                : "#818B94"
+              : value
+              ? "#17222B"
+              : "#818B94",
             backgroundColor: "#FFFFFF",
             "& .MuiSelect-icon": {
               display: "block !important",
@@ -303,8 +301,6 @@ const CustomDropdown = ({
                     </span>
                   )}
               </div>
-
-
             );
           }}
         >
@@ -327,12 +323,11 @@ const CustomDropdown = ({
                 }}
               >
                 <span>{typeof option === "object" ? option.name : option}</span>
-                {typeof option === "object" &&
-                  option.count !== undefined && (
-                    <span style={{ fontWeight: "bold" }}>
-                      {option.count.toLocaleString()}
-                    </span>
-                  )}
+                {typeof option === "object" && option.count !== undefined && (
+                  <span style={{ fontWeight: "bold" }}>
+                    {option.count.toLocaleString()}
+                  </span>
+                )}
               </div>
             </MenuItem>
           ))}
