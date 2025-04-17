@@ -32,7 +32,13 @@ function App() {
 
   // inside Header component:
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const [defaultDate, setDefaultDate] = useState(""); // Default date (string in "DD/MM/YYYY")
+  const [disabledDate, setDisabledDate] = useState(""); // Disabled date
+  const [errorDate, setErrorDate] = useState(""); // Error date
   const toggleFilter = () => setIsFilterOpen(prev => !prev);
+
+
 
   const yearOptions = ["Select", ...Array.from({ length: 20 }, (_, i) => 
     `${new Date().getFullYear() - i}`)];
@@ -384,17 +390,29 @@ function App() {
 
         <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-gray-400">Default</h4>
-          <CustomDatePicker label="Date" required />
+          <CustomDatePicker label="Date" required 
+          value={defaultDate}
+          onChange={(date) => {
+            console.log(date);
+            setDefaultDate(date)}} // Update state with selected date
+          />
         </div>
 
         <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-gray-400">Disabled</h4>
-          <CustomDatePicker label="Disabled Date" disabled />
+          <CustomDatePicker label="Disabled Date" disabled 
+          value={disabledDate}
+          onChange={(date) => setDisabledDate(date)} // Optional, since disabled won't t
+          />
         </div>
 
         <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-gray-400">Error</h4>
-          <CustomDatePicker label="Error Date" errorMessage="Invalid date" />
+          <CustomDatePicker label="Error Date"
+          value={errorDate}
+           errorMessage="Invalid date" 
+          onChange={(date) => setErrorDate(date)} // Update state with selected date
+          />
         </div>
       </div>
 
