@@ -114,12 +114,13 @@ const CustomInputField = ({
           variant="body1"
           sx={{
             width: "auto",
-            height: "22px",
+            height: "auto",
             color: "#737373",
             fontFamily: "Proxima Nova, sans-serif",
             fontWeight: 700,
             fontSize: "11px",
             lineHeight: "140%",
+            marginBottom: "4px",
           }}
         >
           {label} {showAsterisk && <span style={{ color: "red" }}>*</span>}
