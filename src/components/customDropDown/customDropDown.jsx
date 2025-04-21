@@ -21,6 +21,7 @@ const CustomDropdown = ({
   onChange,
   placeHolder,
   name,
+  width = "240px",
 }) => {
   const [dropUp, setDropUp] = useState(false);
   const selectRef = useRef(null);
@@ -97,7 +98,7 @@ const CustomDropdown = ({
           borderRadius: "8px",
           "& .MuiOutlinedInput-root": {
             transition: "border 0.3s ease",
-            width: "240px",
+            width: width,
             height: multiple && value.length > 0 ? "auto" : "40px",
             minHeight: "40px",
             display: "flex",
