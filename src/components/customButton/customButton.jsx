@@ -58,7 +58,8 @@ const CustomButton = ({
     iconImg,
     selected = false,
     onClick,
-    width="fit-content"
+    width="fit-content",
+    type = "button",
 }) => {
     const isIconButton = variant === "icon";
     const isChipButton = variant === "chips";
@@ -71,6 +72,7 @@ const CustomButton = ({
 
     return (
         <Button
+           type={type}
             onClick={() => {
                 setIsClicked(true);
                 if (onClick) onClick();
