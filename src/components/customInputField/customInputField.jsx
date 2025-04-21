@@ -13,29 +13,20 @@ const CustomInputField = ({
   error = "Error Message",
   showAsterisk = true,
   onChange,
+  onBlur,
   placeholder = "Enter value",
   multiline = false, // New prop to toggle textarea
   rows = 4, // Default rows for textarea (optional customization)
   minRows = 4, // Minimum rows for textarea
   width = "240px",
-  type = "Text",
-  isPassword = false, // New prop to toggle password behavior
-  helperText=""
+  type = "text",
+  isPassword = false,// New prop to toggle password behavior
+  helperText = "",
+  name = ""
 }) => {
-  const [isFocused, setIsFocused] = useState(false);
-  const [inputValue, setInputValue] = useState(value);
-  const [showPassword, setShowPassword] = useState(false); // State for password visibility
+  const [showPassword, setShowPassword] = useState(false);
 
-  // **Handle Input Value Changes**
-  const handleInputChange = (e) => {
-    const newValue = e.target.value;
-    setInputValue(newValue); // Updates internal state
-    if (onChange) {
-      onChange(e); // Calls external handler if provided
-    }
-  };
-
-  // **Toggle Password Visibility**
+  // Toggle password visibility
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
@@ -84,30 +75,26 @@ const CustomInputField = ({
     },
     "& .MuiOutlinedInput-root": {
       width: width,
-      height: multiline ? "80px" : "40px", // Adjust height for textarea
-      minWidth: "240px", // Figma min-width
-      minHeight: multiline ? "80px" : "auto", // Figma min-height for textarea
+      height: multiline ? "80px" : "40px",
+      minWidth: "240px",
+      minHeight: multiline ? "80px" : "auto",
       ...getStyles(),
       transition: "border 0.3s ease",
-      borderRadius: "8px", // Radius/200 (assuming 8px)
+      borderRadius: "8px",
       color: state === "disabled" ? "#818B94" : "#17222B",
       backgroundColor: state === "disabled" ? "#F2F6F8" : "#FFFFFF",
-      border: `1px solid ${hasError ? "#EF4845" : "#CBDBE4"}`, // Stroke/Border
+      border: `1px solid ${hasError ? "#EF4845" : "#CBDBE4"}`,
       display: "flex",
-      alignItems: multiline ? "flex-start" : "center", // Align text at top for textarea
+      alignItems: multiline ? "flex-start" : "center",
       fontFamily: "Proxima Nova, sans-serif",
       fontWeight: 400,
       fontSize: "16px",
       lineHeight: "140%",
-      letterSpacing: "0%",
-
       "&:hover": state !== "disabled" && { border: "1px solid #A6ADB3" },
       "&.Mui-focused": state !== "disabled" && { border: "1px solid #1A2731" },
     },
     "& .MuiInputBase-input": {
-      padding: multiline
-        ? "12px 16px" // Space/300 (12px) top/bottom, Space/400 (16px) left/right
-        : "8px 22px", // Default padding for single-line input
+      padding: multiline ? "12px 16px" : "8px 22px",
       fontSize: "16px",
       "&::placeholder": {
         color: "#818B94",
@@ -115,13 +102,12 @@ const CustomInputField = ({
         fontWeight: 400,
         fontSize: "16px",
         lineHeight: "140%",
-        letterSpacing: "0%",
       },
     },
   };
 
   return (
-    <Box sx={{ width: "240px", height: "auto", display: "flex", flexDirection: "column", gap: "8px" }}>
+    <Box sx={{ width: width, height: "auto", display: "flex", flexDirection: "column", gap: "8px" }}>
       {/* Label */}
       {hasLabel && (
         <Typography
@@ -134,7 +120,6 @@ const CustomInputField = ({
             fontWeight: 700,
             fontSize: "11px",
             lineHeight: "140%",
-            letterSpacing: "0%",
           }}
         >
           {label} {showAsterisk && <span style={{ color: "red" }}>*</span>}
@@ -143,22 +128,20 @@ const CustomInputField = ({
 
       {/* Input Field or Textarea */}
       <TextField
+        name={name}
         variant="outlined"
-        type={isPassword ? (showPassword ? "text" : "password") : type} // Toggle type for password
-        value={inputValue}
+        type={isPassword ? (showPassword ? "text" : "password") : type}
+        value={value}
         placeholder={placeholder}
         helperText={helperText}
-        onChange={handleInputChange}
+        onChange={onChange}
+        onBlur={onBlur}
         disabled={state === "disabled"}
         InputProps={{
           readOnly: state === "non-editable",
           endAdornment: isPassword && (
             <InputAdornment position="end">
-              <IconButton
-                onClick={handleTogglePasswordVisibility}
-                edge="end"
-                disabled={state === "disabled"}
-              >
+              <IconButton onClick={handleTogglePasswordVisibility} edge="end">
                 {showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
@@ -167,8 +150,6 @@ const CustomInputField = ({
         multiline={multiline} // Enable textarea when multiline is true
         rows={multiline ? rows : undefined} // Apply rows only for textarea
         minRows={multiline ? minRows : undefined} // Apply minRows only for textarea
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
         sx={baseStyles}
       />
 
