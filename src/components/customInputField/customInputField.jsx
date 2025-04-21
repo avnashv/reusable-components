@@ -107,7 +107,7 @@ const CustomInputField = ({
   };
 
   return (
-    <Box sx={{ width: width, height: "auto", display: "flex", flexDirection: "column", gap: "8px" }}>
+    <Box sx={{ width: width, height: "auto", display: "flex", flexDirection: "column" }}>
       {/* Label */}
       {hasLabel && (
         <Typography
