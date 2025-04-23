@@ -32,22 +32,22 @@ const CustomDropdown = ({
     let selectedValue;
   
     if (multiple) {
-      const selectedArray = selectedName.map((name) => {
-        const selectedObj = options.find(
-          (opt) => opt.name === name
+      const selectedArray = selectedName?.map((name) => {
+        const selectedObj = options?.find(
+          (opt) => opt?.name === name
         );
         return selectedObj
-          ? { id: selectedObj.id, name: selectedObj.name }
+          ? { id: selectedObj?.id, name: selectedObj?.name }
           : { name };
       });
       selectedValue = selectedArray;
     } else {
-      const selectedObj = options.find(
-        (opt) => opt.name === selectedName
+      const selectedObj = options?.find(
+        (opt) => opt?.name === selectedName
       );
   
       selectedValue = selectedObj
-        ? { id: selectedObj.id, name: selectedObj.name }
+        ? { id: selectedObj?.id, name: selectedObj?.name }
         : { name: selectedName };
     }
   
@@ -66,7 +66,7 @@ const CustomDropdown = ({
   const handleDelete = (itemToDelete) => (event) => {
     event.stopPropagation();
     const newValue = Array.isArray(value)
-      ? value.filter((item) => item.name !== itemToDelete.name)
+      ? value?.filter((item) => item?.name !== itemToDelete?.name)
       : [];
     onChange?.({
       target: {
@@ -176,7 +176,7 @@ const CustomDropdown = ({
           name={name}
           value={
             multiple
-              ? value.map((item) => item.name)
+              ? value?.map((item) => item?.name)
               : value?.name || ""
           }
           ref={selectRef}
@@ -238,7 +238,7 @@ const CustomDropdown = ({
                     marginRight: "-32px",
                   }}
                 >
-                  {value.map((item) => (
+                  {value?.map((item) => (
                     <Chip
                       key={item.name}
                       label={item.name}
@@ -292,8 +292,8 @@ const CustomDropdown = ({
           <MenuItem value="" disabled>
             {placeHolder}
           </MenuItem>
-          {options.map((option) => {
-            const label = option.main_status || option.name || option;
+          {options?.map((option) => {
+            const label = option.name || option;
             return (
               <MenuItem
                 key={label}
