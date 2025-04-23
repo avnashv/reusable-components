@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Box, Typography, IconButton, InputAdornment } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { BorderColor, Visibility, VisibilityOff } from "@mui/icons-material";
 
 const CustomInputField = ({
   state = "default",
@@ -77,7 +77,7 @@ const CustomInputField = ({
       width: width,
       height: multiline ? "80px" : "33px",
       // minWidth: "240px",
-      minHeight: multiline ? "80px" : "auto",
+      minHeight: multiline ? "100px" : "auto",
       ...getStyles(),
       transition: "border 0.3s ease",
       borderRadius: "8px",
@@ -89,13 +89,18 @@ const CustomInputField = ({
       fontFamily: "Proxima Nova, sans-serif",
       fontWeight: 400,
       fontSize: "16px",
-      lineHeight: "140%",
+      lineHeight: "120%",
       "&:hover": state !== "disabled" && { border: "1px solid #A6ADB3" },
       "&.Mui-focused": state !== "disabled" && { border: "1px solid #1A2731" },
     },
     "& .MuiInputBase-input": {
-      padding: multiline ? "12px 16px" : "8px 12px",
+      padding: multiline ? "0px 0px" : "8px 12px",
       fontSize: "16px",
+      overflowY: multiline ? "auto" : "hidden",
+      maxHeight: multiline ? "120px" : "unset", // Adjust height limit
+      whiteSpace: "pre-wrap",
+      wordWrap: "break-word",
+      resize: "none",
       "&::placeholder": {
         color: "#818B94",
         fontFamily: "Proxima Nova, sans-serif",
