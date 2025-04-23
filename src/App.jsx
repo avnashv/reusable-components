@@ -49,7 +49,7 @@ function App() {
   const [errorMultiValue, setErrorMultiValue] = useState([]);
 
 
-  const yearOptions = ["Select", ...Array.from({ length: 20 }, (_, i) => 
+  const yearOptions = ["Select", ...Array.from({ length: 20 }, (_, i) =>
     `${new Date().getFullYear() - i}`)];
 
   // Sample data for the custom table
@@ -216,7 +216,7 @@ function App() {
 
       </div>
 
-{/* Single-Select Custom Dropdown Component */}
+      {/* Single-Select Custom Dropdown Component */}
       <div className="flex gap-8 w-auto border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
         <div className="flex items-center gap-4 justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h1 className="text-xl font-bold text-gray-500">Dropdown</h1>
@@ -274,8 +274,8 @@ function App() {
       </div>
 
 
- {/* Multiple-Select Custom Dropdown Component */}
- <div className="flex gap-8 w-auto border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
+      {/* Multiple-Select Custom Dropdown Component */}
+      <div className="flex gap-8 w-auto border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
         <div className="flex items-center gap-4 justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h1 className="text-xl font-bold text-gray-500">Multiple Dropdown</h1>
         </div>
@@ -289,8 +289,10 @@ function App() {
             multiple={true}
             placeHolder="Select Options"
             value={defaultMultiValue}
-            onChange={(event) => { console.log(event.target.value)
-              setDefaultMultiValue(event.target.value)}}
+            onChange={(event) => {
+              console.log(event.target.value)
+              setDefaultMultiValue(event.target.value)
+            }}
           />
         </div>
 
@@ -359,65 +361,65 @@ function App() {
         </div>
       </div>
 
-          {/* -- Text Area Custom InputField Component -- */}
-          <div className="flex items-center gap-4 border-b-1 border-t-1 rounded-4xl py-2 px-2 shadow-xl border-gray-300 text-center bg-white">
+      {/* -- Text Area Custom InputField Component -- */}
+      <div className="flex items-center gap-4 border-b-1 border-t-1 rounded-4xl py-2 px-2 shadow-xl border-gray-300 text-center bg-white">
 
-          <div className="flex items-center gap-4 justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+        <div className="flex items-center gap-4 justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h1 className="text-xl font-bold text-gray-500">Text Area InputField</h1>
-          </div>
+        </div>
 
-          {/* Editable InputField */}
-          <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+        {/* Editable InputField */}
+        <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-center text-gray-400"> Text Area Default</h4>
-              <CustomInputField
-              label="Comments"
-              value="This is a long comment..."
-              placeholder="Enter your comments"
-              multiline={true} // Enable textarea
-              rows={4} // Optional: customize visible rows
-              minRows={4} // Optional: set minimum rows
-              onChange={(e) => console.log(e.target.value)}
-              />
-          </div>
-
-          {/* Non-Editable Input */}
-          <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
-          <h4 className="text-lg text-center text-gray-400">Text Area Non editable</h4>
-          <CustomInputField 
-                  state="non-editable" 
-                  valueType="default" 
-                  label="Label"  
-                  multiline={true}
-                  rows={4} // Optional: customize visible rows
-                  minRows={4} // Optional: set minimum rows
-                  onChange={(e) => console.log(e.target.value)}
+          <CustomInputField
+            label="Comments"
+            value="This is a long comment...ibiydviewdbwididwidywvdiewvwievwilgywelfg3f8gflgf9gfifgigfThis is a long comment..."
+            placeholder="Enter your comments"
+            multiline={true} // Enable textarea
+            rows={4} // Optional: customize visible rows
+            minRows={4} // Optional: set minimum rows
+            onChange={(e) => console.log(e.target.value)}
           />
-          </div>
+        </div>
 
-          {/*  Disabled Input */}
-          <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+        {/* Non-Editable Input */}
+        <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h4 className="text-lg text-center text-gray-400">Text Area Non editable</h4>
+          <CustomInputField
+            state="non-editable"
+            valueType="default"
+            label="Label"
+            multiline={true}
+            rows={4} // Optional: customize visible rows
+            minRows={4} // Optional: set minimum rows
+            onChange={(e) => console.log(e.target.value)}
+          />
+        </div>
+
+        {/*  Disabled Input */}
+        <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-center text-gray-400">Text Area Disabled</h4>
-          <CustomInputField 
-                state="disabled"
-                label="Label" 
-                multiline={true} // Enable textarea                       
-                rows={4} // Optional: customize visible rows
-                minRows={4} // Optional: set minimum rows
-                onChange={(e) => console.log(e.target.value)}/>
-          </div>
+          <CustomInputField
+            state="disabled"
+            label="Label"
+            multiline={true} // Enable textarea                       
+            rows={4} // Optional: customize visible rows
+            minRows={4} // Optional: set minimum rows
+            onChange={(e) => console.log(e.target.value)} />
+        </div>
 
-          {/* Error State */}
-          <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 pb-8 border-gray-300 rounded-4xl shadow-md">
+        {/* Error State */}
+        <div className="flex flex-col text-left gap-2 border-r-1 border-l-1 p-6 pb-8 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-center text-gray-400">Text Area Error</h4>
-          <CustomInputField 
-                  state="error" 
-                  hasError label="Label" 
-                  multiline={true} // Enable textarea
-                  rows={4} // Optional: customize visible rows
-                  minRows={4} // Optional: set minimum rows
-                  onChange={(e) => console.log(e.target.value)}/>
-          </div>
-          </div>
+          <CustomInputField
+            state="error"
+            hasError label="Label"
+            multiline={true} // Enable textarea
+            rows={4} // Optional: customize visible rows
+            minRows={4} // Optional: set minimum rows
+            onChange={(e) => console.log(e.target.value)} />
+        </div>
+      </div>
 
       {/* -- Custom DatePicker Component -- */}
       <div className="flex gap-8 border-b-1 border-t-1 pt-2 rounded-4xl pb-2 px-2 shadow-xl border-gray-300 text-center bg-white">
@@ -428,28 +430,29 @@ function App() {
 
         <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-gray-400">Default</h4>
-          <CustomDatePicker label="Date" required 
-          value={defaultDate}
-          onChange={(date) => {
-            console.log(date);
-            setDefaultDate(date)}} // Update state with selected date
+          <CustomDatePicker label="Date" required
+            value={defaultDate}
+            onChange={(date) => {
+              console.log(date);
+              setDefaultDate(date)
+            }} // Update state with selected date
           />
         </div>
 
         <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-gray-400">Disabled</h4>
-          <CustomDatePicker label="Disabled Date" disabled 
-          value={disabledDate}
-          onChange={(date) => setDisabledDate(date)} // Optional, since disabled won't t
+          <CustomDatePicker label="Disabled Date" disabled
+            value={disabledDate}
+            onChange={(date) => setDisabledDate(date)} // Optional, since disabled won't t
           />
         </div>
 
         <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-gray-400">Error</h4>
           <CustomDatePicker label="Error Date"
-          value={errorDate}
-           errorMessage="Invalid date" 
-          onChange={(date) => setErrorDate(date)} // Update state with selected date
+            value={errorDate}
+            errorMessage="Invalid date"
+            onChange={(date) => setErrorDate(date)} // Update state with selected date
           />
         </div>
       </div>
@@ -540,7 +543,7 @@ function App() {
         <div className="flex flex-col border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md w-48">
           <h4 className="text-lg text-center text-gray-400">Unchecked</h4>
           {/* Unchecked */}
-          <CustomCheckboxField label="Label"  defaultChecked={false} />
+          <CustomCheckboxField label="Label" defaultChecked={false} />
         </div>
 
         <div className="flex flex-col border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md w-48">
@@ -622,7 +625,7 @@ function App() {
 
         <div className="flex flex-col border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
           <h4 className="text-lg text-center text-gray-400">Default</h4>
-          
+
           <CustomSearch placeHolder="Search" />
 
         </div>
@@ -666,71 +669,71 @@ function App() {
 
         }
       </div>
-            {/* -- Custom Alert / Notification Component -- */}
-        <div className="flex gap-4 border-b-1 border-t-1 rounded-2xl pt-4 pb-4 shadow-xl border-gray-300 text-center bg-white">
+      {/* -- Custom Alert / Notification Component -- */}
+      <div className="flex gap-4 border-b-1 border-t-1 rounded-2xl pt-4 pb-4 shadow-xl border-gray-300 text-center bg-white">
 
         <div className="flex items-center justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
-        <h1 className="text-xl font-bold text-gray-500">Alert / Notification</h1>
+          <h1 className="text-xl font-bold text-gray-500">Alert / Notification</h1>
         </div>
         <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
-        <CustomAlert severity="success" variant="filled" hasTitle={true} title="Success Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
-        <CustomAlert severity="warning" variant="filled" hasTitle={true} title="Warning Alert"  hasDescription={true}  description="This is a detailed error message." hasAction={false}  hasClose={false} />
-        <CustomAlert severity="error" variant="filled" hasTitle={true} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
-        <CustomAlert severity="info" variant="filled"  hasTitle={true}  title="Info Alert"  hasDescription={true}  description="This is a detailed error message."  hasAction={false}  hasClose={false}  />
+          <CustomAlert severity="success" variant="filled" hasTitle={true} title="Success Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
+          <CustomAlert severity="warning" variant="filled" hasTitle={true} title="Warning Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
+          <CustomAlert severity="error" variant="filled" hasTitle={true} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
+          <CustomAlert severity="info" variant="filled" hasTitle={true} title="Info Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
         </div>
         <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
-        <CustomAlert severity="success" variant="outlined" hasTitle={true} title="Success Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
-        <CustomAlert severity="warning" variant="outlined" hasTitle={true} title="Warning Alert"  hasDescription={true}  description="This is a detailed error message." hasAction={false}  hasClose={false} />
-        <CustomAlert severity="error" variant="outlined" hasTitle={true} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
-        <CustomAlert severity="info" variant="outlined"  hasTitle={true}  title="Info Alert"  hasDescription={true}  description="This is a detailed error message."  hasAction={false}  hasClose={false}  />
+          <CustomAlert severity="success" variant="outlined" hasTitle={true} title="Success Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
+          <CustomAlert severity="warning" variant="outlined" hasTitle={true} title="Warning Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
+          <CustomAlert severity="error" variant="outlined" hasTitle={true} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
+          <CustomAlert severity="info" variant="outlined" hasTitle={true} title="Info Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
         </div>
         <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md ">
-        <CustomAlert severity="success" variant="standard" hasTitle={true} title="Success Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
-        <CustomAlert severity="warning" variant="standard" hasTitle={true} title="Warning Alert"  hasDescription={true}  description="This is a detailed error message." hasAction={false}  hasClose={false} />
-        <CustomAlert severity="error" variant="standard" hasTitle={true} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
-        <CustomAlert severity="info" variant="standard"  hasTitle={true}  title="Info Alert"  hasDescription={true}  description="This is a detailed error message."  hasAction={false}  hasClose={false}  />
+          <CustomAlert severity="success" variant="standard" hasTitle={true} title="Success Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
+          <CustomAlert severity="warning" variant="standard" hasTitle={true} title="Warning Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
+          <CustomAlert severity="error" variant="standard" hasTitle={true} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
+          <CustomAlert severity="info" variant="standard" hasTitle={true} title="Info Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
         </div>
 
-        </div>
+      </div>
       {/* -- Custom Alert / Notification Component WIth Modification -- */}
-        <div className="flex gap-4 border-b-1 border-t-1 rounded-2xl pt-4 pb-4 shadow-xl border-gray-300 text-center bg-white">
+      <div className="flex gap-4 border-b-1 border-t-1 rounded-2xl pt-4 pb-4 shadow-xl border-gray-300 text-center bg-white">
 
         <div className="flex items-center justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
-        <h1 className="text-xl font-bold text-gray-500">Alert  Without Description</h1>
+          <h1 className="text-xl font-bold text-gray-500">Alert  Without Description</h1>
         </div>
         <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
-        <CustomAlert severity="success" variant="filled" hasTitle={true} title="Success Alert" hasDescription={false} description="This is a detailed error message." hasAction={true} hasClose={true} />
-        <CustomAlert severity="warning" variant="filled" hasTitle={true} title="Warning Alert"  hasDescription={false}  description="This is a detailed error message." hasAction={false}  hasClose={false} />
-         </div>
+          <CustomAlert severity="success" variant="filled" hasTitle={true} title="Success Alert" hasDescription={false} description="This is a detailed error message." hasAction={true} hasClose={true} />
+          <CustomAlert severity="warning" variant="filled" hasTitle={true} title="Warning Alert" hasDescription={false} description="This is a detailed error message." hasAction={false} hasClose={false} />
+        </div>
         <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
-        <CustomAlert severity="success" variant="outlined" hasTitle={true} title="Success Alert" hasDescription={false} description="This is a detailed error message." hasAction={true} hasClose={true} />
-        <CustomAlert severity="warning" variant="outlined" hasTitle={true} title="Warning Alert"  hasDescription={false}  description="This is a detailed error message." hasAction={false}  hasClose={false} />
+          <CustomAlert severity="success" variant="outlined" hasTitle={true} title="Success Alert" hasDescription={false} description="This is a detailed error message." hasAction={true} hasClose={true} />
+          <CustomAlert severity="warning" variant="outlined" hasTitle={true} title="Warning Alert" hasDescription={false} description="This is a detailed error message." hasAction={false} hasClose={false} />
         </div>
         <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md ">
-        <CustomAlert severity="success" variant="standard" hasTitle={true} title="Success Alert" hasDescription={false} description="This is a detailed error message." hasAction={true} hasClose={true} />
-        <CustomAlert severity="warning" variant="standard" hasTitle={true} title="Warning Alert"  hasDescription={false}  description="This is a detailed error message." hasAction={false}  hasClose={false} />
+          <CustomAlert severity="success" variant="standard" hasTitle={true} title="Success Alert" hasDescription={false} description="This is a detailed error message." hasAction={true} hasClose={true} />
+          <CustomAlert severity="warning" variant="standard" hasTitle={true} title="Warning Alert" hasDescription={false} description="This is a detailed error message." hasAction={false} hasClose={false} />
         </div>
-        </div>
+      </div>
 
-                    {/* -- Custom Alert / Notification Component -- */}
-          <div className="flex gap-4 border-b-1 border-t-1 rounded-2xl pt-4 pb-4 shadow-xl border-gray-300 text-center bg-white">
+      {/* -- Custom Alert / Notification Component -- */}
+      <div className="flex gap-4 border-b-1 border-t-1 rounded-2xl pt-4 pb-4 shadow-xl border-gray-300 text-center bg-white">
 
-            <div className="flex items-center justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
-            <h1 className="text-xl font-bold text-gray-500">Alert Without Title</h1>
-            </div>
-            <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
-            <CustomAlert severity="error" variant="filled" hasTitle={false} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
-            <CustomAlert severity="info" variant="filled"  hasTitle={false}  title="Info Alert"  hasDescription={true}  description="This is a detailed error message."  hasAction={false}  hasClose={false}  />
-            </div>
-            <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
-            <CustomAlert severity="error" variant="outlined" hasTitle={false} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
-            <CustomAlert severity="info" variant="outlined"  hasTitle={false}  title="Info Alert"  hasDescription={true}  description="This is a detailed error message."  hasAction={false}  hasClose={false}  />
-            </div>
-            <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md ">
-            <CustomAlert severity="error" variant="standard" hasTitle={false} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
-            <CustomAlert severity="info" variant="standard"  hasTitle={false}  title="Info Alert"  hasDescription={true}  description="This is a detailed error message."  hasAction={false}  hasClose={false}  />
-            </div>
+        <div className="flex items-center justify-center border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
+          <h1 className="text-xl font-bold text-gray-500">Alert Without Title</h1>
         </div>
+        <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
+          <CustomAlert severity="error" variant="filled" hasTitle={false} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
+          <CustomAlert severity="info" variant="filled" hasTitle={false} title="Info Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
+        </div>
+        <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md bg-gray-200 ">
+          <CustomAlert severity="error" variant="outlined" hasTitle={false} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
+          <CustomAlert severity="info" variant="outlined" hasTitle={false} title="Info Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
+        </div>
+        <div className="flex flex-col flex-grow gap-6 w-full max-w-[90%] border-r-1 border-l-1 p-3 border-gray-300 rounded-2xl shadow-md ">
+          <CustomAlert severity="error" variant="standard" hasTitle={false} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
+          <CustomAlert severity="info" variant="standard" hasTitle={false} title="Info Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
+        </div>
+      </div>
     </div>
   );
 }
