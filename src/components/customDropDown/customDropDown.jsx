@@ -27,13 +27,9 @@ const CustomDropdown = ({
   const selectRef = useRef(null);
 
   const handleChange = (event) => {
-    const newValue = event.target.value;
+    // const newValue = event.target.value;
     if (onChange) {
-      onChange({
-        target: {
-          value: newValue,
-        },
-      });
+      onChange(event); // Directly pass the event to handleChange
     }
   };
 
@@ -73,7 +69,7 @@ const CustomDropdown = ({
   return (
     <div
       id="dropdown-container"
-      style={{ position: "relative", display: "flex", flexDirection: "column", width: "fit-content" }}
+      style={{ position: "relative", display: "flex", flexDirection: "column", width: width, }}
     >
       {/* Label */}
       {label && (

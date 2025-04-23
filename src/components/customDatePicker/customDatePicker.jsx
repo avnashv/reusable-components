@@ -47,13 +47,13 @@ const CustomDatePicker = ({ label, value, onChange, errorMessage, disabled, requ
       <label
         className="mb-1 flex items-center gap-0.5"
         style={{
-          color: disabled ? "#818B94" : "#17222B",
+          color: disabled ? "#9CA3AF" : "#737373",
           fontFamily: "Proxima Nova, sans-serif",
-          fontWeight: 400,
-          fontSize: "16px",
+          fontWeight: 700,
+          fontSize: "11px",
           lineHeight: "140%",
           display: "flex",
-          gap: "2px",
+          marginBottom: "4px",
         }}
       >
         {label} {required && <span style={{ color: "#E53935" }}>*</span>}
