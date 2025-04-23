@@ -21,7 +21,7 @@ const CustomDropdown = ({
   onChange,
   placeHolder,
   name,
-  width = "240px",
+  width = "200px",
 }) => {
   const [dropUp, setDropUp] = useState(false);
   const selectRef = useRef(null);
@@ -54,7 +54,7 @@ const CustomDropdown = ({
     <img
       src={disabled ? ArrowIconDisable : ArrowIconActive}
       alt="Dropdown Icon"
-      style={{ width: 16, height: 16 }}
+      style={{ width: 14, height: 14 }}
     />
   );
 
@@ -100,8 +100,8 @@ const CustomDropdown = ({
           "& .MuiOutlinedInput-root": {
             transition: "border 0.3s ease",
             width: width,
-            height: multiple && value.length > 0 ? "auto" : "40px",
-            minHeight: "40px",
+            height: multiple && value.length > 0 ? "auto" : "33px",
+            minHeight: "33px",
             display: "flex",
             padding: "8px 12px",
             alignItems: multiple && value.length > 0 ? "flex-start" : "center",

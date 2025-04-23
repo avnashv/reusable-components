@@ -64,8 +64,8 @@ const CustomDatePicker = ({ label, value, onChange, errorMessage, disabled, requ
         sx={{
           "& .MuiOutlinedInput-root": {
             transition: "border 0.3s ease",
-            width: "240px",
-            height: "40px",
+            width: "200px",
+            height: "33px",
             padding: "8px 12px",
             alignItems: "center",
             borderRadius: "8px",
@@ -101,7 +101,7 @@ const CustomDatePicker = ({ label, value, onChange, errorMessage, disabled, requ
               display: "inline-flex",
               alignItems: "center",
               cursor: disabled ? "not-allowed" : "pointer",
-              width: "240px",
+              width: "200px",
             }}
           >
             <TextField
@@ -174,7 +174,7 @@ const CustomDatePicker = ({ label, value, onChange, errorMessage, disabled, requ
             sx={{
               color: "#E53935",
               backgroundColor: "transparent",
-              width: "240px",
+              width: "200px",
               minHeight: "29px",
               borderBottomRightRadius: "8px",
               borderBottomLeftRadius: "8px",

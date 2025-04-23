@@ -18,7 +18,7 @@ const CustomInputField = ({
   multiline = false, // New prop to toggle textarea
   rows = 4, // Default rows for textarea (optional customization)
   minRows = 4, // Minimum rows for textarea
-  width = "240px",
+  width = "200px",
   type = "text",
   isPassword = false,// New prop to toggle password behavior
   helperText = "",
@@ -75,8 +75,8 @@ const CustomInputField = ({
     },
     "& .MuiOutlinedInput-root": {
       width: width,
-      height: multiline ? "80px" : "40px",
-      minWidth: "240px",
+      height: multiline ? "80px" : "33px",
+      // minWidth: "240px",
       minHeight: multiline ? "80px" : "auto",
       ...getStyles(),
       transition: "border 0.3s ease",
@@ -94,7 +94,7 @@ const CustomInputField = ({
       "&.Mui-focused": state !== "disabled" && { border: "1px solid #1A2731" },
     },
     "& .MuiInputBase-input": {
-      padding: multiline ? "12px 16px" : "8px 22px",
+      padding: multiline ? "12px 16px" : "8px 12px",
       fontSize: "16px",
       "&::placeholder": {
         color: "#818B94",
