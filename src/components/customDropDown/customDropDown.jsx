@@ -16,7 +16,7 @@ const CustomDropdown = ({
   errorMessage,
   disabled,
   required,
-  value = "", // Use value 
+  value = "",
   multiple = false,
   onChange,
   placeHolder,
@@ -27,27 +27,53 @@ const CustomDropdown = ({
   const selectRef = useRef(null);
 
   const handleChange = (event) => {
-    const newValue = event.target.value;
-    if (onChange) {
-      onChange({
-        target: {
-          name,
-          value: newValue,
-        },
+    const selectedName = event.target.value;
+  
+    let selectedValue;
+  
+    if (multiple) {
+      const selectedArray = selectedName.map((name) => {
+        const selectedObj = options.find(
+          (opt) => opt.name === name
+        );
+        return selectedObj
+          ? { id: selectedObj.id, name: selectedObj.name }
+          : { name };
       });
+      selectedValue = selectedArray;
+    } else {
+      const selectedObj = options.find(
+        (opt) => opt.name === selectedName
+      );
+  
+      selectedValue = selectedObj
+        ? { id: selectedObj.id, name: selectedObj.name }
+        : { name: selectedName };
     }
+  
+    console.log("Selected Value:", selectedValue); // Log the selected value to console
+  
+    onChange?.({
+      target: {
+        name,
+        value: selectedValue,
+      },
+    });
   };
+  
+
 
   const handleDelete = (itemToDelete) => (event) => {
     event.stopPropagation();
-    const newValue = Array.isArray(value) ? value.filter((item) => item !== itemToDelete) : [];
-    if (onChange) {
-      onChange({
-        target: {
-          value: newValue,
-        },
-      });
-    }
+    const newValue = Array.isArray(value)
+      ? value.filter((item) => item.name !== itemToDelete.name)
+      : [];
+    onChange?.({
+      target: {
+        name,
+        value: newValue,
+      },
+    });
   };
 
   const CustomArrowIcon = () => (
@@ -58,14 +84,11 @@ const CustomDropdown = ({
     />
   );
 
-  // Handling Dropdown for Up and Downside without Overlaps
   const handleOpen = () => {
     if (selectRef.current) {
       const rect = selectRef.current.getBoundingClientRect();
       const spaceBelow = window.innerHeight - rect.bottom;
       const spaceAbove = rect.top;
-  
-      // You can adjust the 240 to whatever your dropdown height is
       const dropdownHeight = 240;
       setDropUp(spaceBelow < dropdownHeight && spaceAbove > dropdownHeight);
     }
@@ -74,17 +97,19 @@ const CustomDropdown = ({
   return (
     <div
       id="dropdown-container"
-      style={{ position: "relative", display: "flex", flexDirection: "column", width: width, }}
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        width: width,
+      }}
     >
-      {/* Label */}
       {label && (
         <label
           style={{
             fontFamily: "Proxima Nova, sans-serif",
             fontWeight: 700,
             fontSize: "11px",
-            lineHeight: "140%",
-            letterSpacing: "0%",
             color: disabled ? "#9CA3AF" : "#737373",
             marginBottom: "4px",
           }}
@@ -95,7 +120,11 @@ const CustomDropdown = ({
 
       <FormControl
         sx={{
-          backgroundColor: errorMessage ? "transparent" : disabled ? "#F4F6F8" : "white",
+          backgroundColor: errorMessage
+            ? "transparent"
+            : disabled
+            ? "#F4F6F8"
+            : "white",
           borderRadius: "8px",
           "& .MuiOutlinedInput-root": {
             transition: "border 0.3s ease",
@@ -111,7 +140,11 @@ const CustomDropdown = ({
               borderWidth: "1px !important",
             },
             "&:hover fieldset": {
-              borderColor: errorMessage ? "#D32F2F" : disabled ? "#CBDBE4" : "#A6ADB3",
+              borderColor: errorMessage
+                ? "#D32F2F"
+                : disabled
+                ? "#CBDBE4"
+                : "#A6ADB3",
             },
             "&.Mui-focused fieldset": {
               borderColor: errorMessage ? "#D32F2F" : "#1A2731 !important",
@@ -141,7 +174,11 @@ const CustomDropdown = ({
       >
         <Select
           name={name}
-          value={value}
+          value={
+            multiple
+              ? value.map((item) => item.name)
+              : value?.name || ""
+          }
           ref={selectRef}
           onOpen={handleOpen}
           onChange={handleChange}
@@ -160,35 +197,10 @@ const CustomDropdown = ({
             },
             PaperProps: {
               style: {
-                marginTop: 8, // Space between select box and dropdown
+                marginTop: 8,
                 maxHeight: "240px",
                 overflowY: "auto",
               },
-            },
-            PopperProps: {
-              modifiers: [
-                {
-                  name: "offset",
-                  options: {
-                    offset: [0, 8], // Ensures dropdown appears with 8px gap
-                  },
-                },
-                {
-                  name: "preventOverflow",
-                  options: {
-                    altAxis: true,
-                    tether: true,
-                  },
-                },
-                {
-                  name: "flip",
-                  enabled: true,
-                  options: {
-                    fallbackPlacements: ["top", "bottom"],
-                    padding: 8,
-                  },
-                },
-              ],
             },
           }}
           sx={{
@@ -226,10 +238,10 @@ const CustomDropdown = ({
                     marginRight: "-32px",
                   }}
                 >
-                  {selected.map((item) => (
+                  {value.map((item) => (
                     <Chip
-                      key={item}
-                      label={item}
+                      key={item.name}
+                      label={item.name}
                       onDelete={disabled ? undefined : handleDelete(item)}
                       deleteIcon={
                         <img
@@ -254,11 +266,6 @@ const CustomDropdown = ({
               );
             }
 
-            const selectedOption =
-              options.find((opt) =>
-                typeof opt === "object" ? opt.name === selected : opt === selected
-              ) || selected;
-
             return (
               <div
                 style={{
@@ -273,35 +280,11 @@ const CustomDropdown = ({
                     fontWeight: 400,
                     fontSize: "16px",
                     lineHeight: "140%",
-                    letterSpacing: "0%",
-                    verticalAlign: "middle",
                     color: "#17222B",
                   }}
                 >
-                  {typeof selectedOption === "object"
-                    ? selectedOption.name
-                    : selectedOption}
+                  {selected}
                 </span>
-                {typeof selectedOption === "object" &&
-                  selectedOption.count !== undefined && (
-                    <span
-                      style={{
-                        background: "#009CDC",
-                        color: "white",
-                        width: 50,
-                        height: 22,
-                        gap: 8,
-                        borderRadius: 999,
-                        padding: "4px 8px",
-                        fontSize: "14px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {selectedOption.count.toLocaleString()}
-                    </span>
-                  )}
               </div>
             );
           }}
@@ -309,30 +292,26 @@ const CustomDropdown = ({
           <MenuItem value="" disabled>
             {placeHolder}
           </MenuItem>
-          {options.map((option) => (
-            <MenuItem
-              key={typeof option === "object" ? option.name : option}
-              value={typeof option === "object" ? option.name : option}
-              sx={{
-                height: "48px",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  width: "100%",
-                }}
+          {options.map((option) => {
+            const label = option.main_status || option.name || option;
+            return (
+              <MenuItem
+                key={label}
+                value={label}
+                sx={{ height: "48px" }}
               >
-                <span>{typeof option === "object" ? option.name : option}</span>
-                {typeof option === "object" && option.count !== undefined && (
-                  <span style={{ fontWeight: "bold" }}>
-                    {option.count.toLocaleString()}
-                  </span>
-                )}
-              </div>
-            </MenuItem>
-          ))}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "100%",
+                  }}
+                >
+                  <span>{label}</span>
+                </div>
+              </MenuItem>
+            );
+          })}
         </Select>
         {errorMessage && (
           <FormHelperText
