@@ -27,9 +27,14 @@ const CustomDropdown = ({
   const selectRef = useRef(null);
 
   const handleChange = (event) => {
-    // const newValue = event.target.value;
+    const newValue = event.target.value;
     if (onChange) {
-      onChange(event); // Directly pass the event to handleChange
+      onChange({
+        target: {
+          name,
+          value: newValue,
+        },
+      });
     }
   };
 
