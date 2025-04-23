@@ -113,7 +113,7 @@ const CustomButton = ({
                 // width: isIconButton ? "40px" : isChipButton ? "114px" : "auto",
                 width: isIconButton ? "40px" : width ,
                 // height: isIconButton ? "40px" : isChipButton ? "32px" : "40px",
-                height: isChipButton ? "32px" : "40px",
+                height: isChipButton ? "28px" : "38px",
                 // minWidth: isIconButton ? iconSize : "auto",
                 minWidth: isIconButton ? "40px" : "fit-content",
                 minHeight: isIconButton ? iconSize : "auto",
@@ -199,7 +199,7 @@ const CustomButton = ({
                     style={{
                         fontFamily: 'Proxima Nova, sans-serif',
                         fontWeight: 700,
-                        fontSize: '16px',
+                        fontSize: '14px',
                         lineHeight: '140%',
                         letterSpacing: '0%',
                         opacity: disabled ? 0.5 : 1, // Reduce opacity when disabled

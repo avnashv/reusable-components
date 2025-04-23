@@ -18,7 +18,7 @@ const ToggleButton = ({ label, description, position = 'right', disabled = false
           <span style={{
             fontFamily: 'Proxima Nova, sans-serif',
             fontWeight: 400,
-            fontSize: '16px',
+            fontSize: '14px',
             lineHeight: '140%',
             letterSpacing: '0%',
             color: disabled ? 'var(--Neutral-N200, #858585)' : 'var(--Text-T500, #17222B)', // Gray text when disabled
@@ -30,7 +30,7 @@ const ToggleButton = ({ label, description, position = 'right', disabled = false
             <span style={{
               fontFamily: 'Proxima Nova, sans-serif',
               fontWeight: 400,
-              fontSize: '16px',
+              fontSize: '14px',
               lineHeight: '140%',
               letterSpacing: '0%',
               color: disabled ? 'var(--Neutral-N200, #858585)' : 'var(--Neutral-N200, #858585)', // Gray text when disabled
@@ -108,7 +108,7 @@ const ToggleButton = ({ label, description, position = 'right', disabled = false
           <span style={{
             fontFamily: 'Proxima Nova, sans-serif',
             fontWeight: 400,
-            fontSize: '16px',
+            fontSize: '14px',
             lineHeight: '140%',
             letterSpacing: '0%',
             color: disabled ? 'var(--Neutral-N200, #818B94)' : 'var(--Text-T500, #17222B)', // Gray text when disabled
@@ -120,7 +120,7 @@ const ToggleButton = ({ label, description, position = 'right', disabled = false
             <span style={{
               fontFamily: 'Proxima Nova, sans-serif',
               fontWeight: 400,
-              fontSize: '16px',
+              fontSize: '14px',
               lineHeight: '140%',
               letterSpacing: '0%',
               color: disabled ? 'var(--Neutral-N200, #BFBFBF)' : 'var(--Neutral-N200, #858585)', // Gray text when disabled

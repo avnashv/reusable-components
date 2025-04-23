@@ -65,7 +65,7 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                         width: 48, // Adjust width
                         height: 28,
                         borderRadius: 8,
-                        fontSize: "16px",
+                        fontSize: "14px",
                         padding: "2px 2px 2px 4px",
                         justifyContent: "right", // Center align text & icon
                         "& .MuiOutlinedInput-notchedOutline": { border: "none" },
@@ -101,7 +101,7 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
                         height: 28,
                         borderRadius: 8,
                         position: "static",
-                        fontSize: "16px",
+                        fontSize: "14px",
                         padding: "2px 2px 2px 4px",
                         justifyContent: "right",
                         "& .MuiOutlinedInput-notchedOutline": { border: "none" },

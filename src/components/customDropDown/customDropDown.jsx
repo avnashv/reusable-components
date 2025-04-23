@@ -278,7 +278,7 @@ const CustomDropdown = ({
                   style={{
                     fontFamily: "Proxima Nova, sans-serif",
                     fontWeight: 400,
-                    fontSize: "16px",
+                    fontSize: "14px",
                     lineHeight: "140%",
                     color: "#17222B",
                   }}

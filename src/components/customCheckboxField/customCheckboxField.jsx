@@ -66,7 +66,7 @@ const CustomCheckboxField = ({
               color: disabled ? "#A6ADB3" : "#17222B",
               fontFamily: "Proxima Nova, sans-serif",
               fontWeight: 400,
-              fontSize: "16px",
+              fontSize: "14px",
               lineHeight: "140%",
             }}
           >
@@ -82,7 +82,7 @@ const CustomCheckboxField = ({
               margin: 0,
               fontFamily: "Proxima Nova, sans-serif",
               fontWeight: 400,
-              fontSize: "16px",
+              fontSize: "14px",
               lineHeight: "140%",
             }}
           >

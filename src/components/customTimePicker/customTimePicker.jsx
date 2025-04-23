@@ -50,7 +50,7 @@ const CustomTimePicker = ({ label, errorMessage, disabled, required, value }) =>
                     color: disabled ? "#818B94" : "#17222B",
                     fontFamily: "Proxima Nova, sans-serif",
                     fontWeight: 400,
-                    fontSize: "16px",
+                    fontSize: "14px",
                     lineHeight: "140%",
                     display: "flex",
                     gap: "2px",

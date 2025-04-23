@@ -212,6 +212,7 @@ function App() {
           {/* -- Chips -- */}
           <CustomButton text="Chips" variant="chips" rounded="full" startIcon={true} endIcon={true} />
           <CustomButton text="Chips" disabled={true} variant="chips" rounded="full" />
+          <CustomButton text="Lead Education" disabled={false} variant="chips" rounded="full" startIcon={false} endIcon={false} />
         </div>
 
       </div>
