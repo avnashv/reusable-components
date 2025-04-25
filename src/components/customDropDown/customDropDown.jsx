@@ -37,7 +37,7 @@ const CustomDropdown = ({
           (opt) => opt?.name === name
         );
         return selectedObj
-          ? { id: selectedObj?.id, name: selectedObj?.name }
+          ? { ...selectedObj } // Keep all properties intact
           : { name };
       });
       selectedValue = selectedArray;
@@ -47,7 +47,7 @@ const CustomDropdown = ({
       );
   
       selectedValue = selectedObj
-        ? { id: selectedObj?.id, name: selectedObj?.name }
+        ? { ...selectedObj } // Keep all properties intact
         : { name: selectedName };
     }
   
@@ -60,8 +60,6 @@ const CustomDropdown = ({
       },
     });
   };
-  
-
 
   const handleDelete = (itemToDelete) => (event) => {
     event.stopPropagation();
@@ -240,8 +238,8 @@ const CustomDropdown = ({
                 >
                   {value?.map((item) => (
                     <Chip
-                      key={item.name}
-                      label={item.name}
+                      key={item?.name}
+                      label={item?.name}
                       onDelete={disabled ? undefined : handleDelete(item)}
                       deleteIcon={
                         <img
@@ -293,7 +291,7 @@ const CustomDropdown = ({
             {placeHolder}
           </MenuItem>
           {options?.map((option) => {
-            const label = option.name || option;
+            const label = option?.name || option;
             return (
               <MenuItem
                 key={label}

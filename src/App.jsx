@@ -158,6 +158,12 @@ function App() {
     }
   };
 
+  const dropdownOptions1 = [
+    { id: 1, name: "Option 1", description: "Description 1" },
+    { id: 2, name: "Option 2", description: "Description 2" },
+  ];
+  
+
   const initialTime = dayjs().set("hour", 10).set("minute", 30);
   const dropdownOptions = ["is", "is not", "is empty", "is not empty", "contains"];
   return (
@@ -240,6 +246,15 @@ function App() {
             value={defaultSingleValue}
             onChange={(event) => setDefaultSingleValue(event.target.value)}
           />
+
+<CustomDropdown
+  label="Select an Option"
+  options={dropdownOptions1}
+  placeHolder="Select Option"
+  value={testSingleValue}
+  onChange={(event) => setTestSingleValue(event.target.value)}
+/>
+
         </div>
 
         <div className="flex flex-col gap-4 text-left border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
