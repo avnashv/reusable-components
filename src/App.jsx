@@ -39,18 +39,21 @@ function App() {
   const toggleFilter = () => setIsFilterOpen(prev => !prev);
 
   const [defaultSingleValue, setDefaultSingleValue] = useState("");
-  const [disabledSingleValue, setDisabledSingleValue] = useState("");
+  const [disabledSingleValue, setDisabledSingleValue] = useState("Option 1");
   const [testSingleValue, setTestSingleValue] = useState("");
   const [errorSingleValue, setErrorSingleValue] = useState("");
 
   // State for multiple-select dropdowns
-  const [defaultMultiValue, setDefaultMultiValue] = useState([]);
+
   const [disabledMultiValue, setDisabledMultiValue] = useState(["Option 1", "Option 3"]);
   const [errorMultiValue, setErrorMultiValue] = useState([]);
 
 
   const yearOptions = ["Select", ...Array.from({ length: 20 }, (_, i) =>
     `${new Date().getFullYear() - i}`)];
+
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
 
   // Sample data for the custom table
   const columns = [
@@ -162,7 +165,18 @@ function App() {
     { id: 1, name: "Option 1", description: "Description 1" },
     { id: 2, name: "Option 2", description: "Description 2" },
   ];
-  
+
+  const obj = [1, 2]; // Initial values (IDs)
+  const [defaultMultiValue, setDefaultMultiValue] = useState(
+    dropdownOptions1.filter(option => obj.includes(option.id))
+  );
+
+  const handleRowsPerPageChange = (newRowsPerPage) => {
+    setRowsPerPage(newRowsPerPage);
+    setCurrentPage(1); // reset to page 1
+  };
+
+
 
   const initialTime = dayjs().set("hour", 10).set("minute", 30);
   const dropdownOptions = ["is", "is not", "is empty", "is not empty", "contains"];
@@ -247,13 +261,13 @@ function App() {
             onChange={(event) => setDefaultSingleValue(event.target.value)}
           />
 
-<CustomDropdown
-  label="Select an Option"
-  options={dropdownOptions1}
-  placeHolder="Select Option"
-  value={testSingleValue}
-  onChange={(event) => setTestSingleValue(event.target.value)}
-/>
+          <CustomDropdown
+            label="Select an Option"
+            options={dropdownOptions1}
+            placeHolder="Select Option"
+            value={testSingleValue}
+            onChange={(event) => setTestSingleValue(event.target.value)}
+          />
 
         </div>
 
@@ -309,6 +323,20 @@ function App() {
               console.log(event.target.value)
               setDefaultMultiValue(event.target.value)
             }}
+          />
+
+          <CustomDropdown
+            label="Initial Values"
+            options={dropdownOptions1}
+            required={true}
+            multiple={true}
+            placeHolder="Select Options"
+            value={defaultMultiValue}
+            onChange={(event) => {
+              console.log(event.target.value);
+              setDefaultMultiValue(event.target.value);
+            }}
+
           />
         </div>
 
@@ -627,7 +655,10 @@ function App() {
             totalPages={8}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            rowsPerPage={rowsPerPage}         // <-- ADD
+            setRowsPerPage={handleRowsPerPageChange}  // <-- ADD
           />
+
 
         </div>
       </div>

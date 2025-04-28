@@ -5,8 +5,10 @@ import NextNavIconActive from "../../assets/icons/next-nav.svg";
 import PrevNavIconActive from "../../assets/icons/prev-nav.svg";
 import DropDownPagination from "../../assets/icons/drop-down-pagination.svg";
 
-const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
-    const [rowsPerPage, setRowsPerPage] = React.useState(15);
+const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage, rowsPerPage,  
+    setRowsPerPage
+ }) => {
+    // const [rowsPerPage, setRowsPerPage] = React.useState(15);
 
     const NextNavIcon = () => <img src={NextNavIconActive} alt="Dropdown Icon" style={{ width: 28, height: 28 }} />;
     const PrevNavIcon = () => <img src={PrevNavIconActive} alt="Dropdown Icon" style={{ width: 28, height: 28 }} />;
@@ -55,33 +57,6 @@ const CustomPagination = ({ totalPages = 8, currentPage, setCurrentPage }) => {
             {/* Lines Per Page */}
             <div className="flex items-center justify-end gap-3 text-gray-500">
                 <span className="text-sm">Lines per page</span>
-                {/* <Select
-                    value={rowsPerPage}
-                    onChange={(e) => setRowsPerPage(Number(e.target.value))}
-                    variant="outlined"
-                    IconComponent={DropDownPageIcon} //  Custom Arrow Inside
-                    className={clsx("shadow-sm rounded-md", "custom-select")}
-                    sx={{
-                        width: 48, // Adjust width
-                        height: 28,
-                        borderRadius: 8,
-                        fontSize: "14px",
-                        padding: "2px 2px 2px 4px",
-                        justifyContent: "right", // Center align text & icon
-                        "& .MuiOutlinedInput-notchedOutline": { border: "none" },
-                        "& .MuiSelect-icon": {
-                            display: "none", // Hide default dropdown icon
-                            "!important": true, // Ensuring this style can't be overridden
-                        },
-                        "!important": true // Add !important to override default styles
-                    }}
-                >
-                    {[10, 15, 20, 25, 30].map((size) => (
-                        <MenuItem key={size} value={size}>
-                            {size}
-                        </MenuItem>
-                    ))}
-                </Select> */}
                 <Select
                     value={rowsPerPage}
                     onChange={(e) => setRowsPerPage(Number(e.target.value))}
