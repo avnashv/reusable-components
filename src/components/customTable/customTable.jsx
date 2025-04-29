@@ -203,7 +203,8 @@ const CustomTable = ({ columns: initialColumns, data, showCheckboxes, getRow }) 
                                     }}
                                 >
                                     {/* {row[column.id]} */}
-                                    {getRow ? getRow(column.id, row[column.id]) : row[column.id]}
+                                    {/* {getRow ? getRow(column.id, row[column.id]) : row[column.id]} */}
+                                    {getRow ? getRow(column.id, row[column.id], row) : row[column.id]}
                                 </TableCell>
                             ))}
                         </TableRow>
