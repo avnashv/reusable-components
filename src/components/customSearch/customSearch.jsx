@@ -5,11 +5,11 @@ const CustomSearch = ({
     placeHolder,
     width = "264px",
     value,
-    onChange
+    onChange,
+    onSearch,         // NEW: Parent handles search logic
+    results = [],     // NEW: Search results from parent
+    loading = false   // NEW: Parent controls loading state
 }) => {
-    const [loading, setLoading] = useState(false);
-    const [results, setResults] = useState([]);
-    const [error, setError] = useState(null);
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
 
@@ -36,28 +36,17 @@ const CustomSearch = ({
         };
     };
 
-    const fetchSearchResults = async (query) => {
-        if (!query) return;
-        setLoading(true);
-        setError(null);
-        try {
-            const response = await fetch(`https://api.example.com/search?q=${query}`);
-            if (!response.ok) throw new Error("Failed to fetch results");
-            const data = await response.json();
-            setResults(data.results);
-        } catch (err) {
-            setError("Error fetching search results");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const debouncedSearch = useCallback(debounce(fetchSearchResults, 500), []);
+    const debouncedSearch = useCallback(debounce(onSearch, 500), [onSearch]);
 
     const handleInputChange = (e) => {
-        onChange(e); // lift to parent
-        debouncedSearch(e.target.value);
+        const inputValue = e.target.value;
+        onChange(e); // lift input to parent
+    
+        if (inputValue.length >= 3) {
+            debouncedSearch(inputValue);
+        }
     };
+    
 
     return (
         <div style={{ width }}>
@@ -71,7 +60,6 @@ const CustomSearch = ({
                 onBlur={() => setIsFocused(false)}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                className="bg-white rounded-[12px]"
                 sx={{
                     "& .MuiOutlinedInput-root": {
                         borderRadius: "12px",
@@ -111,7 +99,7 @@ const CustomSearch = ({
                 }}
             />
 
-            {results.length > 0 && (
+            {/* {results.length > 0 && (
                 <ul className="mt-2 bg-white border rounded-lg shadow-md max-h-40 overflow-y-auto">
                     {results.map((item, index) => (
                         <li key={index} className="px-3 py-2 hover:bg-gray-100 cursor-pointer">
@@ -119,9 +107,10 @@ const CustomSearch = ({
                         </li>
                     ))}
                 </ul>
-            )}
+            )} */}
         </div>
     );
 };
+
 
 export default CustomSearch;
