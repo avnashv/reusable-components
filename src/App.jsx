@@ -57,16 +57,16 @@ function App() {
 
   // Sample data for the custom table
   const columns = [
-    { id: "leadNo", label: "Lead no", showSort: false, isDrag: false },
-    { id: "title", label: "Title", showSort: false, isDrag: true },
-    { id: "lastName", label: "Last Name", showSort: false, isDrag: true },
+    { id: "leadNo", label: "Lead no", showSort: true, isDrag: true },
+    { id: "title", label: "Title", showSort: true, isDrag: true },
+    { id: "lastName", label: "Last Name", showSort: true, isDrag: true },
     { id: "status", label: "Status", showSort: true, isDrag: true },
-    { id: "branch", label: "Branch", showSort: true, isDrag: false },
+    { id: "branch", label: "Branch", showSort: true, isDrag: true },
     { id: "createdDate", label: "Created Date", showSort: true, isDrag: true },
-    { id: "phone", label: "Phone", showSort: false, isDrag: false },
-    { id: "email", label: "Email", showSort: false, isDrag: true },
-    { id: "leadSource", label: "Lead Source", showSort: false, isDrag: true },
-    { id: "location", label: "Location", showSort: true, isDrag: false },
+    { id: "phone", label: "Phone", showSort: true, isDrag: true },
+    { id: "email", label: "Email", showSort: true, isDrag: true },
+    { id: "leadSource", label: "Lead Source", showSort: true, isDrag: true },
+    { id: "location", label: "Location", showSort: true, isDrag: true },
   ];
 
   // Sample data for the custom table
