@@ -56,18 +56,18 @@ function App() {
 
 
   // Sample data for the custom table
-  const columns = [
-    { id: "leadNo", label: "Lead no", showSort: false, isDrag: false },
-    { id: "title", label: "Title", showSort: false, isDrag: true },
-    { id: "lastName", label: "Last Name", showSort: false, isDrag: true },
-    { id: "status", label: "Status", showSort: true, isDrag: true },
-    { id: "branch", label: "Branch", showSort: true, isDrag: false },
-    { id: "createdDate", label: "Created Date", showSort: true, isDrag: true },
-    { id: "phone", label: "Phone", showSort: false, isDrag: false },
-    { id: "email", label: "Email", showSort: false, isDrag: true },
-    { id: "leadSource", label: "Lead Source", showSort: false, isDrag: true },
-    { id: "location", label: "Location", showSort: true, isDrag: false },
-  ];
+  // const columns = [
+  //   { id: "leadNo", label: "Lead no", showSort: false, isDrag: false },
+  //   { id: "title", label: "Title", showSort: false, isDrag: true },
+  //   { id: "lastName", label: "Last Name", showSort: false, isDrag: true },
+  //   { id: "status", label: "Status", showSort: true, isDrag: true },
+  //   { id: "branch", label: "Branch", showSort: true, isDrag: false },
+  //   { id: "createdDate", label: "Created Date", showSort: true, isDrag: true },
+  //   { id: "phone", label: "Phone", showSort: false, isDrag: false },
+  //   { id: "email", label: "Email", showSort: false, isDrag: true },
+  //   { id: "leadSource", label: "Lead Source", showSort: false, isDrag: true },
+  //   { id: "location", label: "Location", showSort: true, isDrag: false },
+  // ];
 
   // Sample data for the custom table
   const data = [
@@ -126,40 +126,40 @@ function App() {
   ];
 
 
-  const getRow = (columnId, value) => {
-    switch (columnId) {
-      case "createdDate":
-        return (
-          <div className="flex items-center gap-2">
-            <img src={CalenderIcon} alt="Calender" className="w-4 h-4" />
-            <span>{value}</span>
-          </div>
-        );
-      case "phone":
-        return (
-          <div className="flex items-center gap-2">
-            <img src={PhoneIcon} alt="Phone" className="w-4 h-4" />
-            <span>{value}</span>
-          </div>
-        );
-      case "email":
-        return (
-          <div className="flex items-center gap-2">
-            <img src={MailIcon} alt="Mail" className="w-4 h-4" />
-            <span>{value}</span>
-          </div>
-        );
-      case "location":
-        return (
-          <div className="flex items-center gap-2">
-            <img src={LoactionIcon} alt="Location" className="w-4 h-4" />
-            <span>{value}</span>
-          </div>
-        );
-      default:
-        return value;
-    }
-  };
+  // const getRow = (columnId, value) => {
+  //   switch (columnId) {
+  //     case "createdDate":
+  //       return (
+  //         <div className="flex items-center gap-2">
+  //           <img src={CalenderIcon} alt="Calender" className="w-4 h-4" />
+  //           <span>{value}</span>
+  //         </div>
+  //       );
+  //     case "phone":
+  //       return (
+  //         <div className="flex items-center gap-2">
+  //           <img src={PhoneIcon} alt="Phone" className="w-4 h-4" />
+  //           <span>{value}</span>
+  //         </div>
+  //       );
+  //     case "email":
+  //       return (
+  //         <div className="flex items-center gap-2">
+  //           <img src={MailIcon} alt="Mail" className="w-4 h-4" />
+  //           <span>{value}</span>
+  //         </div>
+  //       );
+  //     case "location":
+  //       return (
+  //         <div className="flex items-center gap-2">
+  //           <img src={LoactionIcon} alt="Location" className="w-4 h-4" />
+  //           <span>{value}</span>
+  //         </div>
+  //       );
+  //     default:
+  //       return value;
+  //   }
+  // };
 
   const dropdownOptions1 = [
     { id: 1, name: "Option 1", description: "Description 1" },
@@ -175,6 +175,73 @@ function App() {
     setRowsPerPage(newRowsPerPage);
     setCurrentPage(1); // reset to page 1
   };
+
+
+  const leads = [
+    {
+      id: 1,
+      leadNumber: "LD123",
+      createdAt: "2025-04-28T12:00:00Z",
+      mobileNumber: "1234567890",
+      email: "user@example.com",
+      location: "Mumbai",
+    },
+    // more rows...
+  ];
+
+  const columns = [
+    { id: "leadNumber", label: "Lead Number", showSort: true, isDrag: true },
+    { id: "createdAt", label: "Created At", showSort: true, isDrag: false },
+    { id: "mobileNumber", label: "Mobile", showSort: false },
+    { id: "email", label: "Email", showSort: false },
+    { id: "location", label: "Location", showSort: false },
+    { id: "action", label: "Action", showSort: false },
+  ];
+
+
+  const getRow = (columnId, value, row) => {
+    switch (columnId) {
+      case "leadNumber":
+        return (
+          <span
+            className="font-bold text-blue-600 cursor-pointer"
+            onClick={() => console.log("View lead:", row.leadNumber)}
+          >
+            {value}
+          </span>
+        );
+      case "action":
+        return (
+          <button
+            className="text-sm text-white bg-blue-500 px-2 py-1 rounded"
+            onClick={() => console.log("Edit lead:", row.leadNumber)}
+          >
+            Edit
+          </button>
+        );
+      default:
+        return value;
+    }
+  };
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+
+  const handleSearch = async (query) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`/your-api?q=${query}`);
+      const data = await response.json();
+      setResults(data.results);
+    } catch (err) {
+      console.error("Search failed", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
 
 
@@ -679,6 +746,16 @@ function App() {
       </div>
       <CustomSearch placeHolder="Search" width="600px" />
 
+      <CustomSearch
+        placeHolder="Search leads"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        onSearch={handleSearch}
+        results={results}
+        loading={loading}
+      />
+
+
       {/* -- Custom Table Component -- */}
       <div className="flex gap-4 border-b-1 border-t-1 rounded-2xl pt-4 pb-4 shadow-xl border-gray-300 text-center bg-white">
 
@@ -780,6 +857,16 @@ function App() {
           <CustomAlert severity="error" variant="standard" hasTitle={false} title="Error Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={true} />
           <CustomAlert severity="info" variant="standard" hasTitle={false} title="Info Alert" hasDescription={true} description="This is a detailed error message." hasAction={false} hasClose={false} />
         </div>
+      </div>
+
+      <div>
+        <CustomTable
+          columns={columns}
+          data={leads}
+          showCheckboxes={true}
+          getRow={getRow}
+        />
+
       </div>
     </div>
   );
