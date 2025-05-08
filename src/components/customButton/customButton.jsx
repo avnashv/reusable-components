@@ -60,6 +60,9 @@ const CustomButton = ({
     onClick,
     width="fit-content",
     type = "button",
+    className = "",
+    startIconClassName = "",
+    endIconClassName = "",
     sx = {}
 }) => {
     const isIconButton = variant === "icon";
@@ -180,7 +183,8 @@ const CustomButton = ({
                     buttonStyles[variant] || buttonStyles["primary"],
                     rounded === "full" ? "rounded-full" : "rounded-lg",
                     // buttonSize,
-                    padding
+                    padding,
+                    className 
                 )}
         >
             {/* Start Icon */}
@@ -189,7 +193,7 @@ const CustomButton = ({
                     <img
                         src={getIcon(variant, isHovered, isClicked, disabled, iconImg)} // Default/disabled state
                         alt="Start Icon"
-                        className="w-4 h-4"
+                        className={clsx("w-4 h-4", startIconClassName)}
                     />
                 )
             }
@@ -216,7 +220,7 @@ const CustomButton = ({
                     <img
                         src={getIcon(variant, isHovered, isClicked, disabled, iconImg)} // Default/disabled state
                         alt="End Icon"
-                        className="w-4 h-4"
+                        className={clsx("w-4 h-4", endIconClassName)}
                     />
                 )
             }

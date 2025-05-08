@@ -23,6 +23,7 @@ const CustomInputField = ({
   isPassword = false,// New prop to toggle password behavior
   helperText = "",
   name = "",
+  className = "",
   sx = {}
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -137,6 +138,7 @@ const CustomInputField = ({
       {/* Input Field or Textarea */}
       <TextField
         name={name}
+        className={className} 
         variant="outlined"
         type={isPassword ? (showPassword ? "text" : "password") : type}
         value={value}

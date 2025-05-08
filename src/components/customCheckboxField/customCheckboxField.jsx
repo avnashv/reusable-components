@@ -19,11 +19,13 @@ const CustomCheckboxField = ({
   error = "",
   inputClassName = "",
   labelClassName = "",
+  className = "",
   sx={}
 }) => {
 
   return (
     <Box
+    className={className}
       sx={{
         display: "flex",
         gap: "12px",
