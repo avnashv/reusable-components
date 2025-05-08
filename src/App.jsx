@@ -42,6 +42,8 @@ function App() {
   const [disabledSingleValue, setDisabledSingleValue] = useState("Option 1");
   const [testSingleValue, setTestSingleValue] = useState("");
   const [errorSingleValue, setErrorSingleValue] = useState("");
+  const [enabled, setEnabled] = useState(true);
+
 
   // State for multiple-select dropdowns
 
@@ -685,6 +687,14 @@ function App() {
             description="This is a description"
             position="left"
           />
+
+          <ToggleButton
+            label="Enable feature"
+            description="Toggle this feature on or off"
+            checked={enabled}
+            onChange={(val) => setEnabled(val)}
+          />
+
 
         </div>
 
