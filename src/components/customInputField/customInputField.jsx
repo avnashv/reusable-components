@@ -22,7 +22,8 @@ const CustomInputField = ({
   type = "text",
   isPassword = false,// New prop to toggle password behavior
   helperText = "",
-  name = ""
+  name = "",
+  sx = {}
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -109,6 +110,7 @@ const CustomInputField = ({
         lineHeight: "140%",
       },
     },
+    ...sx
   };
 
   return (

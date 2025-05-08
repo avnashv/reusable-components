@@ -60,6 +60,7 @@ const CustomButton = ({
     onClick,
     width="fit-content",
     type = "button",
+    sx = {}
 }) => {
     const isIconButton = variant === "icon";
     const isChipButton = variant === "chips";
@@ -171,7 +172,7 @@ const CustomButton = ({
                     color: isChipButton ? "#818B94" : variant === "secondary" ? "#009CDC" : "white",
                     opacity: 0.5,
                 },
-            }}
+            ...sx}}
 
             className={
                 clsx(
