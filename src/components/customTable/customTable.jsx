@@ -170,46 +170,61 @@ const CustomTable = ({ columns: initialColumns, data, showCheckboxes, getRow }) 
 
                 {/* Table Body */}
                 <TableBody>
-                    {sortedData.map((row) => (
-                        <TableRow key={row.id} className="hover:bg-gray-300">
-                            {/* Checkbox in Rows */}
-                            {showCheckboxes && (
-                                <TableCell>
-                                    <Checkbox
-                                        checked={selectedRows.includes(row.id)}
-                                        onChange={() => handleSelectRow(row.id)}
-                                        sx={{
-                                            width: "16px",
-                                            height: "16px",
-                                            color: "#818B94",
-                                            "&.Mui-checked": {
-                                                color: "#17222B",
-                                            },
-                                        }}
-                                    />
-                                </TableCell>
-                            )}
-
-                            {columns.map((column) => (
-                                <TableCell
-                                    key={column.id}
-                                    sx={{
-                                        fontFamily: "Proxima Nova, sans-serif",
-                                        fontWeight: 400,
-                                        fontSize: "13px",
-                                        lineHeight: "140%",
-                                        letterSpacing: "0%",
-                                        color: "#17222B",
-                                    }}
-                                >
-                                    {/* {row[column.id]} */}
-                                    {/* {getRow ? getRow(column.id, row[column.id]) : row[column.id]} */}
-                                    {getRow ? getRow(column.id, row[column.id], row) : row[column.id]}
-                                </TableCell>
-                            ))}
+                    {sortedData.length === 0 ? (
+                        <TableRow>
+                            <TableCell
+                                colSpan={columns.length + (showCheckboxes ? 1 : 0)}
+                                align="center"
+                                sx={{
+                                    fontFamily: "Proxima Nova, sans-serif",
+                                    fontWeight: 500,
+                                    fontSize: "14px",
+                                    lineHeight: "140%",
+                                    color: "#818B94",
+                                    padding: "20px",
+                                }}
+                            >
+                                No data found
+                            </TableCell>
                         </TableRow>
-                    ))}
+                    ) : (
+                        sortedData.map((row) => (
+                            <TableRow key={row.id} className="hover:bg-gray-300">
+                                {showCheckboxes && (
+                                    <TableCell>
+                                        <Checkbox
+                                            checked={selectedRows.includes(row.id)}
+                                            onChange={() => handleSelectRow(row.id)}
+                                            sx={{
+                                                width: "16px",
+                                                height: "16px",
+                                                color: "#818B94",
+                                                "&.Mui-checked": {
+                                                    color: "#17222B",
+                                                },
+                                            }}
+                                        />
+                                    </TableCell>
+                                )}
+                                {columns.map((column) => (
+                                    <TableCell
+                                        key={column.id}
+                                        sx={{
+                                            fontFamily: "Proxima Nova, sans-serif",
+                                            fontWeight: 400,
+                                            fontSize: "13px",
+                                            lineHeight: "140%",
+                                            color: "#17222B",
+                                        }}
+                                    >
+                                        {getRow ? getRow(column.id, row[column.id], row) : row[column.id]}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))
+                    )}
                 </TableBody>
+
             </Table>
         </TableContainer>
     );
