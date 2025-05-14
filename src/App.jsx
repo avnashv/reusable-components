@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import CustomButton from "./components/customButton/customButton";
 import CustomDropdown from "./components/customDropDown/customDropDown";
 import CustomDatePicker from "./components/customDatePicker/customDatePicker";
@@ -20,7 +20,8 @@ import LoactionIcon from "./assets/icons/location.svg";
 import dayjs from "dayjs";
 import OffcanvasModal from "./components/customOffcanvas/OffcanvasModal";
 import FilterContent from "./components/test/FilterContent";
-import CustomAlert from "./components/customAlert/customAlert"
+import CustomAlert from "./components/customAlert/customAlert";
+import debounce from "lodash.debounce";
 
 function App() {
   // State for radio button selection
@@ -226,10 +227,27 @@ function App() {
     }
   };
 
+  // const [searchQuery, setSearchQuery] = useState("");
+  // const [results, setResults] = useState([]);
+  // const [loading, setLoading] = useState(false);
+
+
+  // const handleSearch = async (query) => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await fetch(`/your-api?q=${query}`);
+  //     const data = await response.json();
+  //     setResults(data.results);
+  //   } catch (err) {
+  //     console.error("Search failed", err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-
 
   const handleSearch = async (query) => {
     setLoading(true);
@@ -243,6 +261,18 @@ function App() {
       setLoading(false);
     }
   };
+
+  const debouncedSearch = useMemo(() => debounce(handleSearch, 500), [handleSearch]);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+
+    // if (value.length >= 3) {
+    debouncedSearch(value);
+    // }
+  };
+
 
 
 
@@ -295,7 +325,7 @@ function App() {
           <CustomButton variant="icon" disabled={false} showText={false} startIcon={false} endIcon={true} iconImg={BlueArrowUp} />
           <CustomButton variant="icon" disabled={true} showText={false} startIcon={false} endIcon={true} iconImg={BlueArrowUp}
             sx={{ border: '1px solid red', borderRadius: '12px' }}
-            />
+          />
         </div>
 
         <div className="flex flex-col gap-4 border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md">
@@ -761,8 +791,8 @@ function App() {
       <CustomSearch
         placeHolder="Search leads"
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        onSearch={handleSearch}
+        onChange={handleChange}
+        // onSearch={handleSearch}
         results={results}
         loading={loading}
       />

@@ -6,8 +6,8 @@ const CustomSearch = ({
     width = "264px",
     value,
     onChange,
-    onSearch,         // NEW: Parent handles search logic
-    results = [],     // NEW: Search results from parent
+    // onSearch,         // NEW: Parent handles search logic
+    // results = [],     // NEW: Search results from parent
     loading = false   // NEW: Parent controls loading state
 }) => {
     const [isFocused, setIsFocused] = useState(false);
@@ -28,24 +28,24 @@ const CustomSearch = ({
         />
     );
 
-    const debounce = (func, delay) => {
-        let timer;
-        return (...args) => {
-            clearTimeout(timer);
-            timer = setTimeout(() => func(...args), delay);
-        };
-    };
+    // const debounce = (func, delay) => {
+    //     let timer;
+    //     return (...args) => {
+    //         clearTimeout(timer);
+    //         timer = setTimeout(() => func(...args), delay);
+    //     };
+    // };
 
-    const debouncedSearch = useCallback(debounce(onSearch, 500), [onSearch]);
+    // const debouncedSearch = useCallback(debounce(onSearch, 500), [onSearch]);
 
-    const handleInputChange = (e) => {
-        const inputValue = e.target.value;
-        onChange(e); // lift input to parent
+    // const handleInputChange = (e) => {
+    //     const inputValue = e.target.value;
+    //     onChange(e); // lift input to parent
     
-        if (inputValue.length >= 3) {
-            debouncedSearch(inputValue);
-        }
-    };
+    //     if (inputValue.length >= 3) {
+    //         debouncedSearch(inputValue);
+    //     }
+    // };
     
 
     return (
@@ -55,7 +55,7 @@ const CustomSearch = ({
                 variant="outlined"
                 placeholder={placeHolder}
                 value={value}
-                onChange={handleInputChange}
+                onChange={onChange} 
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 onMouseEnter={() => setIsHovered(true)}
