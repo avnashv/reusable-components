@@ -682,7 +682,7 @@ function App() {
         <div className="flex flex-col border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md w-48">
           <h4 className="text-lg text-center text-gray-400">Default</h4>
           {/* Checked */}
-          <CustomCheckboxField label="Label" description="Description" defaultChecked={true} />
+          <CustomCheckboxField label="Label"  defaultChecked={true} hasError={true} error="Required" />
         </div>
 
         <div className="flex flex-col border-r-1 border-l-1 p-6 border-gray-300 rounded-4xl shadow-md w-48">

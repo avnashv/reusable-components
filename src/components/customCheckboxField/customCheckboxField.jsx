@@ -20,12 +20,12 @@ const CustomCheckboxField = ({
   inputClassName = "",
   labelClassName = "",
   className = "",
-  sx={}
+  sx = {}
 }) => {
 
   return (
     <Box
-    className={className}
+      className={className}
       sx={{
         display: "flex",
         gap: "12px",
@@ -60,9 +60,10 @@ const CustomCheckboxField = ({
           flexDirection: "column",
           gap: "2px",
           alignItems: "flex-start",
-          marginTop: description ? "25px" : "",
+          marginTop: description || (hasError && error) ? "25px" : "0px",
         }}
       >
+
         {label && (
           <Typography
             className={labelClassName}
