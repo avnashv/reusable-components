@@ -12,3 +12,4 @@ export { default as CustomToggle } from "./components/customToggle/customToggle"
 export { default as CustomDateRangePicker } from "./components/customDateRangePicker/customDateRangePicker";
 export { default as customTimePicker } from "./components/customTimePicker/customTimePicker";
 export { default as CustomOffCanvasModal } from "./components/customOffcanvas/OffcanvasModal";
+export { default as CustomAlert } from "./components/customAlert/customAlert";
